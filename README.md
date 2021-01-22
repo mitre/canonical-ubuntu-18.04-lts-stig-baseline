@@ -46,7 +46,7 @@ The JSON results output file can be loaded into __[heimdall-lite](https://mitre.
 The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.
 
 ## Contributing and Getting Help
-To report a bug or feature request, please open an [issue](https://canonical-ubuntu-18.04-lts-stig-baseline/issues/new).
+To report a bug or feature request, please open an [issue](https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline/issues/new).
 
 ## Authors
 - Aaron Lippold
