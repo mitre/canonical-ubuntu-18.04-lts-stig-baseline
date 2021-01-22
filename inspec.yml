@@ -42,3 +42,19 @@ inputs:
     type: String
     value: 'MITRE'
 
+  # V-219147
+  - name: grub_main_cfg
+    description: Main grub boot config file
+    type: String
+    value: '/boot/grub/grub.cfg'
+
+  - name: grub_uefi_main_cfg
+    description: Main grub boot config file
+    type: String
+    value: '/boot/efi/EFI/ubuntu/grub.cfg'
+
+  - name: grub_superuser
+    description: superusers for grub boot
+    type: String
+    value: 'root'
+
