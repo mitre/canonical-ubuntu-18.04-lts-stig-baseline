@@ -79,17 +79,5 @@ For further information, please contact The MITRE Corporation, Contracts Managem
 
 ### NOTICE
 
-< DISA STIGs | CIS Benchmarks > are published by < DISA IASE | the Center for Internet Security (CIS) >, see: 
-< https://iase.disa.mil/Pages/privacy_policy.aspx | https://www.cisecurity.org/ >.
-
----
-Name: U_CAN_Ubuntu_18-04_STIG
-Author: The Authors
-Status: accepted on 2020-09-10
-Copyright: The Authors
-Copyright Email: you@example.com
-Version: 0.1.0
-Release: 1 Benchmark Date: 23 Oct 2020
-Reference: https://cyber.mil
-Reference by: DISA
-Reference source: STIG.DOD.MIL
+DISA STIGs are published by DISA IASE , see: 
+https://iase.disa.mil/Pages/privacy_policy.aspx .
