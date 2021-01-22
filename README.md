@@ -58,7 +58,7 @@ To report a bug or feature request, please open an [issue](https://canonical-ubu
 
 ## License 
 
-This project is licensed under the terms of the Apache 2.0 license excepted as noted in [LICENSE.MD](https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline/blob/master/LICENSE.md). 
+This project is licensed under the terms of the Apache 2.0 license excepted as noted in [LICENSE](https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline/blob/master/LICENSE). 
 
 ### NOTICE
 
