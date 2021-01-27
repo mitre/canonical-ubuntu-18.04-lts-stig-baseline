@@ -70,5 +70,16 @@ following command:
   tag fix_id: 'F-20872r304773_fix'
   tag cci: ['V-100521', 'SV-109625', 'CCI-000213']
   tag nist: ['AC-3']
+
+  if file('/sys/firmware/efi').exist?
+    describe parse_config_file(input('grub_uefi_main_cfg')) do
+      its('set superusers') { should cmp '"root"' }
+    end
+  else
+    impact 0.0
+    describe "System is booted with a BIOS" do
+      skip "The System is booted with a BIOS, this control is Not Applicable."
+    end
+  end
 end
 
