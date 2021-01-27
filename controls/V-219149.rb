@@ -42,5 +42,15 @@ option.
   tag fix_id: 'F-20873r304776_fix'
   tag cci: ['V-100523', 'SV-109627', 'CCI-001464']
   tag nist: ['AU-14 (1)']
-end
 
+  describe.one do
+    describe grub_conf(input('grub_main_cfg')) do
+      its('kernel') { should include 'audit=1' }
+    end
+    describe grub_conf(input('grub_uefi_main_cfg')) do
+      its('kernel') { should include 'audit=1' }
+    end
+  end
+
+
+end
