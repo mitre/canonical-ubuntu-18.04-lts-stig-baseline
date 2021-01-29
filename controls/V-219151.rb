@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219151' do
   title "The Ubuntu operating system must implement NIST FIPS-validated
 cryptography to protect classified information and for the following: to
@@ -26,7 +24,7 @@ command:
 
     If a value of \"1\" is not returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system to run in FIPS mode. Add \"fips=1\" to the kernel
 parameter during the Ubuntu operating systems install.
 
@@ -39,12 +37,16 @@ cryptographic modules and enable FIPS.
   impact 0.7
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000478-GPOS-00223'
-  tag satisfies: ['SRG-OS-000478-GPOS-00223', 'SRG-OS-000396-GPOS-00176']
+  tag satisfies: %w[SRG-OS-000478-GPOS-00223 SRG-OS-000396-GPOS-00176]
   tag gid: 'V-219151'
   tag rid: 'SV-219151r508662_rule'
   tag stig_id: 'UBTU-18-010005'
   tag fix_id: 'F-20875r304782_fix'
-  tag cci: ['V-100527', 'SV-109631', 'CCI-002450']
+  tag cci: %w[V-100527 SV-109631 CCI-002450]
   tag nist: ['SC-13']
-end
 
+  describe file('/proc/sys/crypto/fips_enabled') do
+    it { should exist }
+    its('content.strip') { should cmp 1 }
+  end
+end
