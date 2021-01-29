@@ -78,5 +78,28 @@ least, 25% of the repository maximum audit record storage capacity.
   tag fix_id: 'F-20876r304785_fix'
   tag cci: ['SV-109633', 'V-100529', 'CCI-001855']
   tag nist: ['AU-5 (1)']
+
+  describe auditd_conf do
+    its('space_left_action') { should eq 'email' }
+  end
+  if((f = file(audit_log_dir = command("dirname #{auditd_conf.log_file}").stdout.strip)).directory?)
+    # Fetch partition sizes in 1K blocks for consistency
+    partition_info = command("df -B 1K #{audit_log_dir}").stdout.split("\n")
+    partition_sz_arr = partition_info.last.gsub(/\s+/m, ' ').strip.split(" ")
+
+    # Get partition size
+    partition_sz = partition_sz_arr[1]
+
+    # Convert to MB and get 25%
+    exp_space_left = partition_sz.to_i / 1024 / 4
+
+    describe auditd_conf do
+      its('space_left.to_i') { should be >= exp_space_left }
+    end
+  else
+    describe f.directory? do
+     it { should be true }
+    end
+  end
 end
 

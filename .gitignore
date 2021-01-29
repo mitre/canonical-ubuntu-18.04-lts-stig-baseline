@@ -1,3 +1,4 @@
+*.json
 *.lock
 *.gem
 *.rbc
@@ -5,6 +6,7 @@
 !Gemfile.lock
 .attribute.yml
 
+/.vscode
 /.config
 /coverage/
 /InstalledFiles
