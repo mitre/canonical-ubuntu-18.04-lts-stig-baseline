@@ -1,0 +1,33 @@
+---
+
+verifier:
+  name: inspec
+  sudo: true
+  reporter:
+    - cli
+    - json:spec/results/%{platform}_%{suite}.json
+  inspec_tests:
+    - name: Ubuntu 18.04 STIG
+      path: .
+  input_files:
+    - kitchen.inputs.yml
+  load_plugins: true
+
+platforms:
+  - name: ubuntu-18.04
+
+suites:
+  - name: hardened
+    provisioner:
+      playbook: spec/ansible/ubuntu-stig-hardening.yml
+    verifier:
+      reporter:
+        - cli
+        - json:spec/results/%{platform}-hardened-test-result.json
+  - name: vanilla
+    provisioner:
+      playbook: spec/ansible/ubuntu-stig-vanilla.yml
+    verifier:
+      reporter:
+        - cli
+        - json:spec/results/%{platform}-vanilla-test-result.json

@@ -1,0 +1,10 @@
+---
+galaxy_info:
+  role_name: ubuntu_base
+  author: Fabien Schurter
+  description: An Ansible role for bootstraping a minimal Ubuntu 18.04 system.
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions: [bionic]

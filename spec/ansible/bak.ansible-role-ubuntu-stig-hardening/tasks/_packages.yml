@@ -1,0 +1,45 @@
+---
+- name: Disable «src» repositories
+  replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb-src '
+    replace: '# deb-src '
+
+- name: Disable backports
+  replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb (.+ {{ ansible_distribution_release|lower }}-backports) '
+    replace: '# deb \1 '
+
+- name: Update package cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade all installed packages
+  apt:
+    upgrade: true
+
+- name: Install required packages
+  apt:
+    name:
+      - bash
+      - sudo
+      - locales
+      - openssh-server
+      - ntp
+      - mailutils
+      - update-notifier-common
+      - unattended-upgrades
+      - bash
+      - bash-completion
+      - vim
+      - python-pip
+    state: latest
+
+- name: Make sure core Python packages are up to date
+  pip:
+    name:
+      - pip
+      - setuptools
+    state: latest
