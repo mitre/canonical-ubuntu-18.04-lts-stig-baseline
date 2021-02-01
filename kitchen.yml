@@ -23,11 +23,11 @@ suites:
     verifier:
       reporter:
         - cli
-        - json:spec/results/%{platform}-hardened-test-result.json
+        - json:spec/results/%{platform}_%{suite}.json
   - name: vanilla
     provisioner:
       playbook: spec/ansible/ubuntu-stig-vanilla.yml
     verifier:
       reporter:
         - cli
-        - json:spec/results/%{platform}-vanilla-test-result.json
+        - json:spec/results/%{platform}_%{suite}.json
