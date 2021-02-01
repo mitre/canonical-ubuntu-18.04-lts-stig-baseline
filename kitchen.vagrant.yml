@@ -41,16 +41,7 @@ platforms:
 lifecycle:
   pre_converge:
     - remote: |
-        #echo "NOTICE - Installing Updates"
-        #sudo apt-get update
-        #sudo apt-get --with-new-pkgs upgrade -y
-        #sudo apt-get autoremove -y
-        #sudo apt-get upgrade
-        #echo "NOTICE - Installing needed packages"
-        #sudo apt-get install -y bc dnsutils lsb-core vim python3-pip
         echo "NOTICE - Updating the vagrant user to keep sudo working"
         sudo chage -d $(( $( date +%s ) / 86400 )) vagrant
-        ## echo "NOTICE - Updating root passwd"
-        ## echo -e 'password\npassword' | sudo passwd root
         echo "NOTICE - updating vagrant sudo config"
         sudo chmod 600 /etc/sudoers && sudo sed -i'' "/vagrant/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
