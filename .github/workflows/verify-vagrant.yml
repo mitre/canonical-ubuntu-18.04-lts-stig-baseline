@@ -35,7 +35,7 @@ jobs:
       - name: Lint the Inspec profile
         run: bundle exec inspec check .
       - name: Run kitchen test
-        run: bundle exec kitchen test --destroy=always ${{ matrix.suite }}-ubuntu-18.04 || true
+        run: bundle exec kitchen test --destroy=always ${{ matrix.suite }}-ubuntu-1804 || true
       - name: Display our ${{ matrix.suite }} results summary
         run: bundle exec inspec_tools summary -j spec/results/ubuntu-18.04_${{ matrix.suite }}.json --json-counts | jq .
       - name: Ensure the scan meets our ${{ matrix.suite }} results threshold
