@@ -1,0 +1,4 @@
+---
+- hosts: ansible-vm
+  roles:
+    - role: ../ansible-role-ubuntu-stig-hardening

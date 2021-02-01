@@ -1,0 +1,6 @@
+---
+- import_tasks: _packages.yml
+  tags: [packages]
+
+- import_tasks: _config.yml
+  tags: [config]

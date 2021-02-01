@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Start service ssh-server, if not started
+      service:
+        name: ssh
+        state: started

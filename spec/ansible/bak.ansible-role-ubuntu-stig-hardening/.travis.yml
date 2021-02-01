@@ -1,0 +1,17 @@
+---
+dist: xenial
+language: python
+python: '2.7'
+
+env:
+  - ANSIBLE_VERSION=2.4.0
+  - ANSIBLE_VERSION=2.5.0
+  - ANSIBLE_VERSION=2.6.0
+  - ANSIBLE_VERSION=2.7.0
+
+install:
+  - pip install ansible~="$ANSIBLE_VERSION"
+  - ansible --version
+
+script:
+  - ansible-playbook --syntax-check tests/playbook.yml
