@@ -77,5 +77,12 @@ receiving the audit log.
   tag fix_id: 'F-20877r304788_fix'
   tag cci: ['SV-109635', 'V-100531', 'CCI-001851']
   tag nist: ['AU-4 (1)']
+
+  describe package('audispd-plugins') do
+    it { should be_installed }
+  end
+
+
+
 end
 
