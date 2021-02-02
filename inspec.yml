@@ -58,3 +58,16 @@ inputs:
     description: Main grub boot config file
     type: String
     value: '/boot/efi/EFI/ubuntu/grub.cfg'
+
+  # V-219195
+  - name: audit_tools
+    description: System audit tools used to view and manipulate log data
+    type: Array
+    value:
+      - /sbin/auditctl
+      - /sbin/aureport
+      - /sbin/ausearch
+      - /sbin/autrace
+      - /sbin/auditd
+      - /sbin/audispd
+      - /sbin/augenrules

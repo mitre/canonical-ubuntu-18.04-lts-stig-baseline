@@ -58,5 +58,19 @@ permissive mode.
   tag fix_id: 'F-20919r304914_fix'
   tag cci: ['SV-109721', 'V-100617', 'CCI-001494', 'CCI-001495', 'CCI-001493']
   tag nist: ['AU-9', 'AU-9', 'AU-9']
-end
 
+  audit_tools = input('audit_tools')
+
+  if !audit_tools.nil? and !audit_tools.empty?
+    audit_tools.each do |audit_tool|
+      describe file(audit_tool) do
+        it { should_not be_more_permissive_than('0755') }
+      end
+    end
+  else
+    describe "No input provided for the list of audit_tools. Please check inputs" do
+      subject { key_files.nil? or key_files.empty? }
+      it { should eq true }
+    end
+  end
+end

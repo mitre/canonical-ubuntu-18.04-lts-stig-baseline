@@ -1,0 +1,34 @@
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/auditctl
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/aureport
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/ausearch
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/autrace
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/auditd
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/audispd
+    mode: '0755'
+
+- name: Change file permissions
+  ansible.builtin.file:
+    path: /sbin/augenrules
+    mode: '0755'

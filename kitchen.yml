@@ -23,6 +23,7 @@ suites:
     verifier:
       controls:
         - V-219153
+        - V-219195
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json
@@ -32,6 +33,7 @@ suites:
     verifier:
       controls:
         - V-219153
+        - V-219195
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json
