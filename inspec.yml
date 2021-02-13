@@ -71,3 +71,10 @@ inputs:
       - /sbin/auditd
       - /sbin/audispd
       - /sbin/augenrules
+
+  # V-219162
+  - name: auditd_cfg
+    description: Auditing Daemon config file
+    type: String
+    value: '/etc/audisp/plugins.d/au-remote.conf'
+    

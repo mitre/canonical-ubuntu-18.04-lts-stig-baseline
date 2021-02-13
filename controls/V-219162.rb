@@ -72,5 +72,21 @@ receiving the audit log.
   tag fix_id: 'F-20886r304815_fix'
   tag cci: ['SV-109655', 'V-100551', 'CCI-001851']
   tag nist: ['AU-4 (1)']
-end
 
+  auditd_cfg = input('auditd_cfg')
+
+  describe package('audispd-plugins') do
+    it { should be_installed }
+  end
+  
+  describe file(auditd_cfg) do
+    it { should exist }
+  end
+
+  if package('audispd-pluginss').installed? && file(auditd_cfg).exist?
+    describe auditd_conf(auditd_cfg)  do
+      its('active') { should cmp 'yes' }
+    end
+  end
+
+end
