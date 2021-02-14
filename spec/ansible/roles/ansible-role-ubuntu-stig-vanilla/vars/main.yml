@@ -3,3 +3,4 @@
 sudo: yes
 roles:
 – { role: “ansible-role-ubuntu-stig-vanilla”}
+

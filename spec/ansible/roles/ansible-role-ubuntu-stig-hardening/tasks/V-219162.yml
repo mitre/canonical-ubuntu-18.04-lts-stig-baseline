@@ -1,5 +1,0 @@
-- name: Install required packages
-  apt:
-    name:
-      - audispd-plugins
-    state: latest

@@ -1,0 +1,6 @@
+- name: Check if a reboot is needed 
+  register: reboot_required_file
+  meta: flush_handlers
+  stat: path=/var/run/reboot-required get_md5=no
+
+
