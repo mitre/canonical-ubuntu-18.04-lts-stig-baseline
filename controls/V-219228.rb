@@ -58,5 +58,8 @@ following command:
   tag fix_id: 'F-20952r305013_fix'
   tag cci: ['V-100683', 'SV-109787', 'CCI-000162', 'CCI-000163']
   tag nist: ['AU-9', 'AU-9']
-end
 
+  describe file(auditd_conf.log_file) do
+    it { should_not be_more_permissive_than('0600') }
+  end
+end
