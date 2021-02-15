@@ -60,6 +60,7 @@ inputs:
     value: '/boot/efi/EFI/ubuntu/grub.cfg'
 
   # V-219195
+  # V-219197
   - name: audit_tools
     description: System audit tools used to view and manipulate log data
     type: Array

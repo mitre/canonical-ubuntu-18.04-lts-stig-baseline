@@ -25,6 +25,7 @@ suites:
         - V-219153
         - V-219195
         - V-219162
+        - V-219197
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json

@@ -52,5 +52,19 @@ by root, by running the following command:
   tag fix_id: 'F-20921r304920_fix'
   tag cci: ['V-100621', 'SV-109725', 'CCI-001493']
   tag nist: ['AU-9']
-end
 
+  audit_tools = input('audit_tools')
+
+  if !audit_tools.nil? and !audit_tools.empty?
+    audit_tools.each do |audit_tool|
+      describe file(audit_tool) do
+        its('group') { should eq 'root' }
+      end
+    end
+  else
+    describe "No input provided for the list of audit_tools. Please check inputs" do
+      subject { key_files.nil? or key_files.empty? }
+      it { should eq true }
+    end
+  end
+end
