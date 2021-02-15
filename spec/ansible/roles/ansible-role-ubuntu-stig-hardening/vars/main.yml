@@ -4,7 +4,6 @@ sudo: yes
 roles:
 – { role: “ansible-role-ubuntu-stig-hardening”}
 
-
 # crypto_ciphers
 ssh_macs_53_default:
   - hmac-ripemd160
@@ -60,9 +59,16 @@ ssh_kex_80_default:
 
 # auditd
 ## Audit daemon (auditd)
-# Send audit records to a different system using audisp.
-security_audisp_remote_server: '10.0.0.2'                  # V-219162
+### Audit Tools
+security_audit_tools:
+  - /sbin/auditctl
+  - /sbin/aureport
+  - /sbin/ausearch
+  - /sbin/autrace
+  - /sbin/auditd
+  - /sbin/audispd
+  - /sbin/augenrules
 
-
-
+### Send audit records to a different system using audisp.
+security_audisp_remote_server: "10.0.0.2" # V-219162
 
