@@ -53,10 +53,8 @@ by root, by running the following command:
   tag cci: ['V-100621', 'SV-109725', 'CCI-001493']
   tag nist: ['AU-9']
 
-  audit_tools = input('audit_tools')
-
-  if !audit_tools.nil? and !audit_tools.empty?
-    audit_tools.each do |audit_tool|
+  unless input('audit_tools').nil? or input('audit_tools').empty?
+    input('audit_tools').each do |audit_tool|
       describe file(audit_tool) do
         its('group') { should eq 'root' }
       end

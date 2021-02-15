@@ -73,17 +73,12 @@ receiving the audit log.
   tag cci: ['SV-109655', 'V-100551', 'CCI-001851']
   tag nist: ['AU-4 (1)']
 
-  auditd_cfg = input('auditd_cfg')
-  auditd_cfg_remote_server = input('auditd_cfg_remote_server')
-  auditd_cfg_remote_plugin_cfg = input('auditd_cfg_remote_plugin_cfg')
 
-
-
-  if package('audispd-plugins').installed? && file(auditd_cfg).exist? & file(auditd_cfg_remote_plugin_cfg).exist?
-    describe auditd_conf(auditd_cfg) do
-      its('remote_server') { should cmp auditd_cfg_remote_server }
+  if package('audispd-plugins').installed? && file(input('auditd_cfg')).exist? && file(input('auditd_cfg_remote_plugin_cfg')).exist?
+    describe auditd_conf(input('auditd_cfg')) do
+      its('remote_server') { should cmp input('auditd_cfg_remote_server') }
     end
-    describe auditd_conf(auditd_cfg_remote_plugin_cfg)  do
+    describe auditd_conf(input('auditd_cfg_remote_plugin_cfg'))  do
       its('active') { should cmp 'yes' }
     end
   else
@@ -91,7 +86,7 @@ receiving the audit log.
       it { should be_installed }
     end
     
-    describe file(auditd_cfg) do
+    describe file(input('auditd_cfg')) do
       it { should exist }
     end
 

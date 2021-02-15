@@ -59,10 +59,8 @@ permissive mode.
   tag cci: ['SV-109721', 'V-100617', 'CCI-001494', 'CCI-001495', 'CCI-001493']
   tag nist: ['AU-9', 'AU-9', 'AU-9']
 
-  audit_tools = input('audit_tools')
-
-  if !audit_tools.nil? and !audit_tools.empty?
-    audit_tools.each do |audit_tool|
+  unless input('audit_tools').nil? or input('audit_tools').empty?
+    input('audit_tools').each do |audit_tool|
       describe file(audit_tool) do
         it { should_not be_more_permissive_than('0755') }
       end
