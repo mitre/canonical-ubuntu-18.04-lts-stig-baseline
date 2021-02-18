@@ -1,6 +1,6 @@
 # (WIP) canonical-ubuntu-18.04-lts-stig-baseline 
 
-InSpec Profile to validate the secure configuration of Canonical Ubuntu 18.04 LTS, against the [DISA](https://public.cyber.mil/stigs/)'s
+InSpec Profile to validate the secure configuration of Canonical Ubuntu 18.04 LTS, against the DISA's [STIGs](https://public.cyber.mil/stigs/).
 
 ## Getting Started  
 It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __ssh__.
