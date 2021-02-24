@@ -56,5 +56,18 @@ file:
   tag fix_id: 'F-20962r485694_fix'
   tag cci: ['V-100703', 'SV-109807', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+
+
+  describe auditd.file('/etc/sudoers') do
+    its('permissions') { should include ['x'] }
+  end
+
+  #describe auditd.file('/bin/su') do
+  #  its('action.uniq') { should eq ['always'] }
+  #  its('list.uniq') { should eq ['exit'] }
+  #  its('permissions') { should include ['x'] }
+  #end
+
 end
 
