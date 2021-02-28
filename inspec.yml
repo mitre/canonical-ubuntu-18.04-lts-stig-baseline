@@ -74,7 +74,7 @@ inputs:
       - /sbin/augenrules
 
   # V-219162
-  - name: auditd_cfg
+  - name: audisp_cfg
     description: Auditing Daemon config file
     type: String
     value: '/etc/audisp/audisp-remote.conf'
