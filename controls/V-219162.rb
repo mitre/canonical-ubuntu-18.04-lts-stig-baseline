@@ -74,11 +74,11 @@ receiving the audit log.
   tag nist: ['AU-4 (1)']
 
 
-  if package('audispd-plugins').installed? && file(input('audisp_cfg')).exist? && file(input('auditd_cfg_remote_plugin_cfg')).exist?
+  if package('audispd-plugins').installed? && file(input('audisp_cfg')).exist? && file(input('audisp_cfg_remote_plugin_cfg')).exist?
     describe auditd_conf(input('audisp_cfg')) do
-      its('remote_server') { should cmp input('auditd_cfg_remote_server') }
+      its('remote_server') { should cmp input('audisp_cfg_remote_server') }
     end
-    describe auditd_conf(input('auditd_cfg_remote_plugin_cfg'))  do
+    describe auditd_conf(input('audisp_cfg_remote_plugin_cfg'))  do
       its('active') { should cmp 'yes' }
     end
   else
