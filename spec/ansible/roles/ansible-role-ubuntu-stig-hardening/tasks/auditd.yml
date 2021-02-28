@@ -58,24 +58,43 @@
   loop:
     '{{ security_audit_tools }}'
   tags:
-  - V-219195
+    - V-219195
 
-- name: Change file permissions for Security Tools
+- name: Change file ownership for Security Tools
   ansible.builtin.file:
     path: '{{ item }}'
     group: 'root'
   loop:
     '{{ security_audit_tools }}'
   tags:
-  - V-219197
-  
+    - V-219197
+
+- name: The Ubuntu operating system must be configured so that audit log files cannot be read or write-accessible by unauthorized users.
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?log_group"
+    line: "log_group = root"
+  notify:
+    - restart auditd
+  tags:
+    - V-219228
+
 - name: Change file permissions for Audit Logfile
   ansible.builtin.file:
     path: '{{ security_audit_log }}'
     mode: '0600'
   tags:
-  - V-219228
+    - V-219228
+
+- name: Change file ownership for Audit Logfile
+  ansible.builtin.file:
+    path: '{{ security_audit_log }}'
+    group: 'root'
+  tags:
+    - V-219229
 
 
-  
+
+
+
   

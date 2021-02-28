@@ -57,5 +57,8 @@ audit log files to be owned by \"root\" user by using the following command:
   tag fix_id: 'F-20953r305016_fix'
   tag cci: ['V-100685', 'SV-109789', 'CCI-000162', 'CCI-000163']
   tag nist: ['AU-9', 'AU-9']
-end
 
+  describe file(auditd_conf.log_file) do
+    it { should be_owned_by('root') }
+  end
+end
