@@ -59,15 +59,15 @@ file:
 
 
 
-  describe auditd.file('/etc/sudoers') do
-    its('permissions') { should include ['x'] }
-  end
-
-  #describe auditd.file('/bin/su') do
-  #  its('action.uniq') { should eq ['always'] }
-  #  its('list.uniq') { should eq ['exit'] }
+  #describe auditd.file('/etc/sudoers') do
   #  its('permissions') { should include ['x'] }
   #end
+
+  describe auditd.file('/bin/su') do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+    its('permissions') { should include ['x'] }
+  end
 
 end
 
