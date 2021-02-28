@@ -79,6 +79,17 @@
   tags:
     - V-219228
 
+    #action_mail_acct = root
+- name: The Ubuntu operating system must be configured so that audit log files cannot be read or write-accessible by unauthorized users.
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?action_mail_acct"
+    line: "action_mail_acct = root"
+  notify:
+    - restart auditd
+  tags:
+    - V-219226
+
 - name: Change file permissions for Audit Logfile
   ansible.builtin.file:
     path: '{{ security_audit_log }}'
