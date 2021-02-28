@@ -61,5 +61,8 @@ failure (unless availability is an overriding concern).
   tag fix_id: 'F-20951r305010_fix'
   tag cci: ['SV-109785', 'V-100681', 'CCI-000140']
   tag nist: ['AU-5 b']
-end
 
+  describe auditd_conf  do
+    its('disk_full_action') { should cmp 'HALT' }
+  end
+end

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219236' do
   title "The Ubuntu operating system must permit only authorized groups to own
 the audit configuration files."
@@ -45,7 +43,7 @@ command:
 \"/etc/audit/auditd.conf\" file is owned by a group other than \"root\", this
 is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure \"/etc/audit/audit.rules\", \"/etc/audit/rules.d/*\" and
 \"/etc/audit/auditd.conf\" files to be owned by root group by using the
 following command:
@@ -62,25 +60,19 @@ and /etc/audit/rules.d/ directories.
   tag rid: 'SV-219236r508662_rule'
   tag stig_id: 'UBTU-18-010313'
   tag fix_id: 'F-20960r305037_fix'
-  tag cci: ['SV-109803', 'V-100699', 'CCI-000171']
+  tag cci: %w[SV-109803 V-100699 CCI-000171]
   tag nist: ['AU-12 b']
 
-
-  # /etc/audit/audit.rules/*
-  # /etc/audit/rules.d/*
-  
   describe file(auditd_conf.conf_path) do
     its('group') { should cmp 'root' }
   end
 
   files = inspec.command('find /etc/audit/ /etc/audit/rules.d/ -type f ! -group root').stdout.lines
 
-  describe "All files in the /etc/audit/* and /etc/audit/rules.d/*" do
-    it "should be grouped into root" do
+  describe 'All files in the /etc/audit/* and /etc/audit/rules.d/*' do
+    it 'should be grouped into root' do
       failure_message = "Files not grouped root:\n  - #{files.join('  - ')}"
       expect(files).to be_empty, failure_message
+    end
   end
-
-end
-
 end

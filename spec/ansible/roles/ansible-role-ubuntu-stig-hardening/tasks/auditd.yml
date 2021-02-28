@@ -79,7 +79,6 @@
   tags:
     - V-219228
 
-    #action_mail_acct = root
 - name: The Ubuntu operating system must be configured so that audit log files cannot be read or write-accessible by unauthorized users.
   lineinfile:
     dest: /etc/audit/auditd.conf
@@ -89,6 +88,16 @@
     - restart auditd
   tags:
     - V-219226
+
+- name: The Ubuntu operating system must shut down by default upon audit failure (unless availability is an overriding concern).
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?disk_full_action"
+    line: "disk_full_action = HALT"
+  notify:
+    - restart auditd
+  tags:
+    - V-219227
 
 - name: Change file permissions for Audit Logfile
   ansible.builtin.file:
