@@ -30,6 +30,7 @@ suites:
         - V-219228
         - V-219238
         - V-219229
+        - V-219232
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json
@@ -46,6 +47,7 @@ suites:
         - V-219228
         - V-219238
         - V-219229
+        - V-219232
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json

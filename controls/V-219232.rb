@@ -56,5 +56,10 @@ audit log directory to be owned by \"root\" user by using the following command:
   tag fix_id: 'F-20956r305025_fix'
   tag cci: ['V-100691', 'SV-109795', 'CCI-000164']
   tag nist: ['AU-9']
-end
 
+  #log_file = /var/log/audit/audit.log
+
+  describe directory(file(auditd_conf.log_file).path.to_s.gsub("/"+file(auditd_conf.log_file).basename,"")) do
+    it { should be_owned_by('root') }
+  end
+end

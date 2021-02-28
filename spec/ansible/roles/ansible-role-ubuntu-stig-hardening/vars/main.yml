@@ -74,3 +74,4 @@ security_audisp_remote_server: "10.0.0.2" # V-219162
 
 ### Audit Log
 security_audit_log: "/var/log/audit/audit.log"
+security_audit_log_directory: "/var/log/audit"
