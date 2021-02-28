@@ -64,5 +64,23 @@ and /etc/audit/rules.d/ directories.
   tag fix_id: 'F-20960r305037_fix'
   tag cci: ['SV-109803', 'V-100699', 'CCI-000171']
   tag nist: ['AU-12 b']
+
+
+  # /etc/audit/audit.rules/*
+  # /etc/audit/rules.d/*
+  
+  describe file(auditd_conf.conf_path) do
+    its('group') { should cmp 'root' }
+  end
+
+  files = inspec.command('find /etc/audit/ /etc/audit/rules.d/ -type f ! -group root').stdout.lines
+
+  describe "All files in the /etc/audit/* and /etc/audit/rules.d/*" do
+    it "should be grouped into root" do
+      failure_message = "Files not grouped root:\n  - #{files.join('  - ')}"
+      expect(files).to be_empty, failure_message
+  end
+
 end
 
+end

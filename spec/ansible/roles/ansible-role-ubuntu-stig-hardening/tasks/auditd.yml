@@ -113,4 +113,11 @@
 
 
 
-  
+
+- name: Change file group for Auditd Rules Folder
+  ansible.builtin.file:
+    path: '{{ security_audit_directory }}'
+    group: 'root'
+    recurse: yes
+  tags:
+    - V-219236
