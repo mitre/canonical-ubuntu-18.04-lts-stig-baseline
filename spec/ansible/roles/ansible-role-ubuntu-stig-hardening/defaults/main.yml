@@ -1,2 +1,19 @@
 ---
 # defaults file for ansible-role-ubuntu-stig-hardening
+no_reboot_needed: true
+restrict_strategy: true
+medium_severity: true
+high_severity: true
+sshd_do_not_permit_user_env: true
+sshd_disable_empty_passwords: true
+sshd_allow_only_protocol2: true
+sshd_set_idle_timeout: true
+sshd_use_approved_ciphers: true
+sshd_set_keepalive: true
+sshd_idle_timeout_value: '600'
+sshd_use_approved_macs: true
+sshd_enable_warning_banner: true
+low_disruption: true
+low_severity: true
+low_complexity: true
+var_sshd_set_keepalive: '1'
