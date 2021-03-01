@@ -21,6 +21,18 @@ suites:
     provisioner:
       playbook: spec/ansible/ubuntu-stig-hardening.yml
     verifier:
+      controls:
+        - V-219153
+        - V-219195
+        - V-219162
+        - V-219197
+        - V-219279
+        - V-219228
+        - V-219238
+        - V-219229
+        - V-219232
+        - V-219226
+        - V-219227
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json
@@ -28,6 +40,18 @@ suites:
     provisioner:
       playbook: spec/ansible/ubuntu-stig-vanilla.yml
     verifier:
+      controls:
+        - V-219153
+        - V-219195
+        - V-219162
+        - V-219197
+        - V-219279
+        - V-219228
+        - V-219238
+        - V-219229
+        - V-219232
+        - V-219226
+        - V-219227
       reporter:
         - cli
         - json:spec/results/%{platform}_%{suite}.json
