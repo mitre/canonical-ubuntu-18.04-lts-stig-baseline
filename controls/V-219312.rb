@@ -66,5 +66,25 @@ Message Authentication Codes (MACs) that employ FIPS 140-2 approved ciphers.
   tag fix_id: 'F-21036r305265_fix'
   tag cci: ['V-100847', 'SV-109951', 'CCI-001453', 'CCI-002890', 'CCI-003123']
   tag nist: ['AC-17 (2)', 'MA-4 (6)', 'MA-4 (6)']
+
+  # Need to handle both workstation and server, where workstations won't have sshd
+  only_if { package('openssh-server').installed? }
+
+  @macs = inspec.sshd_config.params("macs")
+  if @macs.nil?
+    # fail fast
+    describe 'The `sshd_config` setting for `MACs`' do
+    subject { @macs }
+      it 'should be explicitly set and not commented out' do
+        expect(subject).not_to be_nil
+      end
+    end
+  else
+    @macs.first.split(",").each do |mac|
+      describe mac do
+        it { should be_in ['hmac-sha2-256', 'hmac-sha2-512'] }
+      end
+    end
+  end
 end
 

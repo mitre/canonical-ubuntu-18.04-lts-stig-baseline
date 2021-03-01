@@ -61,5 +61,9 @@ replacing \"[Count]\" with a value of 1:
   tag fix_id: 'F-21034r305259_fix'
   tag cci: ['SV-109947', 'V-100843', 'CCI-000879']
   tag nist: ['MA-4 e']
+
+  describe sshd_config do
+    its('ClientAliveCountMax') { should cmp '1' }
+  end
 end
 
