@@ -64,5 +64,10 @@ it with the following command:
   tag fix_id: 'F-21061r485707_fix'
   tag cci: ['V-100897', 'SV-110001', 'CCI-000366', 'CCI-002314']
   tag nist: ['CM-6 b', 'AC-17 (1)']
+
+  describe service('ufw') do
+    it { should be_running }
+    it { should be_enabled }
+  end
 end
 
