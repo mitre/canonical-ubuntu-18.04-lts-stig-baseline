@@ -41,5 +41,9 @@ the following command:
   tag fix_id: 'F-21028r305241_fix'
   tag cci: ['SV-109935', 'V-100831', 'CCI-000058', 'CCI-000060']
   tag nist: ['AC-11 a', 'AC-11 (1)']
+
+  describe package('vlock') do
+    it { should be_installed }
+  end  
 end
 
