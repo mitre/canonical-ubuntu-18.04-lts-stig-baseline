@@ -53,5 +53,13 @@ session locks with the following command:
   tag fix_id: 'F-21026r305235_fix'
   tag cci: ['V-100827', 'SV-109931', 'CCI-000056']
   tag nist: ['AC-11 b']
+
+  describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
+    its('stdout.strip') { should cmp 'false' }
+  end if package('gnome-desktop3').installed?
+
+  describe "The GNOME desktop is not installed" do
+    skip "The GNOME desktop is not installed, this control is Not Applicable."
+  end if !package('ubuntu-gnome-desktop').installed?
 end
 
