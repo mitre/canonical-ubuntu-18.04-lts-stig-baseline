@@ -1,6 +1,11 @@
 name: Verify the Baseline using Vagrant
 
-on: [push, commit]
+on:
+  push:	
+    branches: [ master ]	
+  pull_request:	
+    branches: [ master ]	
+
 jobs:
   my-job:
     name: Validate my profile
