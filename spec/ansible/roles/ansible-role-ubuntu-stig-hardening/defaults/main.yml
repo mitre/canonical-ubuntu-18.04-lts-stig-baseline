@@ -7,7 +7,10 @@ medium_disruption: true
 medium_severity: true
 high_severity: true
 enable_strategy: true
+<<<<<<< HEAD
 dconf_gnome_screensaver_lock_enabled: true
+=======
+>>>>>>> master
 package_vlock_installed: true
 sshd_do_not_permit_user_env: true
 sshd_disable_empty_passwords: true
