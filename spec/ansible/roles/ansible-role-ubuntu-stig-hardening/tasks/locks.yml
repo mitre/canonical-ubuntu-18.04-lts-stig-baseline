@@ -1,0 +1,26 @@
+- name: Ensure vlock is installed
+  package:
+    name: vlock
+    state: present
+  when:
+    - package_vlock_installed | bool
+    - no_reboot_needed | bool
+    - medium_severity | bool
+    - enable_strategy | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219304
+    - DISA-STIG-UBTU-18-010403
+    - NIST-800-171-3.1.11
+    - NIST-800-53-AC-12
+    - NIST-800-53-AC-2(5)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-SC-10
+    - package_vlock_installed
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    

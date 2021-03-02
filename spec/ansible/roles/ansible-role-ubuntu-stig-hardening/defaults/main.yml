@@ -4,6 +4,8 @@ no_reboot_needed: true
 restrict_strategy: true
 medium_severity: true
 high_severity: true
+enable_strategy: true
+package_vlock_installed: true
 sshd_do_not_permit_user_env: true
 sshd_disable_empty_passwords: true
 sshd_allow_only_protocol2: true
