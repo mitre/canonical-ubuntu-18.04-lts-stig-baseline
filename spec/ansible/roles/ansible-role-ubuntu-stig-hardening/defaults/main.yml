@@ -1,13 +1,11 @@
 ---
 # defaults file for ansible-role-ubuntu-stig-hardening
-accounts_tmout: true
 no_reboot_needed: true
 restrict_strategy: true
 medium_disruption: true
 medium_severity: true
 high_severity: true
 enable_strategy: true
-dconf_gnome_screensaver_lock_enabled: true
 package_vlock_installed: true
 package_ufw_installed: true
 service_ufw_enabled: true
@@ -24,4 +22,3 @@ low_disruption: true
 low_severity: true
 low_complexity: true
 var_sshd_set_keepalive: '1'
-var_accounts_tmout: '600'
