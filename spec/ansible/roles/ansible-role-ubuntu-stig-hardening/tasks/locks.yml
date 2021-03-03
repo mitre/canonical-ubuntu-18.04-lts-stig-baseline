@@ -34,7 +34,6 @@
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
     - medium_severity | bool
-    - unknown_strategy | bool
     - medium_disruption | bool
     - dconf_gnome_screensaver_lock_enabled | bool
     - low_complexity | bool
