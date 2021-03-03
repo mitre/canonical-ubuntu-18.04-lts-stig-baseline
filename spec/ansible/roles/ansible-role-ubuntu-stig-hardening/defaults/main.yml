@@ -9,6 +9,8 @@ high_severity: true
 enable_strategy: true
 dconf_gnome_screensaver_lock_enabled: true
 package_vlock_installed: true
+package_ufw_installed: true
+service_ufw_enabled: true
 sshd_do_not_permit_user_env: true
 sshd_disable_empty_passwords: true
 sshd_allow_only_protocol2: true

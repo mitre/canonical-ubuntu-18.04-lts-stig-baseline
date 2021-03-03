@@ -49,5 +49,9 @@ installed this is a finding.
   tag fix_id: 'F-20885r304812_fix'
   tag cci: ['SV-109653', 'V-100549', 'CCI-002314']
   tag nist: ['AC-17 (1)']
+
+  describe package('ufw') do
+    it { should be_installed }
+  end  
 end
 

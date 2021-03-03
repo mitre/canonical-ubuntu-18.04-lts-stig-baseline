@@ -2,3 +2,4 @@
 - include_tasks: crypto_ciphers.yml
 - include_tasks: sshd_options.yml
 - include_tasks: locks.yml
+- include_tasks: firewall.yml
