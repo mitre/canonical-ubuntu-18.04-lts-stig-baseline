@@ -54,12 +54,14 @@ session locks with the following command:
   tag cci: ['V-100827', 'SV-109931', 'CCI-000056']
   tag nist: ['AC-11 b']
 
-  describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
+  unless !package('gdm3').installed?
+    impact 0.0
+    describe "The GNOME Display Manager (GDM3) Package is not installed on the system" do
+      skip "This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed."
+    end
+  else
+    describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
     its('stdout.strip') { should cmp 'false' }
-  end if package('gnome-desktop3').installed?
-
-  describe "The GNOME desktop is not installed" do
-    skip "The GNOME desktop is not installed, this control is Not Applicable."
-  end if !package('ubuntu-gnome-desktop').installed?
+  end
 end
 
