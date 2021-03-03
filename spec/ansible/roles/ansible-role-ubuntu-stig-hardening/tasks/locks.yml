@@ -29,7 +29,6 @@
     key: "/org/gnome/desktop/screensaver/lock-enabled"
     value: "true"
     state: present
-    create: true
   when:
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
