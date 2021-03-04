@@ -54,7 +54,7 @@ session locks with the following command:
   tag cci: ['V-100827', 'SV-109931', 'CCI-000056']
   tag nist: ['AC-11 b']
 
-  unless !package('gdm3').installed?
+  if !package('gdm3').installed?
     impact 0.0
     describe "The GNOME Display Manager (GDM3) Package is not installed on the system" do
       skip "This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed."
@@ -62,6 +62,7 @@ session locks with the following command:
   else
     describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
     its('stdout.strip') { should cmp 'false' }
+    end
   end
 end
 
