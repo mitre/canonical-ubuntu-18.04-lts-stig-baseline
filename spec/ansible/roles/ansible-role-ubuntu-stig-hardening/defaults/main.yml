@@ -10,6 +10,7 @@ enable_strategy: true
 dconf_gnome_screensaver_lock_enabled: true
 package_vlock_installed: true
 package_ufw_installed: true
+run_pamd_lock: true
 service_ufw_enabled: true
 sshd_do_not_permit_user_env: true
 sshd_disable_empty_passwords: true
@@ -25,3 +26,4 @@ low_severity: true
 low_complexity: true
 var_sshd_set_keepalive: '1'
 var_accounts_tmout: '600'
+var_pamd_lock: '3'

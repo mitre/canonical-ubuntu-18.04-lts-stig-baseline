@@ -3,3 +3,4 @@
 - include_tasks: sshd_options.yml
 - include_tasks: locks.yml
 - include_tasks: firewall.yml
+- include_tasks: password.yml

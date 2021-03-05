@@ -42,5 +42,14 @@ first \"auth\" entry in the file.
   tag fix_id: 'F-20890r485691_fix'
   tag cci: ['V-100559', 'SV-109663', 'CCI-000044', 'CCI-002238']
   tag nist: ['AC-7 a', 'AC-7 b']
+
+  describe file('/etc/pam.d/common-auth') do
+    it { should exist }
+  end
+
+  describe command('grep pam_tally /etc/pam.d/common-auth') do
+    its('exit_status') { should eq 0 }
+    its('stdout.strip') { should match /^\s*auth\s+required\s+pam_tally2.so\s+.*onerr=fail\s+deny=3($|\s+.*$)/ }
+  end
 end
 
