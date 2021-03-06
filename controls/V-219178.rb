@@ -38,5 +38,9 @@ password lifetime.
   tag fix_id: 'F-20902r304863_fix'
   tag cci: ['V-100583', 'SV-109687', 'CCI-000198']
   tag nist: ['IA-5 (1) (d)']
+
+  describe login_defs do
+    its('PASS_MIN_DAYS') { should cmp >= 1 }
+  end
 end
 
