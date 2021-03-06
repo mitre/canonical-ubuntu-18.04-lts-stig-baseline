@@ -2,6 +2,7 @@
 # defaults file for ansible-role-ubuntu-stig-hardening
 accounts_tmout: true
 accounts_password_pam_unix_hash: true
+accounts_minimum_age_login_defs: true
 no_reboot_needed: true
 configure_strategy: true
 restrict_strategy: true
@@ -27,6 +28,7 @@ sshd_enable_warning_banner: true
 low_disruption: true
 low_severity: true
 low_complexity: true
+var_accounts_minimum_age_login_defs: '1'
 var_sshd_set_keepalive: '1'
 var_accounts_tmout: '600'
 var_pamd_lock: '3'
