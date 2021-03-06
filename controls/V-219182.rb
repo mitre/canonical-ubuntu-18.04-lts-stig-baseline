@@ -51,5 +51,18 @@ file to include the sha512 option for pam_unix.so:
   tag fix_id: 'F-20906r304875_fix'
   tag cci: ['SV-109695', 'V-100591', 'CCI-000803']
   tag nist: ['IA-7']
+
+  describe file('/etc/pam.d/common-password') do
+    it { should exist }
+  end
+
+  describe command('grep password /etc/pam.d/common-password | grep pam_unix') do
+    its('exit_status') { should eq 0 }
+    its('stdout.strip') { should match /^\s*password\s+\[\s*success=1\s+default=ignore\s*\].*\s+sha512($|\s+.*$)/ }
+  end
+
+  describe login_defs do
+    its('ENCRYPT_METHOD') { should cmp "SHA512" }
+  end
 end
 
