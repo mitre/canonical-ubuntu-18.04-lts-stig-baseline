@@ -3,6 +3,7 @@
 accounts_tmout: true
 accounts_password_pam_unix_hash: true
 accounts_minimum_age_login_defs: true
+accounts_password_pam_unix_remember: true
 no_reboot_needed: true
 configure_strategy: true
 restrict_strategy: true
@@ -32,3 +33,4 @@ var_accounts_minimum_age_login_defs: '1'
 var_sshd_set_keepalive: '1'
 var_accounts_tmout: '600'
 var_pamd_lock: '3'
+var_password_pam_unix_remember: '5'
