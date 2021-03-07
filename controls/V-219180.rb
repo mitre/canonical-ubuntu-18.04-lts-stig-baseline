@@ -1,4 +1,6 @@
 # encoding: UTF-8
+min_reuse_generations = input('min_reuse_generations', value: 5,
+description: 'The minimum number of generations before a password can be reused.')
 
 control 'V-219180' do
   title "The Ubuntu operating system must prohibit password reuse for a minimum
@@ -40,5 +42,10 @@ rounds=5000
   tag fix_id: 'F-20904r304869_fix'
   tag cci: ['SV-109691', 'V-100587', 'CCI-000200']
   tag nist: ['IA-5 (1) (e)']
+
+  describe command('grep pam_unix.so /etc/pam.d/common-password |grep -Po "remember\s*=\s*[0-9]+" | cut -d "=" -f2') do
+    its('exit_status') { should eq 0 }
+    its('stdout.to_i') { should cmp >= min_reuse_generations }
+  end
 end
 
