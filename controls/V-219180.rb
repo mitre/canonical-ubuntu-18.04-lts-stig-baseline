@@ -1,4 +1,5 @@
 # encoding: UTF-8
+input('min_reuse_generations')
 
 control 'V-219180' do
   title "The Ubuntu operating system must prohibit password reuse for a minimum
