@@ -1,6 +1,4 @@
 # encoding: UTF-8
-min_fail_delay = input('min_fail_delay', value: 4000000,
-description: 'The minimum milliseconds after failed logon attempt.')
 
 control 'V-219164' do
   title "The Ubuntu operating system must enforce a delay of at least 4 seconds

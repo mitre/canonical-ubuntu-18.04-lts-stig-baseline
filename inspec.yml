@@ -58,3 +58,15 @@ inputs:
     description: Main grub boot config file
     type: String
     value: '/boot/efi/EFI/ubuntu/grub.cfg'
+
+  # V-219164
+  - name: min_fail_delay
+    description: The minimum milliseconds after failed logon attempt
+    type: String
+    value: '4000000' 
+
+  # V-219180
+  - name: min_reuse_generations
+    description: The minimum number of generations before a password can be reused
+    type: String
+    value: '5' 

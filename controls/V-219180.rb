@@ -1,6 +1,4 @@
 # encoding: UTF-8
-min_reuse_generations = input('min_reuse_generations', value: 5,
-description: 'The minimum number of generations before a password can be reused.')
 
 control 'V-219180' do
   title "The Ubuntu operating system must prohibit password reuse for a minimum

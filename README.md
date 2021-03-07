@@ -49,13 +49,14 @@ The JSON InSpec results file may also be loaded into a __full heimdall server__,
 To report a bug or feature request, please open an [issue](https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline/issues/new).
 
 ## Authors
-- [Aaron Lippold](https://github.com/aaronlippold)
-- [The MITRE InSpec Team](https://github.com/mitre/inspec)
-
-## Special Thanks
-- [Aaron Lippold](https://github.com/aaronlippold)
 - [The MITRE InSpec Team](https://github.com/mitre/inspec)
 - [Expedition Technology](https://www.exptechinc.com)
+
+## Reviewers
+- [Aaron Lippold](https://github.com/aaronlippold)
+
+## Special Thanks
+- [The MITRE InSpec Team](https://github.com/mitre/inspec)
 - [Compliance as Code](https://github.com/ComplianceAsCode)
 - [CMSgov](https://github.com/CMSgov)
 - [SIMP Project](https://github.com/simp)
