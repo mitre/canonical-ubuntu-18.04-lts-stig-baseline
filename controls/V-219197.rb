@@ -62,7 +62,7 @@ by root, by running the following command:
   else
     describe "No input provided for the list of audit_tools. Please check inputs" do
       subject { false }
-      it { should eq true }
+      it { should be_true }
     end
   end
 end
