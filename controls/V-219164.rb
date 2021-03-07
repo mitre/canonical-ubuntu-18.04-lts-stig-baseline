@@ -1,5 +1,5 @@
 # encoding: UTF-8
-input('min_fail_delay')
+min_fail_delay = input('min_fail_delay')
 
 control 'V-219164' do
   title "The Ubuntu operating system must enforce a delay of at least 4 seconds
