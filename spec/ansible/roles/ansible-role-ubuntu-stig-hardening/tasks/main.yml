@@ -4,3 +4,4 @@
 - include_tasks: locks.yml
 - include_tasks: firewall.yml
 - include_tasks: password.yml
+- include_tasks: logon.yml
