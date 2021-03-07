@@ -1,4 +1,6 @@
 # encoding: UTF-8
+min_fail_delay = input('min_fail_delay', value: 4000000,
+description: 'The minimum milliseconds after failed logon attempt.')
 
 control 'V-219164' do
   title "The Ubuntu operating system must enforce a delay of at least 4 seconds
@@ -37,5 +39,9 @@ seconds between logon prompts following a failed logon attempt.
   tag fix_id: 'F-20888r304821_fix'
   tag cci: ['SV-109659', 'V-100555', 'CCI-000366']
   tag nist: ['CM-6 b']
-end
 
+  describe command('grep pam_faildelay /etc/pam.d/common-auth |grep -Po "delay=\s*[0-9]+" | cut -d "=" -f2') do
+    its('exit_status') { should eq 0 }
+    its('stdout.to_i') { should cmp >= min_fail_delay }
+  end
+end
