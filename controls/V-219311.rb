@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-client_alive_interval = input('client_alive_interval', value: 600,
-description: "Value expected for ClientAliveInterval in sshd_config")
-
 control 'V-219311' do
   title "The Ubuntu operating system must automatically terminate all network
 connections associated with SSH traffic at the end of the session or after 10
@@ -83,7 +80,7 @@ replacing \"[Interval]\" with a value of \"600\" or less:
 
   describe sshd_config do
     its("ClientAliveInterval.to_i"){should cmp >= 1}
-    its("ClientAliveInterval.to_i"){should cmp <= client_alive_interval}
+    its("ClientAliveInterval.to_i"){should cmp <= input('client_alive_interval')}
     its("ClientAliveInterval"){should_not eq nil}
   end 
 end
