@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219197' do
   title "The Ubuntu operating system must configure the audit tools to be
 group-owned by root."
@@ -35,7 +33,7 @@ modification.
 
     If any of the audit tools are not group-owned by root, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit tools on the Ubuntu operating system to be group-owned
 by root, by running the following command:
 
@@ -50,7 +48,19 @@ by root, by running the following command:
   tag rid: 'SV-219197r508662_rule'
   tag stig_id: 'UBTU-18-010130'
   tag fix_id: 'F-20921r304920_fix'
-  tag cci: ['V-100621', 'SV-109725', 'CCI-001493']
+  tag cci: %w[V-100621 SV-109725 CCI-001493]
   tag nist: ['AU-9']
-end
 
+  if input('audit_tools').nil? || input('audit_tools').empty?
+    describe 'No input provided for the list of audit_tools. Please check inputs' do
+      subject { false }
+      it { should be_true }
+    end
+  else
+    input('audit_tools').each do |audit_tool|
+      describe file(audit_tool) do
+        its('group') { should eq 'root' }
+      end
+    end
+  end
+end

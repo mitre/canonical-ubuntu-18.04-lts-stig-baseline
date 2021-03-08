@@ -1,0 +1,140 @@
+- name: Install audispd-plugins required package
+  apt:
+    name:
+      - audispd-plugins
+    state: latest
+  tags:
+    - V-129153
+    - V-219162
+
+- name: Install Advanced Intrusion Detection Environment (AIDE) required package
+  apt:
+    name:
+      - aide
+    state: latest
+  tags:
+    - V-129343
+
+- name: The Ubuntu operating system audit event multiplexor must be configured to off-load audit logs onto a different system or storage media from the system being audited
+  lineinfile:
+    dest: /etc/audisp/audisp-remote.conf
+    regexp: "^(#)?remote_server"
+    line: "remote_server = {{ security_audisp_remote_server }}"
+  notify:
+    - restart auditd
+  tags:
+    - V-219162
+
+- name: The Ubuntu operating system audit event multiplexor must be configured to off-load audit logs onto a different system or storage media from the system being audited
+  lineinfile:
+    dest: /etc/audisp/plugins.d/au-remote.conf
+    regexp: "^(#)?active"
+    line: "active = yes"
+  notify:
+    - restart auditd
+  tags:
+    - V-219162
+
+
+- name: The Ubuntu operating system audit event multiplexor must be configured to off-load audit logs onto a different system or storage media from the system being audited
+  lineinfile:
+    dest: //etc/audisp/plugins.d/au-remote.conf
+    regexp: "^(#)?remote_server"
+    line: "remote_server = {{ security_audisp_remote_server }}"
+  notify:
+    - restart auditd
+  tags:
+    - V-219162
+
+
+- name: Update Audit Rules configuration with STIG Rules
+  ansible.builtin.template:
+    src: audit.rules.j2
+    dest: /etc/audit/rules.d/stig.rules
+    owner: root
+    group: root
+    mode: '0640'
+  notify:
+    - restart auditd
+  tags:
+    - V-219279
+
+- name: Change file permissions for Security Tools
+  ansible.builtin.file:
+    path: '{{ item }}'
+    mode: '0755'
+  loop:
+    '{{ security_audit_tools }}'
+  tags:
+    - V-219195
+
+- name: Change file ownership for Security Tools
+  ansible.builtin.file:
+    path: '{{ item }}'
+    group: 'root'
+  loop:
+    '{{ security_audit_tools }}'
+  tags:
+    - V-219197
+
+- name: The Ubuntu operating system must be configured so that audit log files cannot be read or write-accessible by unauthorized users.
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?log_group"
+    line: "log_group = root"
+  notify:
+    - restart auditd
+  tags:
+    - V-219228
+
+- name: The Ubuntu operating system must be configured so that audit log files cannot be read or write-accessible by unauthorized users.
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?action_mail_acct"
+    line: "action_mail_acct = root"
+  notify:
+    - restart auditd
+  tags:
+    - V-219226
+
+- name: The Ubuntu operating system must shut down by default upon audit failure (unless availability is an overriding concern).
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?disk_full_action"
+    line: "disk_full_action = HALT"
+  notify:
+    - restart auditd
+  tags:
+    - V-219227
+
+- name: Change file permissions for Audit Logfile
+  ansible.builtin.file:
+    path: '{{ security_audit_log }}'
+    mode: '0600'
+  tags:
+    - V-219228
+
+- name: Change file ownership for Audit Logfile
+  ansible.builtin.file:
+    path: '{{ security_audit_log }}'
+    group: 'root'
+  tags:
+    - V-219229
+
+- name: Change file ownership for Audit Logfile Folder
+  ansible.builtin.file:
+    path: '{{ security_audit_log_directory }}'
+    owner: 'root'
+  tags:
+    - V-219232
+
+
+
+
+- name: Change file group for Auditd Rules Folder
+  ansible.builtin.file:
+    path: '{{ security_audit_directory }}'
+    group: 'root'
+    recurse: yes
+  tags:
+    - V-219236

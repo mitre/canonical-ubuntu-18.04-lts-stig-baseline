@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219336' do
   title "The Ubuntu operating system must use cryptographic mechanisms to
 protect the integrity of audit tools."
@@ -63,7 +61,24 @@ order to protect the integrity of the audit tools.
   tag rid: 'SV-219336r508662_rule'
   tag stig_id: 'UBTU-18-010506'
   tag fix_id: 'F-21060r305337_fix'
-  tag cci: ['V-100895', 'SV-109999', 'CCI-001496']
+  tag cci: %w[V-100895 SV-109999 CCI-001496]
   tag nist: ['AU-9 (3)']
-end
 
+  if input('audit_tools').nil? || input('audit_tools').empty?
+    describe 'No input provided for the list of audit_tools, please check inputs' do
+      subject { false }
+      it { should eq true }
+    end
+  elsif !aide_conf.exist?
+    describe 'aide_config does not exist' do
+      subject { false }
+      it { should eq true }
+    end
+  else
+    input('audit_tools').each do |audit_tool|
+      describe aide_conf.where { selection_line == audit_tool } do
+        its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
+      end
+    end
+  end
+end

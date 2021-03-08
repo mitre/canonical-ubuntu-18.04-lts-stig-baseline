@@ -72,5 +72,27 @@ receiving the audit log.
   tag fix_id: 'F-20886r304815_fix'
   tag cci: ['SV-109655', 'V-100551', 'CCI-001851']
   tag nist: ['AU-4 (1)']
+
+
+  if package('audispd-plugins').installed? && file(input('audisp_cfg')).exist? && file(input('audisp_cfg_remote_plugin_cfg')).exist?
+    describe auditd_conf(input('audisp_cfg')) do
+      its('remote_server') { should cmp input('audisp_cfg_remote_server') }
+    end
+    describe auditd_conf(input('audisp_cfg_remote_plugin_cfg'))  do
+      its('active') { should cmp 'yes' }
+    end
+  else
+    describe package('audispd-plugins') do
+      it { should be_installed }
+    end
+    
+    describe file(input('audisp_cfg')) do
+      it { should exist }
+    end
+
+  describe file(auditd_cfg_remote_plugin) do
+    it { should exist }
+  end
 end
 
+end

@@ -47,5 +47,10 @@ finding.
   tag fix_id: 'F-21067r305358_fix'
   tag cci: ['V-100907', 'SV-110011', 'CCI-002696']
   tag nist: ['SI-6 a']
+
+  describe package('aide') do
+    it { should be_installed }
+  end
+
 end
 

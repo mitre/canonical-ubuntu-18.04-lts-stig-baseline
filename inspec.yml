@@ -59,6 +59,38 @@ inputs:
     type: String
     value: '/boot/efi/EFI/ubuntu/grub.cfg'
 
+  # V-219195
+  # V-219197
+  - name: audit_tools
+    description: System audit tools used to view and manipulate log data
+    type: Array
+    value:
+      - /sbin/auditctl
+      - /sbin/aureport
+      - /sbin/ausearch
+      - /sbin/autrace
+      - /sbin/auditd
+      - /sbin/audispd
+      - /sbin/augenrules
+
+  # V-219162
+  - name: audisp_cfg
+    description: Auditing Daemon config file
+    type: String
+    value: '/etc/audisp/audisp-remote.conf'
+
+  - name: audisp_cfg_remote_server
+    description: Auditing Daemon remote_server IP Address
+    type: String
+    value: '10.0.0.2' 
+
+  - name: audisp_cfg_remote_plugin_cfg
+    description: Auditing Daemon plugin audisp-remote config filea
+    type: String
+    value: '/etc/audisp/plugins.d/au-remote.conf'
+
+
+
   # V-219164
   - name: min_fail_delay
     description: The minimum milliseconds after failed logon attempt

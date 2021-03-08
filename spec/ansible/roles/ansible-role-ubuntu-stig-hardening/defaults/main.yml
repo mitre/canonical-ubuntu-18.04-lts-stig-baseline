@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-ubuntu-stig-hardening
+# defaults file for ansible-role-ubuntu-stig-hardening# defaults file for ansible-role-ubuntu-stig-hardening
 accounts_tmout: true
 account_disable_post_pw_expiration: true
 accounts_password_pam_unix_hash: true

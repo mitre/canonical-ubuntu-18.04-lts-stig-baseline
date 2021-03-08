@@ -3,7 +3,6 @@
 *.gem
 *.rbc
 
-!Gemfile.lock
 .attribute.yml
 
 /.vscode

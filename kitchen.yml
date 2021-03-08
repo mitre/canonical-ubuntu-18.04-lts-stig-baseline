@@ -20,14 +20,8 @@ suites:
   - name: hardened
     provisioner:
       playbook: spec/ansible/ubuntu-stig-hardening.yml
-    verifier:
-      reporter:
-        - cli
-        - json:spec/results/%{platform}_%{suite}.json
+      
   - name: vanilla
     provisioner:
       playbook: spec/ansible/ubuntu-stig-vanilla.yml
-    verifier:
-      reporter:
-        - cli
-        - json:spec/results/%{platform}_%{suite}.json
+      
