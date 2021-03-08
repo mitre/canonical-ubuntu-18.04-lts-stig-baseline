@@ -1,7 +1,5 @@
 # encoding: UTF-8
 
-system_activity_timeout = input('system_activity_timeout')
-
 control 'V-219303' do
   title "The Ubuntu operating system must initiate a session lock after a
 15-minute period of inactivity for all connection types."
@@ -104,7 +102,7 @@ does not already exist) with the following command:
   else
     describe"The TMOUT setting is configured properly" do
       subject { latest_val }
-      it { should be <= system_activity_timeout }
+      it { should be <= input('system_activity_timeout') }
     end
   end  
 end
