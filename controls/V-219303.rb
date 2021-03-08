@@ -1,10 +1,6 @@
 # encoding: UTF-8
 
-system_activity_timeout = input(
-'system_activity_timeout',
-value: 600,
-description: 'The length of inactivity from the user in which the network connections associated with a session in terminated.'
-)
+system_activity_timeout = input('system_activity_timeout')
 
 control 'V-219303' do
   title "The Ubuntu operating system must initiate a session lock after a
