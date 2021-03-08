@@ -70,3 +70,14 @@ inputs:
     description: The minimum number of generations before a password can be reused
     type: String
     value: '5' 
+  # V-219303
+  - name: system_activity_timeout
+    description: The length in seconds of inactivity from the user in which the network connections associated with a session in terminated
+    type: String
+    value: '600'   
+
+  # V-219311
+  - name: client_alive_interval
+    description: The length in seconds of inactivity for ClientAliveInterval in sshd_config
+    type: String
+    value: '600'   
