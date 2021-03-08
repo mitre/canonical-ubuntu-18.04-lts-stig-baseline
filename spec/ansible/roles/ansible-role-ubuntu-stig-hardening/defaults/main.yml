@@ -17,6 +17,7 @@ enable_strategy: true
 dconf_gnome_screensaver_lock_enabled: true
 package_vlock_installed: true
 package_ufw_installed: true
+prevent_root_login: true
 run_pamd_lock: true
 service_ufw_enabled: true
 set_password_hashing_algorithm_logindefs: true
