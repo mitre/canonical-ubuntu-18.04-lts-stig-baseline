@@ -61,8 +61,13 @@ by root, by running the following command:
     end
   else
     describe "No input provided for the list of audit_tools. Please check inputs" do
+<<<<<<< HEAD
       subject { input('audit_tools').nil or input('audit_tools').empty? }
       it { should eq true }
+=======
+      subject { false }
+      it { should be_true }
+>>>>>>> 56bbc0428022f1e190ce76a812c78100d3114261
     end
   end
 end
