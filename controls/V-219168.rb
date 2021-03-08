@@ -59,8 +59,8 @@ account by performing the following operations:
   tag cci: ['V-100563', 'SV-109667', 'CCI-000770']
   tag nist: ['IA-2 (5)']
 
-  describe command("passwd -S root").stdout.strip do
-    it { should match /^root\s+L\s+.*$/ }
+  describe command("passwd -S root") do
+    its('stdout.strip') { should match /^root\s+L\s+.*$/ }
   end
 end
 
