@@ -15,6 +15,7 @@ medium_severity: true
 high_severity: true
 enable_strategy: true
 dconf_gnome_screensaver_lock_enabled: true
+dconf_gnome_banner_enabled: true
 package_vlock_installed: true
 package_ufw_installed: true
 prevent_root_login: true
