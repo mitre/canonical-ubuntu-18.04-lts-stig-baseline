@@ -58,5 +58,9 @@ to all accounts.
   tag fix_id: 'F-21032r305253_fix'
   tag cci: ['SV-109943', 'V-100839', 'CCI-001941', 'CCI-001942']
   tag nist: ['IA-2 (8)', 'IA-2 (9)']
+
+  describe sshd_config do
+    its('Protocol') { should cmp '2' }
+  end
 end
 

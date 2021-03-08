@@ -1,4 +1,4 @@
-- name: Install required packages
+- name: Install audispd-plugins required package
   apt:
     name:
       - audispd-plugins
@@ -6,6 +6,14 @@
   tags:
     - V-129153
     - V-219162
+
+- name: Install Advanced Intrusion Detection Environment (AIDE) required package
+  apt:
+    name:
+      - aide
+    state: latest
+  tags:
+    - V-129343
 
 - name: The Ubuntu operating system audit event multiplexor must be configured to off-load audit logs onto a different system or storage media from the system being audited
   lineinfile:

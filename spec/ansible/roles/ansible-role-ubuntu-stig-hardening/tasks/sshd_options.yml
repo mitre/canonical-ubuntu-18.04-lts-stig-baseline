@@ -1,0 +1,324 @@
+---
+
+- name: Do Not Allow SSH Environment Options
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*PermitUserEnvironment\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: PermitUserEnvironment no
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - medium_severity | bool
+    - sshd_do_not_permit_user_env | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219314
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010424
+    - NIST-800-171-3.1.12
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-CM-7(a)
+    - NIST-800-53-CM-7(b)
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_do_not_permit_user_env
+
+- name: Disable SSH Access via Empty Passwords
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*PermitEmptyPasswords\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: PermitEmptyPasswords no
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - sshd_disable_empty_passwords | bool
+    - high_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219314
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010424
+    - NIST-800-171-3.1.1
+    - NIST-800-171-3.1.5
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-CM-7(a)
+    - NIST-800-53-CM-7(b)
+    - high_severity
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_disable_empty_passwords
+
+- name: Allow Only SSH Protocol 2
+  block:
+    - name: Deduplicate Protocol values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*Protocol\s+
+        state: absent
+    - name: Insert correct Protocol line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: Protocol 2
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - high_severity | bool
+    - low_complexity | bool
+    - low_disruption | bool
+    - sshd_allow_only_protocol2 | bool
+  tags:
+    - V-219308
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010412
+    - NIST-800-171-3.1.13
+    - NIST-800-171-3.5.4
+    - NIST-800-53-AC-17(2)
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-IA-5(1)(c)
+    - NIST-800-53-MA-4(6)
+    - NIST-800-53-SC-13
+    - high_severity
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_allow_only_protocol2
+
+- name: Set SSH Idle Timeout Interval
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*ClientAliveInterval\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: ClientAliveInterval {{ sshd_idle_timeout_value }}
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - sshd_set_idle_timeout | bool
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - medium_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219311
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010416
+    - NIST-800-171-3.1.11
+    - NIST-800-53-AC-12
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-AC-2(5)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-SC-10
+    - PCI-DSS-Req-8.1.8
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_set_idle_timeout
+
+- name: Use Only FIPS 140-2 Validated MACs
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*MACs\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: MACs {{ ssh_macs_53_el_6_5_default | join(',') }}
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - sshd_use_approved_macs | bool
+    - medium_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219312
+    - DISA-STIG-UBTU-18-010417
+    - NIST-800-171-3.1.13
+    - NIST-800-171-3.13.11
+    - NIST-800-171-3.13.8
+    - NIST-800-53-AC-17(2)
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-MA-4(6)
+    - NIST-800-53-SC-12(2)
+    - NIST-800-53-SC-12(3)
+    - NIST-800-53-SC-13
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_use_approved_macs
+
+- name: Use Only FIPS 140-2 Validated Ciphers
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*Ciphers\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: Ciphers {{ ssh_ciphers_53_default | join(',') }}
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - medium_severity | bool
+    - sshd_use_approved_ciphers | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219307
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010427
+    - NIST-800-171-3.1.13
+    - NIST-800-171-3.13.11
+    - NIST-800-171-3.13.8
+    - NIST-800-53-AC-17(2)
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-IA-5(1)(c)
+    - NIST-800-53-MA-4(6)
+    - NIST-800-53-SC-12(2)
+    - NIST-800-53-SC-12(3)
+    - NIST-800-53-SC-13
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_use_approved_ciphers
+
+- name: Set SSH Client Alive Max Count
+  block:
+    - name: Deduplicate KeepAlive values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*ClientAliveCountMax\s+
+        state: absent
+    - name: Insert correct KeepAlive line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: ClientAliveCountMax {{ var_sshd_set_keepalive }}
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - medium_severity | bool
+    - sshd_set_keepalive | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219310
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010415
+    - NIST-800-171-3.1.11
+    - NIST-800-53-AC-12
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-AC-2(5)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-SC-10
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_set_keepalive
+
+- name: Enable SSH Warning Banner
+  block:
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*Banner\s+
+        state: absent
+    - name: Insert correct line to /etc/ssh/sshd_config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        line: Banner /etc/issue
+        state: present
+        insertbefore: ^[#\s]*Match
+  when:
+    - sshd_enable_warning_banner | bool
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - medium_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219170
+    - CJIS-5.5.6
+    - DISA-STIG-UBTU-18-010038
+    - NIST-800-171-3.1.9
+    - NIST-800-53-AC-17(a)
+    - NIST-800-53-AC-8(a)
+    - NIST-800-53-AC-8(c)
+    - NIST-800-53-CM-6(a)
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - sshd_enable_warning_banner

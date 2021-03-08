@@ -77,5 +77,11 @@ replacing \"[Interval]\" with a value of \"600\" or less:
   tag fix_id: 'F-21035r485700_fix'
   tag cci: ['V-100845', 'SV-109949', 'CCI-001133', 'CCI-002361']
   tag nist: ['SC-10', 'AC-12']
+
+  describe sshd_config do
+    its("ClientAliveInterval.to_i"){should cmp >= 1}
+    its("ClientAliveInterval.to_i"){should cmp <= input('client_alive_interval')}
+    its("ClientAliveInterval"){should_not eq nil}
+  end 
 end
 

@@ -67,7 +67,7 @@ permissive mode.
     end
   else
     describe "No input provided for the list of audit_tools. Please check inputs" do
-      subject { key_files.nil? or key_files.empty? }
+      subject { input('audit_tools').nil? or input('audit_tools').empty? }
       it { should eq true }
     end
   end

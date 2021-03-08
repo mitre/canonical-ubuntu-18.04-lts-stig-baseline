@@ -54,5 +54,55 @@ does not already exist) with the following command:
   tag fix_id: 'F-21027r305238_fix'
   tag cci: ['V-100829', 'SV-109933', 'CCI-000057']
   tag nist: ['AC-11 a']
-end
 
+  # Check if TMOUT is set in files (passive test)
+  files = ['/etc/bashrc'] + ['/etc/profile'] + command("find /etc/profile.d/*").stdout.split("\n")
+  latest_val = nil
+
+  files.each do |file|
+    readonly = false
+
+    # Skip to next file if TMOUT isn't present. Otherwise, get the last occurrence of TMOUT
+    next if (values = command("grep -Po '.*TMOUT.*' #{file}").stdout.split("\n")).empty?
+
+    # Loop through each TMOUT match and see if set TMOUT's value or makes it readonly
+    values.each_with_index { |value, index|
+
+      # Skip if starts with '#' - it represents a comment
+      next if !value.match(/^#/).nil?
+      # If readonly and value is inline - use that value
+      if !value.match(/^readonly[\s]+TMOUT[\s]*=[\s]*[\d]+$/).nil?
+        latest_val = value.match(/[\d]+/)[0].to_i
+        readonly = true
+        break
+      # If readonly, but, value is not inline - use the most recent value
+      elsif !value.match(/^readonly[\s]+([\w]+[\s]+)?TMOUT[\s]*([\s]+[\w]+[\s]*)*$/).nil?
+        # If the index is greater than 0, the configuraiton setting value.
+        # Otherwise, the configuration setting value is in the previous file
+        # and is already set in latest_val.
+        if index >= 1
+          latest_val = values[index - 1].match(/[\d]+/)[0].to_i
+        end
+        readonly = true
+        break
+      # Readonly is not set use the lastest value
+      else
+        latest_val = value.match(/[\d]+/)[0].to_i
+      end
+    }
+    # Readonly is set - stop processing files
+    break if readonly === true
+  end
+
+  if latest_val.nil?
+    describe "The TMOUT setting is configured" do
+      subject { !latest_val.nil? }
+      it { should be true }
+    end
+  else
+    describe"The TMOUT setting is configured properly" do
+      subject { latest_val }
+      it { should be <= input('system_activity_timeout') }
+    end
+  end  
+end

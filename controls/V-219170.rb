@@ -152,5 +152,9 @@ Agreement for details.\"
 'CCI-001387', 'CCI-001388', 'CCI-000048']
   tag nist: ['AC-8 c 1', 'AC-8 c 2', 'AC-8 c 2', 'AC-8 c 2', 'AC-8 c 3', "AC-8
 a"]
+
+  describe sshd_config do
+    its('Banner') {should eq '/etc/issue'}
+  end
 end
 

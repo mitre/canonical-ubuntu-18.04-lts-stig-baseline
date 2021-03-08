@@ -1,2 +1,42 @@
 ---
-# defaults file for ansible-role-ubuntu-stig-hardening
+# defaults file for ansible-role-ubuntu-stig-hardening# defaults file for ansible-role-ubuntu-stig-hardening
+accounts_tmout: true
+account_disable_post_pw_expiration: true
+accounts_password_pam_unix_hash: true
+accounts_minimum_age_login_defs: true
+accounts_password_pam_unix_remember: true
+accounts_passwords_pam_failldelay: true
+no_reboot_needed: true
+reboot_required: true
+configure_strategy: true
+restrict_strategy: true
+medium_disruption: true
+medium_severity: true
+high_severity: true
+enable_strategy: true
+dconf_gnome_screensaver_lock_enabled: true
+package_vlock_installed: true
+package_ufw_installed: true
+prevent_root_login: true
+run_pamd_lock: true
+service_ufw_enabled: true
+set_password_hashing_algorithm_logindefs: true
+sshd_do_not_permit_user_env: true
+sshd_disable_empty_passwords: true
+sshd_allow_only_protocol2: true
+sshd_set_idle_timeout: true
+sshd_use_approved_ciphers: true
+sshd_set_keepalive: true
+sshd_idle_timeout_value: '600'
+sshd_use_approved_macs: true
+sshd_enable_warning_banner: true
+low_disruption: true
+low_severity: true
+low_complexity: true
+var_account_disable_post_pw_expiration: '35'
+var_accounts_minimum_age_login_defs: '1'
+var_sshd_set_keepalive: '1'
+var_accounts_tmout: '600'
+var_pamd_lock: '3'
+var_password_pam_unix_remember: '5'
+var_fail_delay: '4000000'

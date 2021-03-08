@@ -1,0 +1,54 @@
+- name: Set Account Expiration Following Inactivity
+  lineinfile:
+    create: true
+    dest: /etc/default/useradd
+    regexp: ^INACTIVE
+    line: INACTIVE={{ var_account_disable_post_pw_expiration }}
+  tags:
+  - V-219326
+  - CJIS-5.6.2.1.1
+  - DISA-STIG-UBTU-18-010445
+  - NIST-800-171-3.5.6
+  - NIST-800-53-AC-2(3)
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-IA-4(e)
+  - PCI-DSS-Req-8.1.4
+  - account_disable_post_pw_expiration
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+  when:
+  - account_disable_post_pw_expiration | bool
+  - no_reboot_needed | bool
+  - restrict_strategy | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
+  
+- name: Prevent direct login into the root account
+  user:
+    name: root
+    password_lock: true
+  tags:
+    - V-219168
+    - DISA-STIG-UBTU-18-010036
+    - NIST-800-171-3.1.1
+    - NIST-800-171-3.1.5
+    - NIST-800-53-AC-6
+    - NIST-800-53-CM-6(a)
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - restrict_strategy
+    - prevent_root_login
+  when:
+    - no_reboot_needed | bool
+    - restrict_strategy | bool
+    - prevent_root_login | bool
+    - medium_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
+    

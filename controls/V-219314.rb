@@ -43,5 +43,9 @@ unattended or automatic login to the system.
   tag fix_id: 'F-21038r305271_fix'
   tag cci: ['V-100851', 'SV-109955', 'CCI-000366']
   tag nist: ['CM-6 b']
+
+  describe sshd_config do
+    its('PermitEmptyPasswords') { should eq 'no' }
+  end
 end
 

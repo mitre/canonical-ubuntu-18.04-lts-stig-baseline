@@ -37,5 +37,9 @@ following command:
   tag fix_id: 'F-20900r304857_fix'
   tag cci: ['V-100579', 'SV-109683', 'CCI-000196']
   tag nist: ['IA-5 (1) (c)']
+
+  describe login_defs do
+    its('ENCRYPT_METHOD') { should cmp "SHA512" }
+  end
 end
 

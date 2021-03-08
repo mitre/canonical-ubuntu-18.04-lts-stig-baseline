@@ -56,5 +56,15 @@ document.
   tag fix_id: 'F-21031r305250_fix'
   tag cci: ['SV-109941', 'V-100837', 'CCI-000068']
   tag nist: ['AC-17 (2)']
+
+  @ciphers_array = inspec.sshd_config.params['ciphers']
+
+  unless @ciphers_array.nil?
+    @ciphers_array = @ciphers_array.first.split(",")
+  end
+
+  describe @ciphers_array do
+    it { should be_in ['aes128-ctr', 'aes192-ctr', 'aes256-ctr'] }
+  end
 end
 
