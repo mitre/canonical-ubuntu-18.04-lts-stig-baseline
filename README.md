@@ -14,30 +14,19 @@ Git is required to download the latest InSpec profiles using the instructions be
 The following attributes must be configured in an attributes file for the profile to run correctly. More information about InSpec attributes can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
 ```
-# Attribute description
-attribute_name: 'value'
+# Input description
+input_name: 'value'
 ```
+For more info on inspec inputs see <https://docs.chef.io/inspec/inputs/>
 
-## Running This Profile
+## Running This Profile. 
+
 When the __"runner"__ host uses this profile overlay for the first time, follow these steps: 
 
 ```
-mkdir profiles
-cd profiles
-git clone https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline.git
-cd canonical-ubuntu-18.04-lts-stig-baseline
-bundle install
-cd ..
-inspec exec canonical-ubuntu-18.04-lts-stig-baseline --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> [-t <transport_protocol>://<hostname>:<port> --user=<username> --password=<password>] --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec https://github.com/mitre/canonical-ubuntu-18.04-lts-stig-baseline.git --input-files=<path_to_your_input_file/name_of_your_input.yml> [-t <transport_protocol>://<hostname>:<port> --user=<username> --password=<password>] --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
-For every successive run, follow these steps to always have the latest version of this profile:
-
-```
-cd profiles/canonical-ubuntu-18.04-lts-stig-baseline
-git pull
-cd ..
-inspec exec canonical-ubuntu-18.04-lts-stig-baseline --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> [-t <transport_protocol>://<hostname>:<port> --user=<username> --password=<password>] --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
-```
+This will run the latest version of the profile from your runner.
 
 ## Viewing the JSON Results
 
