@@ -130,7 +130,7 @@ line and the newline characters have been replaced with \
         its('stdout') { should match /^banner-message-enable.*=.*true/ }
     end
     describe 'banner-message-text must be set to banner_message_text_gui and not commented' do
-        subject { command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults' | cut -d "=" -f2') }
+        subject { command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2') }
         its('stdout.strip') { should cmp input('banner_message_text_gui') }
     end
   end
