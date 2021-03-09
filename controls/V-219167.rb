@@ -1,5 +1,9 @@
 # encoding: UTF-8
 
+banner_message_text_gui = input('banner_message_text_cli',
+value: "'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.'" ,
+description: 'The banner message must display the designated banner before granting access.')
+
 control 'V-219167' do
   title "The Ubuntu operating system must display the Standard Mandatory DoD
 Notice and Consent Banner before granting local access to the system via a
@@ -128,6 +132,10 @@ line and the newline characters have been replaced with \
     describe 'banner-message-enable must be set to true and not commented' do
         subject { command('grep banner-message-enable /etc/gdm3/greeter.dconf-defaults') }
         its('stdout') { should match /^banner-message-enable.*=.*true/ }
+    end
+    describe 'banner-message-text must be set to banner_message_text_gui and not commented' do
+        subject { command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults' | cut -d "=" -f2') }
+        its('stdout.strip') { should cmp input('banner_message_text_gui') }
     end
   end
 end
