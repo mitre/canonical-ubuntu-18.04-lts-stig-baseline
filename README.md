@@ -30,7 +30,7 @@ This will run the latest version of the profile from your runner.
 
 ## Viewing the JSON Results
 
-The JSON results output file can be loaded into __[heimdall-lite](https://mitre.github.io/heimdall-lite/)__ for a user-interactive, graphical view of the InSpec results. 
+The JSON results output file can be loaded into __[heimdall-lite](https://heimdll-lite.mitre.org)__ for a user-interactive, graphical view of the InSpec results. 
 
 The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.
 
@@ -57,7 +57,7 @@ This project is licensed under the terms of the Apache 2.0 license excepted as n
 
 ### NOTICE
 
-© 2019 The MITRE Corporation.  
+© 2019-2021 The MITRE Corporation.  
 
 Approved for Public Release; Distribution Unlimited. Case Number 18-3678.  
 
