@@ -44,3 +44,5 @@ var_accounts_tmout: '600'
 var_pamd_lock: '3'
 var_password_pam_unix_remember: '5'
 var_fail_delay: '4000000'
+disable_ctrlaltdel_reboot: true
+disable_strategy: true

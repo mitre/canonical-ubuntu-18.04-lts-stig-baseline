@@ -1,0 +1,24 @@
+- name: Disable Ctrl-Alt-Del Reboot Activation
+  systemd:
+    name: ctrl-alt-del.target
+    masked: true
+  tags:
+  - V-219212
+  - DISA-STIG-UBTU-18-010151
+  - NIST-800-171-3.4.5
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-CM-6(a)
+  - disable_ctrlaltdel_reboot
+  - disable_strategy
+  - high_severity
+  - low_complexity
+  - low_disruption
+  - no_reboot_needed
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - disable_ctrlaltdel_reboot | bool
+  - low_disruption | bool
+  - low_complexity | bool

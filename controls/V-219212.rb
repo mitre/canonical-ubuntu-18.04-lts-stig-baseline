@@ -42,5 +42,10 @@ command line with the following command:
   tag fix_id: 'F-20936r304965_fix'
   tag cci: ['V-100651', 'SV-109755', 'CCI-000366']
   tag nist: ['CM-6 b']
+
+  describe service('ctrl-alt-del.target') do
+    it { should_not be_running }
+    it { should_not be_enabled }
+  end
 end
 
