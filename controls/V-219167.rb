@@ -119,7 +119,7 @@ line and the newline characters have been replaced with \
   tag cci: ['V-100561', 'SV-109665', 'CCI-000050']
   tag nist: ['AC-8 b']
 
-  if !package('gdm3').installed?
+  unless package('gdm3').installed?
     impact 0.0
     describe "The GNOME Display Manager (GDM3) Package is not installed on the system" do
       skip "This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed."
@@ -129,9 +129,10 @@ line and the newline characters have been replaced with \
         subject { command('grep banner-message-enable /etc/gdm3/greeter.dconf-defaults') }
         its('stdout') { should match /^banner-message-enable.*=.*true/ }
     end
-    describe 'banner-message-text must be set to banner_message_text_gui and not commented' do
-        subject { command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2') }
-        its('stdout.strip') { should cmp input('banner_message_text_gui') }
+    describe 'banner-message-text must be set to banner_message_text_gui' do
+        banner_text = command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2').stdout.strip
+        subject { banner_text.gsub(%r{[\r\n\s]}, '') }
+        it { should cmp input('banner_message_text_gui').gsub(%r{[\r\n\s]}, '') }
     end
   end
 end
