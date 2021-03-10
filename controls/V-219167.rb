@@ -132,7 +132,7 @@ line and the newline characters have been replaced with \
     describe 'banner-message-text must be set to banner_message_text_gui' do
         banner_text = command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2').stdout.strip
         subject { banner_text.gsub(%r{[\r\n\s]}, '') }
-        it { should cmp input('banner_message_text_gui').gsub(%r{[\r\n\s]}, '') }
+        its('content.strip') { should cmp input('banner_message_text_gui').gsub(%r{[\r\n\s]}, '') }
     end
   end
 end
