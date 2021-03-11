@@ -49,3 +49,8 @@ disable_strategy: true
 sysctl_kernel_randomize_va_space: true
 sysctl_net_ipv4_tcp_syncookies: true
 sysctl_net_ipv4_tcp_syncookies_value: '1'
+apparmor_state: true
+package_apparmor_installed: true
+service_apparmor_enabled: true
+unknown_strategy: true
+ensure_authenticationcheck_apt_enabled: true
