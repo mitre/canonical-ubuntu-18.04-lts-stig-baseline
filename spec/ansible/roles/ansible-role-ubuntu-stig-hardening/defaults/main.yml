@@ -47,3 +47,5 @@ var_fail_delay: '4000000'
 disable_ctrlaltdel_reboot: true
 disable_strategy: true
 sysctl_kernel_randomize_va_space: true
+sysctl_net_ipv4_tcp_syncookies: true
+sysctl_net_ipv4_tcp_syncookies_value: '1'

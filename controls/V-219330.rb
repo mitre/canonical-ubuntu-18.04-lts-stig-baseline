@@ -50,5 +50,16 @@ line in \"/etc/sysctl.conf\":
   tag fix_id: 'F-21054r305319_fix'
   tag cci: ['SV-109987', 'V-100883', 'CCI-001095']
   tag nist: ['SC-5 (2)']
+
+  describe kernel_parameter('net.ipv4.tcp_syncookies') do
+    its('value') { should cmp 1 }
+  end
+
+  if (command('grep -i net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/* | grep -v \'#\'').stdout).empty?
+    describe 'net.ipv4.tcp_syncookies is not set' do
+      subject { false }
+      it { should eq true }
+    end
+  end
 end
 
