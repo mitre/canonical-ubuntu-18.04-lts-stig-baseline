@@ -69,5 +69,18 @@ documentation for more information on configuring profiles.
   tag fix_id: 'F-21047r305298_fix'
   tag cci: ['V-100869', 'SV-109973', 'CCI-001764']
   tag nist: ['CM-7 (2)']
+
+  dpkg_check_apparmor = command('dpkg -l | grep apparmor').stdout.strip.split("\n")
+  if dpkg_check_apparmor.empty?
+    describe 'apparmor is not installed' do
+      subject { true }
+      it { should eq false }
+    end
+  else
+    describe service('apparmor') do
+      it { should be_running }
+      it { should be_enabled }
+    end
+  end
 end
 
