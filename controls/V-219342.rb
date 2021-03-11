@@ -63,5 +63,16 @@ files:
   tag fix_id: 'F-21066r485710_fix'
   tag cci: ['V-100905', 'SV-110009', 'CCI-002824']
   tag nist: ['SI-16']
+
+  describe kernel_parameter('kernel.randomize_va_space') do
+    its('value') { should cmp 2 }
+  end
+
+  unless (command('egrep -R ^kernel.randomize_va_space=[^2] /etc/sysctl.conf /etc/sysctl.d').stdout).empty?
+    describe 'kernel.randomize_va_space is not set to 2' do
+      subject { false }
+      it { should eq true }
+    end
+  end
 end
 
