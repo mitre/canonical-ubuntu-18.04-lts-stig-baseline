@@ -13,9 +13,11 @@ restrict_strategy: true
 medium_disruption: true
 medium_severity: true
 high_severity: true
+disable_strategy: true
 enable_strategy: true
 dconf_gnome_screensaver_lock_enabled: true
 dconf_gnome_banner_enabled: true
+kernel_module_usb-storage_disabled: true
 package_vlock_installed: true
 package_ufw_installed: true
 prevent_root_login: true
