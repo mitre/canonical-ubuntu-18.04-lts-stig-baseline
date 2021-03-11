@@ -156,5 +156,11 @@ a"]
   describe sshd_config do
     its('Banner') {should eq '/etc/issue'}
   end
+
+  describe '/etc/issue must be set to banner_message_text_cli' do
+    banner_text = file('/etc/issue').content.gsub(%r{[\r\n\s]}, '')
+    subject { banner_text }
+    it { should cmp input('banner_message_text_cli').gsub(%r{[\r\n\s]}, '') }
+    end
 end
 
