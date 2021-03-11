@@ -50,3 +50,34 @@
   - medium_severity
   - reboot_required
   - sysctl_kernel_randomize_va_space
+
+- name: Ensure sysctl net.ipv4.tcp_syncookies is set
+  sysctl:
+    name: net.ipv4.tcp_syncookies
+    value: '{{ sysctl_net_ipv4_tcp_syncookies_value }}'
+    state: present
+    reload: true
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - sysctl_net_ipv4_tcp_syncookies | bool
+  - reboot_required | bool
+  - medium_severity | bool
+  - medium_disruption | bool
+  - low_complexity | bool
+  tags:
+  - V-219330
+  - DISA-STIG-UBTU-18-219330
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5(1)
+  - NIST-800-53-SC-5(2)
+  - NIST-800-53-SC-5(3)(a)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_tcp_syncookies
