@@ -22,3 +22,31 @@
   - disable_ctrlaltdel_reboot | bool
   - low_disruption | bool
   - low_complexity | bool
+
+- name: Ensure sysctl kernel.randomize_va_space is set to 2
+  sysctl:
+    name: kernel.randomize_va_space
+    value: '2'
+    state: present
+    reload: true
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - reboot_required | bool
+  - medium_severity | bool
+  - sysctl_kernel_randomize_va_space | bool
+  - medium_disruption | bool
+  - low_complexity | bool
+  tags:
+  - V-219342
+  - DISA-STIG-UBTU-18-219342
+  - NIST-800-171-3.1.7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-30
+  - NIST-800-53-SC-30(2)
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_randomize_va_space

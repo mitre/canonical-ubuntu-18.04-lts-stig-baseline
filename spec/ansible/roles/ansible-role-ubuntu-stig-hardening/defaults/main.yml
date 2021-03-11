@@ -46,3 +46,4 @@ var_password_pam_unix_remember: '5'
 var_fail_delay: '4000000'
 disable_ctrlaltdel_reboot: true
 disable_strategy: true
+sysctl_kernel_randomize_va_space: true
