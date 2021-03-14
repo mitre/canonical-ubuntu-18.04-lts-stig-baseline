@@ -148,3 +148,9 @@ inputs:
     description: The length in seconds of inactivity for ClientAliveInterval in sshd_config
     type: String
     value: '600'   
+
+  # V-219150
+  - name: is_default_install_partition
+    description: Assert default partition layout for encryption
+    type: Boolean
+    value: false
