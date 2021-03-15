@@ -70,14 +70,18 @@ difficult because the existing partitions must be resized and changed.
   tag cci: ['V-100525', 'SV-109629', 'CCI-001199', 'CCI-002475', 'CCI-002476']
   tag nist: ['SC-28', 'SC-28 (1)', 'SC-28 (1)']
 
+  review_conditions = "Please review the partition layout to ensure 
+  all partitions other than the boot partition or pseudo file systems (such as
+  /proc or /sys) have a corresponding entry in /etc/crypttab"
+
   unless input('is_manual_nondefault_install_partition')
     describe command('sudo lsblk | grep -A3 `cat /etc/crypttab |cut -d" "  -f1` |grep root | awk "{print $NF}"') do
       its('exit_status') { should eq 0 }
       its('stdout.strip') { should eq '/' }
     end
   else
-    describe 'Manual test' do
-      skip 'This control must be reviewed manually'
+    describe review_conditions do
+      skip review_conditions
     end
   end
 end
