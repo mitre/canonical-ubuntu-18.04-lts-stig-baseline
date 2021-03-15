@@ -154,3 +154,89 @@ inputs:
     description: Assert default partition layout for encryption
     type: Boolean
     value: false
+  
+  # V-219324
+  # TODO: May need to reduce to a base set
+  - name: allowed_profiles_enforce_mode
+    description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in enforce mode
+    type: Array
+    value:
+      - /sbin/dhclient
+      - /snap/core/*/usr/lib/snapd/snap-confine
+      - /snap/core/*/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+      - /usr/bin/evince
+      - /usr/bin/evince-previewer
+      - /usr/bin/evince-previewer//sanitized_helper
+      - /usr/bin/evince-thumbnailer
+      - /usr/bin/evince//sanitized_helper
+      - /usr/bin/man
+      - /usr/lib/NetworkManager/nm-dhcp-client.action
+      - /usr/lib/NetworkManager/nm-dhcp-helper
+      - /usr/lib/chromium-browser/chromium-browser//browser_java
+      - /usr/lib/chromium-browser/chromium-browser//browser_openjdk
+      - /usr/lib/chromium-browser/chromium-browser//sanitized_helper
+      - /usr/lib/connman/scripts/dhclient-script
+      - /usr/lib/cups/backend/cups-pdf
+      - /usr/lib/lightdm/lightdm-guest-session
+      - /usr/lib/lightdm/lightdm-guest-session//chromium
+      - /usr/lib/snapd/snap-confine
+      - /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+      - /usr/sbin/cups-browsed
+      - /usr/sbin/cupsd
+      - /usr/sbin/cupsd//third_party
+      - /usr/sbin/ippusbxd
+      - /usr/sbin/tcpdump
+      - docker-default
+      - snap-update-ns.code
+      - snap-update-ns.core
+      - snap-update-ns.kontena-lens
+      - snap.core.hook.configure
+      - webbrowser-app
+      - webbrowser-app//oxide_helper
+
+  # V-219324
+  # TODO: May need to reduce to a base set
+  - name: allowed_profiles_complain_mode
+    description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in complain mode (at a minimum)
+    type: Array
+    value:
+      - /usr/lib/chromium-browser/chromium-browser
+      - /usr/lib/chromium-browser/chromium-browser//chromium_browser_sandbox
+      - /usr/lib/chromium-browser/chromium-browser//lsb_release
+      - /usr/lib/chromium-browser/chromium-browser//xdgsettings
+      - /usr/lib/dovecot/anvil
+      - /usr/lib/dovecot/auth
+      - /usr/lib/dovecot/config
+      - /usr/lib/dovecot/deliver
+      - /usr/lib/dovecot/dict
+      - /usr/lib/dovecot/dovecot-auth
+      - /usr/lib/dovecot/dovecot-lda
+      - /usr/lib/dovecot/dovecot-lda///usr/sbin/sendmail
+      - /usr/lib/dovecot/imap
+      - /usr/lib/dovecot/imap-login
+      - /usr/lib/dovecot/lmtp
+      - /usr/lib/dovecot/log
+      - /usr/lib/dovecot/managesieve
+      - /usr/lib/dovecot/managesieve-login
+      - /usr/lib/dovecot/pop3
+      - /usr/lib/dovecot/pop3-login
+      - /usr/lib/dovecot/ssl-params
+      - /usr/sbin/avahi-daemon
+      - /usr/sbin/dnsmasq
+      - /usr/sbin/dnsmasq//libvirt_leaseshelper
+      - /usr/sbin/dovecot
+      - /usr/sbin/identd
+      - /usr/sbin/mdnsd
+      - /usr/sbin/nmbd
+      - /usr/sbin/nscd
+      - /usr/sbin/smbd
+      - /usr/sbin/smbldap-useradd
+      - /usr/sbin/smbldap-useradd///etc/init.d/nscd
+      - /usr/{sbin/traceroute,bin/traceroute.db}
+      - /{usr/,}bin/ping
+      - klogd
+      - snap.code.code
+      - snap.code.url-handler
+      - snap.kontena-lens.kontena-lens
+      - syslog-ng
+      - syslogd
