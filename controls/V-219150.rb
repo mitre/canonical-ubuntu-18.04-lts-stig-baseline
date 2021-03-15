@@ -70,8 +70,7 @@ difficult because the existing partitions must be resized and changed.
   tag cci: ['V-100525', 'SV-109629', 'CCI-001199', 'CCI-002475', 'CCI-002476']
   tag nist: ['SC-28', 'SC-28 (1)', 'SC-28 (1)']
 
-  review_conditions = "Please review the partition layout to ensure 
-  all partitions other than the boot partition or pseudo file systems (such as
+  review_conditions = "all partitions other than the boot partition or pseudo file systems (such as
   /proc or /sys) have a corresponding entry in /etc/crypttab"
 
   unless input('is_manual_nondefault_install_partition')
@@ -80,8 +79,8 @@ difficult because the existing partitions must be resized and changed.
       its('stdout.strip') { should eq '/' }
     end
   else
-    describe review_conditions do
-      skip review_conditions
+    describe "Please review the partition layout to ensure #{review_conditions}" do
+      skip "Please review the partition layout to ensure #{review_conditions}"
     end
   end
 end
