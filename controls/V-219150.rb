@@ -74,7 +74,7 @@ difficult because the existing partitions must be resized and changed.
   /proc or /sys) have a corresponding entry in /etc/crypttab"
 
   unless input('is_manual_nondefault_install_partition')
-    describe command('sudo lsblk | grep -A3 `cat /etc/crypttab |cut -d" "  -f1` |grep root | awk "{print $NF}"') do
+    describe command('sudo lsblk | grep -A3 `cat /etc/crypttab |cut -d" "  -f1` |grep root | awk \'{print $NF}\'') do
       its('exit_status') { should eq 0 }
       its('stdout.strip') { should eq '/' }
     end
