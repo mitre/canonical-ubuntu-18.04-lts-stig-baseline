@@ -1,0 +1,112 @@
+- name: Ensure apparmor is installed
+  package:
+    name: apparmor
+    state: present
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+    - package_apparmor_installed | bool
+    - no_reboot_needed | bool
+    - high_severity | bool
+    - restrict_strategy | bool
+    - low_disruption | bool
+    - apparmor_state | bool
+    - low_complexity | bool
+  tags:
+    - V-219323
+    - V-219324
+    - DISA-STIG-UBTU-18-219324
+    - NIST-800-171-3.1.2
+    - NIST-800-171-3.7.2
+    - NIST-800-53-AC-3
+    - NIST-800-53-AC-3(3)(a)
+    - NIST-800-53-AU-9
+    - NIST-800-53-SC-7(21)
+    - high_severity
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - restrict_strategy
+    - apparmor_state
+
+- name: Enable service apparmor
+  block:
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+    - name: Enable service apparmor
+      service:
+        name: apparmor
+        enabled: 'yes'
+        state: started
+      when:
+      - '"apparmor" in ansible_facts.packages'
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+    - service_apparmor_enabled | bool
+    - no_reboot_needed | bool
+    - high_severity | bool
+    - enable_strategy | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219323
+    - V-219324
+    - DISA-STIG-UBTU-18-219324
+    - NIST-800-171-3.1.2
+    - NIST-800-171-3.7.2
+    - NIST-800-53-AC-3
+    - NIST-800-53-AC-3(3)(a)
+    - NIST-800-53-AU-9
+    - NIST-800-53-SC-7(21)
+    - enable_strategy
+    - low_complexity
+    - low_disruption
+    - high_severity
+    - no_reboot_needed
+    - service_apparmor_enabled
+
+- name: Ensure authentication check Enabled for Advance Package Tool (APT)
+  block:
+    - name: Check if /etc/apt/apt.conf.d/ exists
+      stat:
+        path: /etc/apt/apt.conf.d/
+      register: _etc_apt_apt_conf_d_exists
+    - name: Check if AllowUnauthenticated is present in /etc/apt/apt.conf.d/*
+      find:
+        paths: /etc/apt/apt.conf.d
+        recurse: 'yes'
+        follow: 'no'
+        contains: ^.*AllowUnauthenticated.*$
+      register: _etc_apt_apt_conf_d_has_allowunauthenticated
+      when: _etc_apt_apt_conf_d_exists.stat.isdir is defined and _etc_apt_apt_conf_d_exists.stat.isdir
+    - name: Remove AllowUnauthenticated.*true from files in /etc/apt/apt.conf.d
+      lineinfile:
+        path: '{{ item.path }}'
+        create: false
+        regexp: AllowUnauthenticated.*true
+        state: absent
+      with_items: '{{ _etc_apt_apt_conf_d_has_allowunauthenticated.files }}'
+      when: _etc_apt_apt_conf_d_has_allowunauthenticated.matched
+  when:
+    - no_reboot_needed | bool
+    - high_severity | bool
+    - unknown_strategy | bool
+    - medium_disruption | bool
+    - ensure_authenticationcheck_apt_enabled | bool
+    - low_complexity | bool
+  tags:
+    - V-219155
+    - DISA-STIG-UBTU-18-219155
+    - NIST-800-171-3.4.8
+    - NIST-800-53-CM-11(a)
+    - NIST-800-53-CM-11(b)
+    - NIST-800-53-CM-5(3)
+    - NIST-800-53-CM-6(a)
+    - NIST-800-53-SA-12
+    - NIST-800-53-SA-12(10)
+    - ensure_authenticationcheck_apt_enabled
+    - high_severity
+    - low_complexity
+    - medium_disruption
+    - no_reboot_needed
+    - unknown_strategy

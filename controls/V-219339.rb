@@ -54,5 +54,10 @@ storage devices.
   tag fix_id: 'F-21063r305346_fix'
   tag cci: ['V-100919', 'SV-110023', 'CCI-001958']
   tag nist: ['IA-3']
+
+  describe kernel_module('usb_storage') do
+    it { should_not be_loaded }
+    it { should be_blacklisted }
+  end
 end
 

@@ -52,3 +52,55 @@
     - low_disruption | bool
     - low_complexity | bool
     
+- name: Enable GNOME3 Login Warning Banner
+  ini_file:
+    dest: /etc/gdm3/greeter.dconf-defaults
+    section: org/gnome/login-screen
+    option: banner-message-enable
+    value: 'true'
+    create: true
+    no_extra_spaces: true
+  tags:
+    - V-219167
+    - DISA-STIG-UBTU-18-010035
+    - NIST-800-171-3.1.9
+    - NIST-800-53-AC-8(a)
+    - NIST-800-53-AC-8(b)
+    - NIST-800-53-AC-8(c)
+    - dconf_gnome_banner_enabled
+    - low_complexity
+    - medium_disruption
+    - medium_severity
+    - no_reboot_needed
+  when:
+    - dconf_gnome_banner_enabled | bool
+    - no_reboot_needed | bool
+    - medium_severity | bool
+    - medium_disruption | bool
+    - low_complexity | bool
+  
+- name: Set the GNOME3 Login Warning Banner Text
+  ini_file:
+    dest: /etc/gdm3/greeter.dconf-defaults
+    section: org/gnome/login-screen
+    option: banner-message-text
+    value: '{{ banner_message_text_gui }}'
+    create: true
+    no_extra_spaces: true
+  tags:
+    - V-219167
+    - DISA-STIG-UBTU-18-010035
+    - NIST-800-171-3.1.9
+    - NIST-800-53-AC-8(a)
+    - NIST-800-53-AC-8(c)
+    - dconf_gnome_banner_enabled
+    - low_complexity
+    - medium_disruption
+    - medium_severity
+    - no_reboot_needed
+  when:
+    - dconf_gnome_banner_enabled | bool
+    - no_reboot_needed | bool
+    - medium_severity | bool
+    - medium_disruption | bool
+    - low_complexity | bool

@@ -78,5 +78,8 @@ documentation for more information on configuring profiles.
   tag fix_id: 'F-21048r305301_fix'
   tag cci: ['SV-109975', 'V-100871', 'CCI-001774']
   tag nist: ['CM-7 (5) (b)']
-end
 
+  describe 'Manual test' do
+    skip 'This control must be reviewed manually'
+  end
+end

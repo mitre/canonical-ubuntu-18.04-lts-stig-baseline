@@ -285,6 +285,51 @@
     - restrict_strategy
     - sshd_set_keepalive
 
+- name: Modify the System Login Banner - remove incorrect banner
+  file:
+    state: absent
+    path: /etc/issue
+  tags:
+  - V-219170
+  - DISA-STIG-UBTU-18-010038
+  - NIST-800-171-3.1.9
+  - NIST-800-53-AC-8(a)
+  - NIST-800-53-AC-8(c)
+  - banner_etc_issue
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - no_reboot_needed
+  when:
+  - no_reboot_needed | bool
+  - banner_etc_issue | bool
+  - medium_severity | bool
+  - medium_disruption | bool
+  - low_complexity | bool
+
+- name: Modify the System Login Banner - add correct banner
+  lineinfile:
+    dest: /etc/issue
+    line: '{{ banner_message_text_cli }}'
+    create: true
+  tags:
+  - V-219170
+  - DISA-STIG-UBTU-18-010038
+  - NIST-800-171-3.1.9
+  - NIST-800-53-AC-8(a)
+  - NIST-800-53-AC-8(c)
+  - banner_etc_issue
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - no_reboot_needed
+  when:
+  - no_reboot_needed | bool
+  - banner_etc_issue | bool
+  - medium_severity | bool
+  - medium_disruption | bool
+  - low_complexity | bool
+
 - name: Enable SSH Warning Banner
   block:
     - name: Deduplicate values from /etc/ssh/sshd_config

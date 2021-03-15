@@ -6,3 +6,6 @@
 - include_tasks: firewall.yml
 - include_tasks: password.yml
 - include_tasks: logon.yml
+- include_tasks: storage.yml
+- include_tasks: misc.yml
+- include_tasks: applications.yml

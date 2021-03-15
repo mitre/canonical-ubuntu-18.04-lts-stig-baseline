@@ -61,5 +61,23 @@ entirely from each file. Below is an example of setting the
   tag fix_id: 'F-20879r304794_fix'
   tag cci: ['V-100535', 'SV-109639', 'CCI-001749']
   tag nist: ['CM-5 (3)']
-end
 
+  describe directory('/etc/apt/apt.conf.d') do
+    it { should exist }
+  end
+
+  apt_allowunauth = command('grep -i allowunauth /etc/apt/apt.conf.d/*').stdout.strip.split("\n")
+  if apt_allowunauth.empty?
+    describe 'apt conf files do not contain AllowUnauthenticated' do
+      subject { apt_allowunauth.empty? }
+      it { should be true }
+    end
+  else
+    apt_allowunauth.each do |line|
+      describe "#{line} contains AllowUnauthenticated" do
+        subject { line }
+        it { should_not match /.*true.*/ }
+      end
+    end
+  end
+end
