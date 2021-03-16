@@ -53,7 +53,7 @@ order to protect the integrity of the audit tools.
     /sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512
     /sbin/audispd p+i+n+u+g+s+b+acl+xattrs+sha512
     /sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512
-  "
+    "
   impact 0.5
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000278-GPOS-00108'
