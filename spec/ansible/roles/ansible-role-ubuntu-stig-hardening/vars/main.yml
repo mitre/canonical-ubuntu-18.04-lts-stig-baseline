@@ -76,7 +76,7 @@ security_audisp_remote_server: "10.0.0.2" # V-219162
 security_audit_log: "/var/log/audit/audit.log"
 security_audit_log_directory: "/var/log/audit"
 
-security_audit_directory: "/etc/audit"  - diffie-hellman-group-exchange-sha256
+security_audit_directory: "/etc/audit"
 
 # auditd
 ## Audit daemon (auditd)

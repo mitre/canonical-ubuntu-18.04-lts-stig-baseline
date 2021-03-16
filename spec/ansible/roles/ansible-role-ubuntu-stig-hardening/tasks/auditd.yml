@@ -128,9 +128,6 @@
   tags:
     - V-219232
 
-
-
-
 - name: Change file group for Auditd Rules Folder
   ansible.builtin.file:
     path: '{{ security_audit_directory }}'
@@ -138,3 +135,21 @@
     recurse: yes
   tags:
     - V-219236
+
+
+
+- name: Prints two lines of messages, but only if there is an environment value set
+  ansible.builtin.debug:
+    msg:
+    - "[DEBUG] *** grub_cfg.stat.path = {{ grub_cfg.stat.path }}"
+
+
+- name: "The Ubuntu operating system must use cryptographic mechanisms to protect the integrity of audit tools. Set audit=1 at boot."
+  replace:
+      dest: /etc/default/grub
+      regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit)\"[^\"]*)(\".*)'
+      replace: '\1 audit=1\2'
+  notify:
+      - generate new grub config
+  tags:
+      - V-219149

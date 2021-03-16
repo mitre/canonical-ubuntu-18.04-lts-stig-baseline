@@ -1,0 +1,9 @@
+- name: "PRELIM | Check the grub.cfg configuration"
+  stat:
+    path: /boot/grub/grub.cfg
+  register: grub_cfg
+
+- name: "PRELIM | Check the grub.conf configuration"
+  stat:
+    path: /boot/grub/grub.conf
+  register: grub_conf

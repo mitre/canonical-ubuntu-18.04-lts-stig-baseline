@@ -6,3 +6,16 @@
   command: service auditd restart
   args:
     warn: no
+
+- name: generate new grub config
+  #become: true
+  command: grub-mkconfig -o "{{ grub_cfg.stat.path }}"
+  notify: fix permissions after generate new grub config handler
+
+- name: fix permissions after generate new grub config handler
+  become: true
+  file:
+    path: "/boot/grub/grub.cfg"
+    owner: root
+    group: root
+    mode: 0400
