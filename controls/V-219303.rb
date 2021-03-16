@@ -102,7 +102,7 @@ does not already exist) with the following command:
   else
     describe"The TMOUT setting is configured properly" do
       subject { latest_val }
-      it { should be <= input('system_activity_timeout') }
+      it { should cmp <= input('system_activity_timeout')}
     end
   end  
 end
