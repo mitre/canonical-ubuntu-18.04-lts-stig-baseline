@@ -74,7 +74,7 @@
     - NIST-800-53-AU-2(d)
     - NIST-800-53-CM-6(a)
     - PCI-DSS-Req-10.2.7
-    - audit_rules_kernel_module_loading_finit
+    - audit_rules_finit
     - configure_strategy
     - low_complexity
     - low_disruption
