@@ -66,7 +66,6 @@
     - low_complexity | bool
   tags:
     - V-219279
-    - V-219179
     - DISA-STIG-UBTU-18-010107
     - NIST-800-171-3.1.7
     - NIST-800-53-AC-6(9)

@@ -37,16 +37,5 @@ lifetime.
   tag fix_id: 'F-20903r304866_fix'
   tag cci: ['SV-109689', 'V-100585', 'CCI-000199']
   tag nist: ['IA-5 (1) (d)']
-
-  if os.arch == 'x86_64'
-    describe auditd.syscall('finit_module').where { arch == 'b64' } do
-      its('action.uniq') { should eq ['always'] }
-      its('list.uniq') { should eq ['exit'] }
-    end
-  end
-  describe auditd.syscall('finit_module').where { arch == 'b32' } do
-    its('action.uniq') { should eq ['always'] }
-    its('list.uniq') { should eq ['exit'] }
-  end
 end
 
