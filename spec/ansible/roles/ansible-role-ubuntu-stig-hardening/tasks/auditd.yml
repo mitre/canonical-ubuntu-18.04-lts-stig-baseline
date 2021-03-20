@@ -56,8 +56,30 @@
     mode: '0640'
   notify:
     - restart auditd
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+    - no_reboot_needed | bool
+    - configure_strategy | bool
+    - audit_rules_kernel_module_loading_finit | bool
+    - medium_severity | bool
+    - low_disruption | bool
+    - low_complexity | bool
   tags:
     - V-219279
+    - V-219179
+    - DISA-STIG-UBTU-18-010107
+    - NIST-800-171-3.1.7
+    - NIST-800-53-AC-6(9)
+    - NIST-800-53-AU-12(c)
+    - NIST-800-53-AU-2(d)
+    - NIST-800-53-CM-6(a)
+    - PCI-DSS-Req-10.2.7
+    - audit_rules_kernel_module_loading_finit
+    - configure_strategy
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
 
 - name: Change file permissions for Security Tools
   ansible.builtin.file:
