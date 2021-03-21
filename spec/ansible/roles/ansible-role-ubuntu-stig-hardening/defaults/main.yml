@@ -7,6 +7,7 @@ accounts_minimum_age_login_defs: true
 accounts_password_pam_unix_remember: true
 accounts_passwords_pam_failldelay: true
 audit_rules_finit: true
+audit_rules_init: true
 banner_etc_issue: true
 no_reboot_needed: true
 reboot_required: true
