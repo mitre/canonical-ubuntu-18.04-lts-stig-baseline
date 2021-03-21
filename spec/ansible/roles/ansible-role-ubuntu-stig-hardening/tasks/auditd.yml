@@ -60,7 +60,7 @@
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
     - configure_strategy | bool
-    - audit_rules_kernel_module_loading_finit | bool
+    - audit_rules_finit | bool
     - medium_severity | bool
     - low_disruption | bool
     - low_complexity | bool
