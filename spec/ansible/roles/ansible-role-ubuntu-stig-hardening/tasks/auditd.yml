@@ -65,10 +65,16 @@
     - low_disruption | bool
     - low_complexity | bool
   tags:
+    - V-219255
+    - V-219256    
     - V-219278
     - V-219279
+    - V-219280
+    - DISA-STIG-UBTU-18-010332
+    - DISA-STIG-UBTU-18-010333    
     - DISA-STIG-UBTU-18-010355
     - DISA-STIG-UBTU-18-010356
+    - DISA-STIG-UBTU-18-010357
     - NIST-800-171-3.1.7
     - NIST-800-53-AC-6(9)
     - NIST-800-53-AU-12(c)
