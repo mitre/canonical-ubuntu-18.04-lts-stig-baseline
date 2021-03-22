@@ -1,3 +1,11 @@
+# V-219255 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fchmod syscall
+-a always,exit -F arch=b32 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219256 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fchmodat syscall
+-a always,exit -F arch=b32 -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
 # V-219278 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the init_module syscall
 -a always,exit -F arch=b32 -S init_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 -a always,exit -F arch=b64 -S init_module -F auid>=1000 -F auid!=4294967295 -k module_chng
@@ -5,6 +13,10 @@
 # V-219279 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the finit_module syscall
 -a always,exit -F arch=b32 -S finit_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 -a always,exit -F arch=b64 -S finit_module -F auid>=1000 -F auid!=4294967295 -k module_chng
+
+# V-219280 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the delete_module syscall
+-a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=4294967295 -k module_chng
+-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 
 # V-219238 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the su command.
  -a always,exit -F path=/bin/su -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change
