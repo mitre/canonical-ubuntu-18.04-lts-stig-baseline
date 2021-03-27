@@ -60,7 +60,7 @@
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
     - configure_strategy | bool
-    - audit_rules_finit | bool
+    - audit_rules | bool
     - medium_severity | bool
     - low_disruption | bool
     - low_complexity | bool
@@ -170,6 +170,8 @@
       dest: /etc/default/grub
       regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit)\"[^\"]*)(\".*)'
       replace: '\1 audit=1\2'
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   notify:
       - generate new grub config
   tags:
