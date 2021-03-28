@@ -58,5 +58,16 @@ required.
   tag fix_id: 'F-21021r305220_fix'
   tag cci: ['V-100817', 'SV-109921', 'CCI-000172']
   tag nist: ['AU-12 c']
+  
+  describe auditd.syscall('delete_module').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end
+  if os.arch.match?(/64/)
+    describe auditd.syscall('delete_module').where { arch == 'b64' } do
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+  end   
 end
 
