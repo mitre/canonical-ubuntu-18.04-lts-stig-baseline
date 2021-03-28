@@ -34,6 +34,26 @@
 -a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod
 -a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
 
+# V-219250 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the chown system call.
+-a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219251 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fchown system call.
+-a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219252 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fchownat system call.
+-a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219253 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the lchown system call.
+-a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219254 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the chmod system call.
+-a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
 # V-219255 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fchmod syscall
 -a always,exit -F arch=b32 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_chng
 -a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_chng

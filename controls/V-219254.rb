@@ -64,5 +64,17 @@ required.
   tag fix_id: 'F-20978r305091_fix'
   tag cci: ['V-100733', 'SV-109837', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  if os.arch.match?(/64/)
+    describe auditd.syscall('chmod').where { arch == 'b64' } do
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+  end
+  describe auditd.syscall('chmod').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end
+
 end
 
