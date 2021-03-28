@@ -74,6 +74,50 @@
 -a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 -a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 
+# V-219282 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the setxattr syscall
+-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219283 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the lsetxattr syscall
+-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219284 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the fsetxattr syscall
+-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219285 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the removexattr syscall
+-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219286 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the lremovexattr syscall
+-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_chng
+
+# V-219287 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the unlink syscall
+-a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S unlink -F auid>=1000 -F auid!=4294967295 -k delete
+
+# V-219288 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the unlinkat syscall
+-a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S unlinkat -F auid>=1000 -F auid!=4294967295 -k delete
+
+# V-219289 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the rename syscall
+-a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S rename -F auid>=1000 -F auid!=4294967295 -k delete
+
+# V-219290 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the renameat syscall
+-a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=4294967295 -k delete
+
+# V-219291 The Ubuntu operating system must generate audit records when loading dynamic kernel modules.
+-a always,exit -F arch=b32 -S init_module -S finit_module -k modules
+-a always,exit -F arch=b64 -S init_module -S finit_module -k modules
+
+# V-219292 The Ubuntu operating system must generate audit records when unloading dynamic kernel modules.
+-a always,exit -F arch=b32 -S delete_module -k modules
+-a always,exit -F arch=b64 -S delete_module -k modules
+
 # V-219238 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the su command.
  -a always,exit -F path=/bin/su -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change
 

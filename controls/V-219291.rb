@@ -60,5 +60,24 @@ required.
   tag fix_id: 'F-21015r485713_fix'
   tag cci: ['V-100805', 'SV-109909', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  describe auditd.syscall('init_module').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end
+  describe auditd.syscall('finit_module').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end
+  if os.arch.match?(/64/)
+    describe auditd.syscall('init_module').where { arch == 'b64' } do
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+    describe auditd.syscall('finit_module').where { arch == 'b64' } do
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+  end   
 end
 
