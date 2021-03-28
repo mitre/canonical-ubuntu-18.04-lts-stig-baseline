@@ -46,7 +46,6 @@
   tags:
     - V-219162
 
-
 - name: Update Audit Rules configuration with STIG Rules
   ansible.builtin.template:
     src: audit.rules.j2
@@ -66,12 +65,18 @@
     - low_complexity | bool
   tags:
     - V-219255
-    - V-219256    
+    - V-219256
+    - V-219261
+    - V-219262    
     - V-219278
     - V-219279
     - V-219280
+    - V-219294
+    - V-219295    
     - DISA-STIG-UBTU-18-010332
-    - DISA-STIG-UBTU-18-010333    
+    - DISA-STIG-UBTU-18-010333
+    - DISA-STIG-UBTU-18-010338    
+    - DISA-STIG-UBTU-18-010339 
     - DISA-STIG-UBTU-18-010355
     - DISA-STIG-UBTU-18-010356
     - DISA-STIG-UBTU-18-010357
