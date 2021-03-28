@@ -156,3 +156,11 @@
 -a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k perm_access
 -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k perm_access
 -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k perm_access
+
+# V-219296 The Ubuntu operating system must generate records for successful/unsuccessful uses of init_module or finit_module syscalls.
+-a always,exit -F arch=b32 -S init_module -S finit_module -F key=modules
+-a always,exit -F arch=b64 -S init_module -S finit_module -F key=modules
+
+# V-219297 The Ubuntu operating system must generate records for successful/unsuccessful uses of delete_module syscall.
+-a always,exit -F arch=b32 -S delete_module -F key=modules
+-a always,exit -F arch=b64 -S delete_module -F key=modules
