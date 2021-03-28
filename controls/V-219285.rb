@@ -67,5 +67,16 @@ required.
   tag fix_id: 'F-21009r305184_fix'
   tag cci: ['SV-109897', 'V-100793', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  if os.arch.match?(/64/)
+    describe auditd.syscall('removexattr').where { arch == 'b64' } do
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+  end
+  describe auditd.syscall('removexattr').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end
 end
 
