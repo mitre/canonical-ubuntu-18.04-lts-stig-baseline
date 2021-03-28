@@ -74,5 +74,28 @@ required.
   tag fix_id: 'F-21017r485720_fix'
   tag cci: ['V-100809', 'SV-109913', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  describe auditd.syscall('truncate').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+    its('exit.uniq') { should include '-EPERM' }
+  end
+  describe auditd.syscall('truncate').where { arch == 'b32' } do
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+    its('exit.uniq') { should include '-EACCES' }
+  end
+  if os.arch.match?(/64/)
+    describe auditd.syscall('truncate').where { arch == 'b64' } do
+        its('action.uniq') { should eq ['always'] }
+        its('list.uniq') { should eq ['exit'] }
+        its('exit.uniq') { should include '-EPERM' }
+    end
+    describe auditd.syscall('truncate').where { arch == 'b64' } do
+        its('action.uniq') { should eq ['always'] }
+        its('list.uniq') { should eq ['exit'] }
+        its('exit.uniq') { should include '-EACCES' }
+    end
+  end    
 end
 
