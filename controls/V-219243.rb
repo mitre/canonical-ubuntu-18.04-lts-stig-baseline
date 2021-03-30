@@ -56,5 +56,23 @@ file:
   tag fix_id: 'F-20967r305058_fix'
   tag cci: ['SV-109817', 'V-100713', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  audit_file = '/usr/lib/openssh/ssh-keysign'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['x'] }
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?
 end
 

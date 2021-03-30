@@ -1,3 +1,15 @@
+# V-219240 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the mount command.
+-a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-mount
+
+# V-219241 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the umount command.
+-a always,exit -F path=/bin/umount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-umount
+
+# V-219242 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the ssh-agent command.
+-a always,exit -F path=/usr/bin/ssh-agent -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-ssh
+
+# V-219243 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the ssh-keysign command.
+-a always,exit -F path=/usr/lib/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-ssh
+
 # V-219244 The Ubuntu operating system must generate audit records for any usage of the setxattr system call.
 -a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod
 -a always,exit -F arch=b32 -S setxattr -F auid=0 -k perm_mod
