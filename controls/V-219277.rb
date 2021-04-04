@@ -56,5 +56,23 @@ auid>=1000 -F auid!=4294967295 -k privileged-pam_timestamp_check
   tag fix_id: 'F-21001r305160_fix'
   tag cci: ['SV-109881', 'V-100777', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  audit_file = '/usr/sbin/pam_timestamp_check'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['x'] }
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end if file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?  
 end
 

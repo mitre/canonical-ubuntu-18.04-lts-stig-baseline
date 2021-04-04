@@ -56,5 +56,23 @@ auid!=4294967295 -k privileged-gpasswd
   tag fix_id: 'F-20997r305148_fix'
   tag cci: ['V-100771', 'SV-109875', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  audit_file = '/usr/bin/gpasswd'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['x'] }
+    its('action.uniq') { should eq ['always'] }
+    its('list.uniq') { should eq ['exit'] }
+  end if file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?  
 end
 
