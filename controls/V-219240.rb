@@ -69,7 +69,7 @@ auid!=4294967295 -k privileged-mount
     its('permissions') { should include ['x'] }
     its('action.uniq') { should eq ['always'] }
     its('list.uniq') { should eq ['exit'] }
-  end file(audit_file).exist?
+  end if file(audit_file).exist?
 
   describe "The #{audit_file} file does not exist" do
     skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
