@@ -87,22 +87,22 @@
 -a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
 
 # V-219267 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the chcon command.
--a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=4294967295 -k perm_chng
 
 # V-219268 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the apparmor_parser command.
--a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid>=1000 -F auid!=4294967295 -k perm_chng
 
 # V-219269 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the setfacl command.
--a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=4294967295 -k perm_chng
 
 # V-219270 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the chacl command.
--a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=4294967295 -k perm_chng
 
 # V-219271 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the passwd command.
--a always,exit -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-passwd
 
 # V-219272 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the unix_update command.
--a always,exit -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=4294967295 -k priv_cmd
+-a always,exit -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-unix-update
 
 # V-219278 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the init_module syscall
 -a always,exit -F arch=b32 -S init_module -F auid>=1000 -F auid!=4294967295 -k module_chng
