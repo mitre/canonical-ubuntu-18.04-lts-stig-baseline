@@ -104,6 +104,21 @@
 # V-219272 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the unix_update command.
 -a always,exit -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-unix-update
 
+# V-219273 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the gpasswd command.
+-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-gpasswd
+
+# V-219274 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the chage command.
+-a always,exit -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-chage
+
+# V-219275 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the usermod command.
+-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-usermod
+
+# V-219276 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the crontab command.
+-a always,exit -F path=/usr/bin/crontab -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-crontab
+
+# V-219277 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the pam_timestamp_check command.
+-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged-pam_timestamp_check
+
 # V-219278 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the init_module syscall
 -a always,exit -F arch=b32 -S init_module -F auid>=1000 -F auid!=4294967295 -k module_chng
 -a always,exit -F arch=b64 -S init_module -F auid>=1000 -F auid!=4294967295 -k module_chng
