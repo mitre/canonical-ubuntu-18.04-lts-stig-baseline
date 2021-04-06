@@ -1,3 +1,9 @@
+# V-219213 The Ubuntu operating system must generate audit records for the use and modification of the tallylog file.
+-w /var/log/tallylog -p wa -k logins
+
+ V-219214 The Ubuntu operating system must generate audit records for the use and modification of the faillog file.
+-w /var/log/faillog -p wa -k logins
+
 # V-219240 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the mount command.
 -a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-mount
 

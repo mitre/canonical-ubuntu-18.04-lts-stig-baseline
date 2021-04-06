@@ -64,6 +64,8 @@
     - low_disruption | bool
     - low_complexity | bool
   tags:
+    - V-219213
+    - V-219214
     - V-219240
     - V-219241
     - V-219242
@@ -116,6 +118,8 @@
     - V-219293    
     - V-219294
     - V-219295
+    - DISA-STIG-UBTU-18-010201    
+    - DISA-STIG-UBTU-18-010202    
     - DISA-STIG-UBTU-18-010317    
     - DISA-STIG-UBTU-18-010318    
     - DISA-STIG-UBTU-18-010319    
