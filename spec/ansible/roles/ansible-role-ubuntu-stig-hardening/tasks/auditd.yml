@@ -42,10 +42,6 @@
         name: auditd
         enabled: 'yes'
         state: started
-    - name: audit rules load
-      shell: /sbin/augenrules --load
-      when:
-      - '"auditd" in ansible_facts.packages'
   when:
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
