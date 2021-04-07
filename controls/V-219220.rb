@@ -64,5 +64,23 @@ account creations, modifications, disabling, and termination events that affect
 'CCI-001404', 'CCI-000018', 'CCI-002130']
   tag nist: ['AU-12 c', 'AC-2 (4)', 'AC-2 (4)', 'AC-2 (4)', 'AC-2 (4)', "AC-2
 (4)"]
+
+  audit_file = '/etc/passwd'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['w'] }
+    its('permissions') { should include ['a'] }
+    its('action') { should_not include 'never' }
+  end if file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?
 end
 

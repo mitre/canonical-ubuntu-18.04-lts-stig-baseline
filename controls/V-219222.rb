@@ -63,5 +63,23 @@ account creations, modifications, disabling, and termination events that affect
   tag cci: ['SV-109775', 'V-100671', 'CCI-000172', 'CCI-001405', 'CCI-001403',
 'CCI-001404', 'CCI-002130']
   tag nist: ['AU-12 c', 'AC-2 (4)', 'AC-2 (4)', 'AC-2 (4)', 'AC-2 (4)']
+
+  audit_file = '/etc/gshadow'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['w'] }
+    its('permissions') { should include ['a'] }
+    its('action') { should_not include 'never' }
+  end if file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?
 end
 
