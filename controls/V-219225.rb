@@ -99,5 +99,17 @@ with the following command:
   tag nist: ['CM-5 (1)', 'AU-12 (3)', 'AU-7 a', 'AU-7 a', 'AU-7 a', 'AU-7 a',
 'AU-7 a', 'AU-7 a', 'AU-12 c', 'AU-12 a', 'AU-3', 'AU-3', 'AU-3', 'AU-3', "AU-3
 (1)", 'AU-6 (4)', 'AU-7 (1)', 'MA-4 (1) (a)']
+
+  describe package('auditd') do
+    it { should be_installed }
+  end
+  describe service('auditd') do
+    it { should be_installed }
+    it { should be_enabled }
+    it { should be_running }
+  end
+  describe command('augenrules --load') do
+    its('exit_status') { should eq 0 }
+  end
 end
 
