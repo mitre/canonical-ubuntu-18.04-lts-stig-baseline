@@ -4,6 +4,21 @@
 # V-219214 The Ubuntu operating system must generate audit records for the use and modification of the faillog file.
 -w /var/log/faillog -p wa -k logins
 
+# V-219215 The Ubuntu operating system must generate audit records for the use and modification of the lastlog file.
+-w /var/log/lastlog -p wa -k logins
+
+# V-219216 The Ubuntu operating system must generate audit records for privileged activities or other system-level access.
+-w /var/log/sudo.log -p wa -k actions
+
+# V-219217 The Ubuntu operating system must generate audit records for the use and modification of the /var/log/wtmp file.
+-w /var/log/wtmp -p wa -k logins
+
+# V-219218 The Ubuntu operating system must generate audit records for the use and modification of the /var/run/wtmp file.
+-w /var/run/wtmp -p wa -k logins
+
+# V-219219 The Ubuntu operating system must generate audit records for the use and modification of the /var/log/btmp file.
+-w /var/log/btmp -p wa -k logins
+
 # V-219240 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the mount command.
 -a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-mount
 
