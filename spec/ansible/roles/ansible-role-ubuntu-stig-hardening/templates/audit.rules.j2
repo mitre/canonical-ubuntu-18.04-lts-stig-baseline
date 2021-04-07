@@ -19,6 +19,21 @@
 # V-219219 The Ubuntu operating system must generate audit records for the use and modification of the /var/log/btmp file.
 -w /var/log/btmp -p wa -k logins
 
+# V-219220 The Ubuntu operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/passwd.
+-w /etc/passwd -p wa -k usergroup_modification
+
+# V-219221 The Ubuntu operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/group.
+-w /etc/group -p wa -k usergroup_modification
+
+# V-219222 The Ubuntu operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow.
+-w /etc/gshadow -p wa -k usergroup_modification
+
+# V-219223 The Ubuntu operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.
+-w /etc/shadow -p wa -k usergroup_modification
+
+# V-219224 The Ubuntu operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/security/opasswd.
+-w /etc/security/opasswd -p wa -k usergroup_modification
+
 # V-219240 The Ubuntu operating system must generate audit records for successful/unsuccessful uses of the mount command.
 -a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-mount
 
