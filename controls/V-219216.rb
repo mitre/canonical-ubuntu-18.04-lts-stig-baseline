@@ -52,5 +52,23 @@ file:
   tag fix_id: 'F-20940r304977_fix'
   tag cci: ['SV-109763', 'V-100659', 'CCI-000172']
   tag nist: ['AU-12 c']
+
+  audit_file = '/var/log/sudo.log'
+
+  if file(audit_file).exist?
+    impact 0.5
+  else
+    impact 0.0
+  end
+
+  describe auditd.file(audit_file) do
+    its('permissions') { should include ['w'] }
+    its('permissions') { should include ['a'] }
+    its('action') { should_not include 'never' }
+  end if file(audit_file).exist?
+
+  describe "The #{audit_file} file does not exist" do
+    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+  end if !file(audit_file).exist?  
 end
 
