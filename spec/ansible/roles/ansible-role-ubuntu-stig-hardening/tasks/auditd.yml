@@ -1,3 +1,82 @@
+- name: Ensure auditd is installed
+  package:
+    name: auditd
+    state: present
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+    - package_auditd_installed | bool
+    - no_reboot_needed | bool
+    - medium_severity | bool
+    - enable_strategy | bool
+    - low_disruption | bool
+    - low_complexity | bool
+  tags:
+    - V-219225
+    - CJIS-5.4.1.1
+    - DISA-STIG-UBTU-18-010250
+    - NIST-800-171-3.1.7
+    - NIST-800-53-AU-3
+    - NIST-800-53-AU-3(1)
+    - NIST-800-53-AU-6(4)
+    - NIST-800-53-AU-7(a)
+    - NIST-800-53-AU-7(1)
+    - NIST-800-53-AU-12(a)  
+    - NIST-800-53-AU-12(c)        
+    - NIST-800-53-AU-12(3)  
+    - NIST-800-53-CM-5(1) 
+    - NIST-800-53-MA-4(1)(a) 
+    - enable_strategy
+    - low_complexity
+    - low_disruption
+    - medium_severity
+    - no_reboot_needed
+    - package_auditd_installed
+
+- name: Enable service auditd and reload rules 
+  block:
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+    - name: Enable service auditd
+      service:
+        name: auditd
+        enabled: 'yes'
+        state: started
+    - name: audit rules load
+      shell: /sbin/augenrules --load
+      when:
+      - '"audit" in ansible_facts.packages'
+  when:
+    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+    - no_reboot_needed | bool
+    - high_severity | bool
+    - enable_strategy | bool
+    - low_complexity | bool
+    - low_disruption | bool
+    - service_auditd_enabled | bool
+  tags:
+    - V-219225
+    - CJIS-5.4.1.1
+    - DISA-STIG-UBTU-18-010250
+    - NIST-800-171-3.3.1
+    - NIST-800-171-3.3.2
+    - NIST-800-171-3.3.6
+    - NIST-800-53-AC-2(g)
+    - NIST-800-53-AC-6(9)
+    - NIST-800-53-AU-10
+    - NIST-800-53-AU-12(c)
+    - NIST-800-53-AU-14(1)
+    - NIST-800-53-AU-2(d)
+    - NIST-800-53-AU-3
+    - NIST-800-53-CM-6(a)
+    - PCI-DSS-Req-10.1
+    - enable_strategy
+    - high_severity
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - service_auditd_enabled
+
 - name: Install audispd-plugins required package
   apt:
     name:

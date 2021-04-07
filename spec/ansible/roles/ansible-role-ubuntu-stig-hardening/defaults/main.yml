@@ -22,9 +22,11 @@ dconf_gnome_banner_enabled: true
 kernel_module_usb-storage_disabled: true
 package_vlock_installed: true
 package_ufw_installed: true
+package_auditd_installed: true
 prevent_root_login: true
 run_pamd_lock: true
 service_ufw_enabled: true
+service_auditd_enabled: true
 set_password_hashing_algorithm_logindefs: true
 sshd_do_not_permit_user_env: true
 sshd_disable_empty_passwords: true
@@ -46,7 +48,6 @@ var_pamd_lock: '3'
 var_password_pam_unix_remember: '5'
 var_fail_delay: '4000000'
 disable_ctrlaltdel_reboot: true
-disable_strategy: true
 sysctl_kernel_randomize_va_space: true
 sysctl_net_ipv4_tcp_syncookies: true
 sysctl_net_ipv4_tcp_syncookies_value: '1'
