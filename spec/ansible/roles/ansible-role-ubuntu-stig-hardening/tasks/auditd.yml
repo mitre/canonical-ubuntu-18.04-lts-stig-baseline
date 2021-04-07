@@ -45,7 +45,7 @@
     - name: audit rules load
       shell: /sbin/augenrules --load
       when:
-      - '"audit" in ansible_facts.packages'
+      - '"auditd" in ansible_facts.packages'
   when:
     - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
     - no_reboot_needed | bool
