@@ -61,7 +61,7 @@ session locks with the following command:
     end
   else
     describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
-    its('stdout.strip') { should cmp 'false' }
+    its('stdout.strip') { should cmp 'true' }
     end
   end
 end
