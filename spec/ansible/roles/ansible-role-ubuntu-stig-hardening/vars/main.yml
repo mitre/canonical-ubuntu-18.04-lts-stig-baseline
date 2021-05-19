@@ -78,6 +78,27 @@ security_audit_log_directory: "/var/log/audit"
 
 security_audit_directory: "/etc/audit"
 
+# auditd
+## Audit daemon (auditd)
+### Audit Tools
+security_audit_tools:
+  - /sbin/auditctl
+  - /sbin/aureport
+  - /sbin/ausearch
+  - /sbin/autrace
+  - /sbin/auditd
+  - /sbin/audispd
+  - /sbin/augenrules
+
+### Send audit records to a different system using audisp.
+security_audisp_remote_server: "10.0.0.2" # V-219162
+
+### Audit Log
+security_audit_log: "/var/log/audit/audit.log"
+security_audit_log_directory: "/var/log/audit"
+
+security_audit_directory: "/etc/audit"
+
 ### Banners
 # V-219167
 banner_message_text_gui: "'You are accessing a U.S. Government (USG) Information System (IS) that is \
