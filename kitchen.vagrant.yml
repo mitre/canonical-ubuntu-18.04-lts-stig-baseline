@@ -35,12 +35,11 @@ platforms:
 - name: ubuntu-18.04
 
   driver:
-    box: bento/ubuntu-18.04
+    box: generic/ubuntu1804
 
 lifecycle:
   pre_create:
-  - run: |
-      killall -9 VBoxHeadless && vagrant destroy
+  - local: killall -9 VBoxHeadless && vagrant destroy || true
   pre_converge:
   - remote: |
       echo "NOTICE - Updating the vagrant user to keep sudo working"

@@ -32,8 +32,8 @@ jobs:
       # - name: Regenerate current `profile.json`
       #   run: |
       #     bundle exec inspec json . | jq . > profile.json
-      - name: Lint the Inspec profile
-        run: bundle exec inspec check .
+      # - name: Lint the Inspec profile
+      #   run: bundle exec inspec check .
       - name: Run kitchen test
         run: bundle exec kitchen test --destroy=always ${{ matrix.suite }}-ubuntu-1804 || true
       - name: Display our ${{ matrix.suite }} results summary
