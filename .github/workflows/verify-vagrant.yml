@@ -1,10 +1,10 @@
 name: Verify the Baseline using Vagrant
 
 on:
-  push:	
-    branches: [ master ]	
-  pull_request:	
-    branches: [ master ]	
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   my-job:
@@ -25,13 +25,13 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.6'
+          ruby-version: '3.1'
       - name: Disable ri and rdoc
         run: 'echo "gem: --no-ri --no-rdoc" >> ~/.gemrc'
       - run: bundle install
-      - name: Regenerate current `profile.json`
-        run: |
-          bundle exec inspec json . | jq . > profile.json
+      # - name: Regenerate current `profile.json`
+      #   run: |
+      #     bundle exec inspec json . | jq . > profile.json
       - name: Lint the Inspec profile
         run: bundle exec inspec check .
       - name: Run kitchen test
