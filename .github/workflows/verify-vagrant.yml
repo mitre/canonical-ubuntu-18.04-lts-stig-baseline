@@ -13,6 +13,8 @@ jobs:
     env:
       CHEF_LICENSE: accept-silent
       KITCHEN_LOCAL_YAML: kitchen.vagrant.yml
+      VAGRANT_DISABLE_VBOXSYMLINKCREATE: 1
+      VAGRANT_LOG: debug
     strategy:
       matrix:
         suite: ['vanilla', 'hardened']
