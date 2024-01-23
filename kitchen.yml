@@ -1,27 +1,34 @@
----
 
 verifier:
   name: inspec
   sudo: true
   reporter:
-    - cli
-    - json:spec/results/%{platform}_%{suite}.json
+  - cli
+  - json:spec/results/%{platform}_%{suite}.json
   inspec_tests:
-    - name: Ubuntu 18.04 STIG
-      path: .
+  - name: Ubuntu 18.04 STIG
+    path: .
   input_files:
     - kitchen.inputs.yml
+  <% if ENV['INSPEC_CONTROL'] %>
+  controls:
+    - "<%= ENV['INSPEC_CONTROL'] %>"
+  <% end %>
   load_plugins: true
+  env_vars:
+    - "CHEF_LICENSE=<%= ENV['CHEF_LICENSE'] %>"
 
 platforms:
-  - name: ubuntu-18.04
+- name: ubuntu-18.04
 
 suites:
-  - name: hardened
-    provisioner:
-      playbook: spec/ansible/ubuntu-stig-hardening.yml
-      
-  - name: vanilla
-    provisioner:
-      playbook: spec/ansible/ubuntu-stig-vanilla.yml
-      
+- name: hardened
+  provisioner:
+    playbook: spec/ansible/ubuntu-stig-hardening.yml
+
+- name: vanilla
+  provisioner:
+    playbook: spec/ansible/ubuntu-stig-vanilla.yml
+
+transport:
+  max_ssh_sessions: 6
