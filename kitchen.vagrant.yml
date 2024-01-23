@@ -35,7 +35,7 @@ platforms:
 - name: ubuntu-18.04
 
   driver:
-    box: bento/ubuntu-1804
+    box: bento/ubuntu-18.04
 
 lifecycle:
   pre_create:
