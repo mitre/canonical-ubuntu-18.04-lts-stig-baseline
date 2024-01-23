@@ -1,4 +1,3 @@
----
 driver:
   name: vagrant
   driver_config:
@@ -33,15 +32,15 @@ provisioner:
   galaxy_ignore_certs: true
 
 platforms:
-  - name: ubuntu-18.04
+- name: ubuntu-18.04
 
-    driver:
-      box: bento/ubuntu-18.04
+  driver:
+    box: ubuntu/bionic64
 
 lifecycle:
   pre_converge:
-    - remote: |
-        echo "NOTICE - Updating the vagrant user to keep sudo working"
-        sudo chage -d $(( $( date +%s ) / 86400 )) vagrant
-        echo "NOTICE - updating vagrant sudo config"
-        sudo chmod 600 /etc/sudoers && sudo sed -i'' "/vagrant/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
+  - remote: |
+      echo "NOTICE - Updating the vagrant user to keep sudo working"
+      sudo chage -d $(( $( date +%s ) / 86400 )) vagrant
+      echo "NOTICE - updating vagrant sudo config"
+      sudo chmod 600 /etc/sudoers && sudo sed -i'' "/vagrant/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
