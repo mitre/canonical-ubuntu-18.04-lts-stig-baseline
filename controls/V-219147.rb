@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219147' do
   title "Ubuntu operating systems booted with a BIOS must require
 authentication upon booting into single-user and maintenance modes."
@@ -37,7 +35,7 @@ grub.pbkdf2.sha512.10000.MFU48934NJA87HF8NSD34493GDHF84NG
     If the root password entry does not begin with “password_pbkdf2”, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system to require a password for authentication upon booting
 into single-user and maintenance modes.
 
@@ -78,15 +76,15 @@ following command:
 
   if file('/sys/firmware/efi').exist?
     impact 0.0
-    describe "System running UEFI" do
-      skip "The System is running UEFI, this control is Not Applicable."
+    describe 'System running UEFI' do
+      skip 'The System is running UEFI, this control is Not Applicable.'
     end
   else
     impact 0.7
     # Check if any additional superusers are set
     # Check does not state additional superusers is a finding
     # 'fix' required addition of the password to the 'root' user only, other superusers assumed to not be permitted for use.
-    pattern = %r{\s*set superusers=\"(\w+)\"}i
+    pattern = /\s*set superusers="(\w+)"/i
     matches = grub_main_content.match(pattern)
     superusers = matches.nil? ? [] : matches.captures
     describe "There must be only one grub superuser, and it must have the value #{grub_superuser}" do
@@ -96,22 +94,22 @@ following command:
     end
 
     # Need each password entry that has the superuser
-    pattern = %r{(.*)\s#{grub_superuser}\s}i
+    pattern = /(.*)\s#{grub_superuser}\s/i
     matches = grub_main_content.match(pattern)
     password_entries = matches.nil? ? [] : matches.captures
     # Each of the entries should start with password_pbkdf2
     describe 'The grub superuser password entry must begin with \'password_pbkdf2\'' do
       subject { password_entries }
-      its('length') { is_expected.to be >= 1}
+      its('length') { is_expected.to be >= 1 }
       password_entries.each do |entry|
         subject { entry }
-        it { should include 'password_pbkdf2'}
+        it { should include 'password_pbkdf2' }
       end
     end
 
     # Get lines such as 'password_pbkdf2 root ${ENV}'
     matches = grub_main_content.match(pattern)
-    pattern = %r{password_pbkdf2\s#{grub_superuser}\sgrub\.pbkdf2}i
+    pattern = /password_pbkdf2\s#{grub_superuser}\sgrub\.pbkdf2/i
     describe 'The grub superuser account password should be encrypted with pbkdf2.' do
       subject { grub_main_content }
       it { should match pattern }

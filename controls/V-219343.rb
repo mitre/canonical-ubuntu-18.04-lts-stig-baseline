@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219343' do
   title "The Ubuntu operating system must use a file integrity tool to verify
 correct operation of all security functions."
@@ -33,7 +31,7 @@ checks are performed on the system.
     If there is no application installed to perform integrity checks, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Install the AIDE package by running the following command:
 
     # sudo apt-get install aide
@@ -51,6 +49,4 @@ finding.
   describe package('aide') do
     it { should be_installed }
   end
-
 end
-

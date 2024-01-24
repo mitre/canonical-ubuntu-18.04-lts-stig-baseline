@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219209' do
   title "The Ubuntu operating system must have directories that contain system
 commands group-owned by root."
@@ -35,7 +33,7 @@ initiating changes, including upgrades and modifications.
 up on execution (SGID) files and owned by a privileged account, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands directories to be protected from unauthorized
 access. Run the following command:
 
@@ -52,4 +50,3 @@ access. Run the following command:
   tag cci: ['V-100645', 'SV-109749', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

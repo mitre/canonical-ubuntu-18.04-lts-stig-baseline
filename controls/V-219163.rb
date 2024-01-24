@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219163' do
   title "The Ubuntu operating system must be configured such that Pluggable
 Authentication Module (PAM) prohibits the use of cached authentications after
@@ -26,7 +24,7 @@ with the following command:
 /etc/sssd/sssd.conf or in a file with a name ending in .conf in the
 /etc/sssd/conf.d/ directory, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure Pluggable Authentication Module (PAM) to prohibit the use of
 cached authentications after one day. Add or change the following line in
 \"/etc/sssd/sssd.conf\" just below the line \"[pam]\".
@@ -47,4 +45,3 @@ directory instead of the /etc/sssd/sssd.conf file.
   tag cci: ['SV-109657', 'V-100553', 'CCI-002007']
   tag nist: ['IA-5 (13)']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219321' do
   title "The Ubuntu operating system must only allow the use of DoD
 PKI-established certificate authorities for verification of the establishment
@@ -25,7 +23,7 @@ CA\".
 
     If none is found, this is a finding.
   "
-  desc  'fix', "Add at least one DOD certificate authority to the
+  desc 'fix', "Add at least one DOD certificate authority to the
 '/usr/local/share/ca-certificates' directory, then run the
 'update-ca-certificates' command."
   impact 0.5
@@ -38,4 +36,3 @@ CA\".
   tag cci: ['V-100865', 'SV-109969', 'CCI-002470']
   tag nist: ['SC-23 (5)']
 end
-

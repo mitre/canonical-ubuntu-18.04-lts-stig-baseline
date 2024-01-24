@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219229' do
   title "The Ubuntu operating system must permit only authorized accounts
 ownership of the audit log files."
@@ -34,7 +32,7 @@ audit log files are owned by the \"root\" user by using the following command:
     If the audit log files are owned by an user other than \"root\", this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit log files to be owned by \"root\" user.
 
     First determine where the audit logs are stored with the following command:

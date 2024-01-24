@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219239' do
   title "The Ubuntu operating system must generate audit records for
 successful/unsuccessful uses of the chfn command."
@@ -29,7 +27,7 @@ are commented out, this is a finding.
     Note: The '-k' allows for specifying an arbitrary identifier and the string
 after it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate an audit event for any
 successful/unsuccessful uses of the \"chfn\" command.
 
@@ -57,4 +55,3 @@ auid!=4294967295 -k privileged-chfn
   tag cci: ['V-100705', 'SV-109809', 'CCI-000172']
   tag nist: ['AU-12 c']
 end
-

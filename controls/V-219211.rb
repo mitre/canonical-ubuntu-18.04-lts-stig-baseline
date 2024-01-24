@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219211' do
   title "The Ubuntu Operating system must disable the x86 Ctrl-Alt-Delete key
 sequence if a graphical user interface is installed."
@@ -24,7 +22,7 @@ following command:
     If the \"logout\" key is bound to an action, is commented out, or is
 missing, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system to disable the Ctrl-Alt-Delete sequence when using a
 graphical user interface by creating or editing the
 /etc/dconf/db/local.d/00-disable-CAD file.
@@ -49,4 +47,3 @@ user interface:
   tag cci: ['V-100649', 'SV-109753', 'CCI-000366']
   tag nist: ['CM-6 b']
 end
-

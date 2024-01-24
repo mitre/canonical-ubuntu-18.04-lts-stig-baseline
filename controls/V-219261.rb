@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219261' do
   title "The Ubuntu operating system must generate audit records for
 successful/unsuccessful uses of the openat system call."
@@ -40,7 +38,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate an audit event for any unsuccessful
 use of the \"openat\" system call.
 
@@ -88,14 +86,14 @@ required.
   end
   if os.arch.match?(/64/)
     describe auditd.syscall('openat').where { arch == 'b64' } do
-        its('action.uniq') { should eq ['always'] }
-        its('list.uniq') { should eq ['exit'] }
-        its('exit.uniq') { should include '-EPERM' }
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+      its('exit.uniq') { should include '-EPERM' }
     end
     describe auditd.syscall('openat').where { arch == 'b64' } do
-        its('action.uniq') { should eq ['always'] }
-        its('list.uniq') { should eq ['exit'] }
-        its('exit.uniq') { should include '-EACCES' }
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+      its('exit.uniq') { should include '-EACCES' }
     end
-  end    
+  end
 end

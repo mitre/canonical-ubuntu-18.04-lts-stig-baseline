@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219248' do
   title "The Ubuntu operating system must generate audit records for any usage
 of the lremovexattr system call."
@@ -36,7 +34,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate an audit event for any
 successful/unsuccessful use of the \"lremovexattr\" system call.
 
@@ -78,6 +76,5 @@ required.
   describe auditd.syscall('lremovexattr').where { arch == 'b32' } do
     its('action.uniq') { should eq ['always'] }
     its('list.uniq') { should eq ['exit'] }
-  end 
+  end
 end
-

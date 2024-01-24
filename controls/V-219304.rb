@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219304' do
   title "The Ubuntu operating system must be configured for users to directly
 initiate a session lock for all connection types."
@@ -25,7 +23,7 @@ running the following command:
 
     If \"vlock\" is not installed, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Install the \"vlock\" (if it is not already installed) package by running
 the following command:
 
@@ -44,6 +42,5 @@ the following command:
 
   describe package('vlock') do
     it { should be_installed }
-  end  
+  end
 end
-

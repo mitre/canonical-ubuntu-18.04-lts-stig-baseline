@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219339' do
   title "The Ubuntu operating system must disable automatic mounting of
 Universal Serial Bus (USB) mass storage driver."
@@ -31,7 +29,7 @@ device.
     If the command does not return any output, or the line is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to disable using the USB storage
 kernel module.
 
@@ -60,4 +58,3 @@ storage devices.
     it { should be_blacklisted }
   end
 end
-

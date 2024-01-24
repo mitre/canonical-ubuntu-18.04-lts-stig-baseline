@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219181' do
   title "The Ubuntu operating system must enforce a minimum 15-character
 password length."
@@ -24,7 +22,7 @@ password length, by running the following command:
     If \"minlen\" parameter value is not 15 or higher, or is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce a minimum 15-character
 password length.
 
@@ -43,4 +41,3 @@ password length.
   tag cci: ['SV-109693', 'V-100589', 'CCI-000205']
   tag nist: ['IA-5 (1) (a)']
 end
-

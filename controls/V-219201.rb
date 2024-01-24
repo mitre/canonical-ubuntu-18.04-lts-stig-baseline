@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219201' do
   title 'The Ubuntu operating system library directories must be owned by root.'
   desc  "If the Ubuntu operating system were to allow any user to make changes
@@ -27,7 +25,7 @@ with the following command:
 
     If any system wide library directory is returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the library files and their respective parent directories to be
 protected from unauthorized access. Run the following command:
 
@@ -44,4 +42,3 @@ protected from unauthorized access. Run the following command:
   tag cci: ['SV-109733', 'V-100629', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

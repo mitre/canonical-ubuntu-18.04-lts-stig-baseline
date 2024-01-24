@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219184' do
   title "The Ubuntu operating system must prevent the use of dictionary words
 for passwords."
@@ -19,7 +17,7 @@ prevent the use of dictionary words with the following command:
     If the \"dictcheck\" parameter is not set to \"1\", or is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to prevent the use of dictionary
 words for passwords.
 
@@ -38,4 +36,3 @@ file to include the \"dictcheck=1\" parameter:
   tag cci: ['SV-109699', 'V-100595', 'CCI-000366']
   tag nist: ['CM-6 b']
 end
-

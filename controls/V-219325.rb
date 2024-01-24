@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219325' do
   title 'The Ubuntu operating system must uniquely identify interactive users.'
   desc  "To assure accountability and prevent unauthenticated access,
@@ -48,4 +46,3 @@ account that has a duplicate User ID (UID) with a unique UID."
   tag cci: ['SV-109977', 'V-100873', 'CCI-000764', 'CCI-000804']
   tag nist: ['IA-2', 'IA-8']
 end
-

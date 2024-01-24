@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219149' do
   title "The Ubuntu operating system must initiate session audits at system
 startup."
@@ -22,7 +20,7 @@ recovery nomodeset audit=1
 
     If any linux lines do not contain \"audit=1\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to produce audit records at system
 startup.
 
@@ -51,6 +49,4 @@ option.
       its('kernel') { should include 'audit=1' }
     end
   end
-
-
 end

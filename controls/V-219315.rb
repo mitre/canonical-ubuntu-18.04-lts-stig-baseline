@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219315' do
   title "The Ubuntu operating system, for PKI-based authentication, must
 validate certificates by constructing a certification path (which includes
@@ -47,7 +45,7 @@ cert_policy | grep ca
     If \"cert_policy\" is not set to \"ca\", or the line is commented out, this
 is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system, for PKI-based authentication, to
 validate certificates by constructing a certification path to an accepted trust
 anchor.
@@ -75,4 +73,3 @@ modify accordingly at
   tag cci: ['V-100853', 'SV-109957', 'CCI-001991', 'CCI-000185']
   tag nist: ['IA-5 (2) (d)', 'IA-5 (2) (a)']
 end
-

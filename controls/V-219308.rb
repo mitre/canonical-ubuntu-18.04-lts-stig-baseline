@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219308' do
   title "The Ubuntu operating system must enforce SSHv2 for network access to
 all accounts."
@@ -36,7 +34,7 @@ access.
     If the returned line allows for use of protocol \"1\", is commented out, or
 the line is missing, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce SSHv2 for network access
 to all accounts.
 
@@ -63,4 +61,3 @@ to all accounts.
     its('Protocol') { should cmp '2' }
   end
 end
-

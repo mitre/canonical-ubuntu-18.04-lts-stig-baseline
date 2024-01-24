@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219199' do
   title "The Ubuntu operating system library directories must have mode 0755 or
 less permissive."
@@ -29,7 +27,7 @@ less permissive with the following command:
     If any of the aforementioned directories are found to be group-writable or
 world-writable, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the shared library directories to be protected from unauthorized
 access. Run the following command:
 
@@ -45,4 +43,3 @@ access. Run the following command:
   tag cci: ['V-100625', 'SV-109729', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

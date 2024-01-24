@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219216' do
   title "The Ubuntu operating system must generate audit records for privileged
 activities or other system-level access."
@@ -27,7 +25,7 @@ are commented out, this is a finding.
     Notes: The '-k' allows for specifying an arbitrary identifier and the
 string after it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to audit privileged activities.
 
     Add or update the following rules in the \"/etc/audit/rules.d/stig.rules\"
@@ -61,14 +59,17 @@ file:
     impact 0.0
   end
 
-  describe auditd.file(audit_file) do
-    its('permissions') { should include ['w'] }
-    its('permissions') { should include ['a'] }
-    its('action') { should_not include 'never' }
-  end if file(audit_file).exist?
+  if file(audit_file).exist?
+    describe auditd.file(audit_file) do
+      its('permissions') { should include ['w'] }
+      its('permissions') { should include ['a'] }
+      its('action') { should_not include 'never' }
+    end
+  end
 
-  describe "The #{audit_file} file does not exist" do
-    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
-  end if !file(audit_file).exist?  
+  unless file(audit_file).exist?
+    describe "The #{audit_file} file does not exist" do
+      skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+    end
+  end
 end
-

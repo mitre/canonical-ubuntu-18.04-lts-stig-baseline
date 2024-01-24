@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219205' do
   title "The Ubuntu operating system must have directories that contain system
 commands set to a mode of 0755 or less permissive."
@@ -35,7 +33,7 @@ with the following command:
     If any directories are found to be group-writable or world-writable, this
 is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands directories to be protected from unauthorized
 access. Run the following command:
 
@@ -52,4 +50,3 @@ access. Run the following command:
   tag cci: ['SV-109741', 'V-100637', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

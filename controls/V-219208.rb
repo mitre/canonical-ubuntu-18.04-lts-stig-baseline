@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219208' do
   title "The Ubuntu operating system must have system commands group-owned by
 root."
@@ -35,7 +33,7 @@ group-owned by root:
     If any system commands are returned that are not Set Group ID up on
 execution (SGID) files and owned by a privileged account, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands to be protected from unauthorized access. Run
 the following command:
 
@@ -52,4 +50,3 @@ the following command:
   tag cci: ['V-100643', 'SV-109747', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

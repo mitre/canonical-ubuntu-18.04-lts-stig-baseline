@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219226' do
   title "The Ubuntu operating system must alert the ISSO and SA (at a minimum)
 in the event of an audit processing failure."
@@ -35,7 +33,7 @@ command:
 and/or other accounts for security personnel, the \"action_mail_acct\" keyword
 is missing, or the returned line is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure \"auditd\" service to notify the System Administrator (SA) and
 Information System Security Officer (ISSO) in the event of an audit processing
 failure.
@@ -57,8 +55,8 @@ administrators are notified via email for those situations:
   tag fix_id: 'F-20950r305007_fix'
   tag cci: ['SV-109783', 'V-100679', 'CCI-000139']
   tag nist: ['AU-5 a']
-  
-  describe auditd_conf  do
+
+  describe auditd_conf do
     its('action_mail_acct') { should cmp 'root' }
   end
 end

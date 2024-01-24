@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219188' do
   title "The Ubuntu operating system must generate error messages that provide
 information necessary for corrective actions without revealing information that
@@ -26,7 +24,7 @@ social security numbers, and credit card numbers.
 
     If command displays any output, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configured the Ubuntu operating system to set permissions of all log files
 under /var/log directory to 640 or more restricted, by using the following
 command:
@@ -43,4 +41,3 @@ command:
   tag cci: ['V-100603', 'SV-109707', 'CCI-001312']
   tag nist: ['SI-11 a']
 end
-

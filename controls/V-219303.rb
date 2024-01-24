@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219303' do
   title "The Ubuntu operating system must initiate a session lock after a
 15-minute period of inactivity for all connection types."
@@ -30,7 +28,7 @@ determined and/or controlled.
 contents shown above, the value of \"TMOUT\" is greater than 900, or the
 timeout values are commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to initiate a session logout after a
 15-minute period of inactivity.
 
@@ -56,7 +54,7 @@ does not already exist) with the following command:
   tag nist: ['AC-11 a']
 
   # Check if TMOUT is set in files (passive test)
-  files = ['/etc/bashrc'] + ['/etc/profile'] + command("find /etc/profile.d/*").stdout.split("\n")
+  files = ['/etc/bashrc'] + ['/etc/profile'] + command('find /etc/profile.d/*').stdout.split("\n")
   latest_val = nil
 
   files.each do |file|
@@ -67,27 +65,25 @@ does not already exist) with the following command:
 
     # Loop through each TMOUT match and see if set TMOUT's value or makes it readonly
     values.each_with_index { |value, index|
-
       # Skip if starts with '#' - it represents a comment
-      next if !value.match(/^#/).nil?
+      next unless value.match(/^#/).nil?
+
       # If readonly and value is inline - use that value
-      if !value.match(/^readonly[\s]+TMOUT[\s]*=[\s]*[\d]+$/).nil?
-        latest_val = value.match(/[\d]+/)[0].to_i
+      if !value.match(/^readonly\s+TMOUT\s*=\s*\d+$/).nil?
+        latest_val = value.match(/\d+/)[0].to_i
         readonly = true
         break
       # If readonly, but, value is not inline - use the most recent value
-      elsif !value.match(/^readonly[\s]+([\w]+[\s]+)?TMOUT[\s]*([\s]+[\w]+[\s]*)*$/).nil?
+      elsif !value.match(/^readonly\s+(\w+\s+)?TMOUT\s*(\s+\w+\s*)*$/).nil?
         # If the index is greater than 0, the configuraiton setting value.
         # Otherwise, the configuration setting value is in the previous file
         # and is already set in latest_val.
-        if index >= 1
-          latest_val = values[index - 1].match(/[\d]+/)[0].to_i
-        end
+        latest_val = values[index - 1].match(/\d+/)[0].to_i if index >= 1
         readonly = true
         break
       # Readonly is not set use the lastest value
       else
-        latest_val = value.match(/[\d]+/)[0].to_i
+        latest_val = value.match(/\d+/)[0].to_i
       end
     }
     # Readonly is set - stop processing files
@@ -95,14 +91,14 @@ does not already exist) with the following command:
   end
 
   if latest_val.nil?
-    describe "The TMOUT setting is configured" do
+    describe 'The TMOUT setting is configured' do
       subject { !latest_val.nil? }
       it { should be true }
     end
   else
-    describe"The TMOUT setting is configured properly" do
+    describe 'The TMOUT setting is configured properly' do
       subject { latest_val }
-      it { should cmp <= input('system_activity_timeout')}
+      it { should cmp <= input('system_activity_timeout') }
     end
-  end  
+  end
 end

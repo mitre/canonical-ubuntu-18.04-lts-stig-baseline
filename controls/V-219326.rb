@@ -1,4 +1,3 @@
-# encoding: UTF-8
 days_of_inactivity = input('days_of_inactivity', value: 35, description: 'The
 number of days of inactivity before an account is disabled.')
 
@@ -27,7 +26,7 @@ are disabled after 35 days of inactivity with the following command:
     If \"INACTIVE\" is not set to a value 0<[VALUE]<=35, or is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to disable account identifiers after
 35 days of inactivity after the password expiration.
 
@@ -48,9 +47,8 @@ value \"0\" will disable the account immediately after the password expires.
   tag cci: ['SV-109979', 'V-100875', 'CCI-000795']
   tag nist: ['IA-4 e']
 
-  describe parse_config_file("/etc/default/useradd") do
+  describe parse_config_file('/etc/default/useradd') do
     its('INACTIVE') { should cmp >= 0 }
     its('INACTIVE') { should cmp <= days_of_inactivity }
   end
 end
-

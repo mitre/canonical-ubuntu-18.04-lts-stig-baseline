@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219237' do
   title "The Ubuntu operating system must allocate audit record storage
 capacity to store at least one weeks worth of audit records, when audit records
@@ -44,7 +42,7 @@ will be sufficient.
     If the audit record partition is not allocated for sufficient storage
 capacity, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Allocate enough storage capacity for at least one week's worth of audit
 records when audit records are not immediately sent to a central audit record
 storage facility.
@@ -75,4 +73,3 @@ must be located:
   tag cci: ['SV-109805', 'V-100701', 'CCI-001849']
   tag nist: ['AU-4']
 end
-

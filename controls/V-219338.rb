@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219338' do
   title "The Ubuntu operating system must notify designated personnel if
 baseline configurations are changed in an unauthorized manner. The file
@@ -34,7 +32,7 @@ operation of any security functions are discovered with the following command:
 
     If SILENTREPORTS is uncommented and set to yes, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to notify designated personnel if
 baseline configurations are changed in an unauthorized manner.
 
@@ -52,4 +50,3 @@ with a value of \"no\" if it does not already exist.
   tag cci: ['V-100899', 'SV-110003', 'CCI-002702', 'CCI-001744']
   tag nist: ['SI-6 d', 'CM-3 (5)']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219233' do
   title "The Ubuntu operating system must ensure only authorized groups can own
 the audit log directory and its underlying files."
@@ -34,7 +32,7 @@ directory is owned by the \"root\" group by using the following command:
     If the audit log directory is owned by a group other than \"root\", this is
 a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit log directory to be owned by \"root\" group.
 
     First determine where the audit logs are stored with the following command:
@@ -58,4 +56,3 @@ command:
   tag cci: ['V-100693', 'SV-109797', 'CCI-000164']
   tag nist: ['AU-9']
 end
-

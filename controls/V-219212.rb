@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219212' do
   title "The Ubuntu Operating system must disable the x86 Ctrl-Alt-Delete key
 sequence."
@@ -23,7 +21,7 @@ reboot.target) is not active with the following command:
 
     If the \"ctrl-alt-del.target\" is active, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system to disable the Ctrl-Alt-Delete sequence for the
 command line with the following command:
 
@@ -48,4 +46,3 @@ command line with the following command:
     it { should_not be_enabled }
   end
 end
-

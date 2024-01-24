@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219227' do
   title "The Ubuntu operating system must shut down by default upon audit
 failure (unless availability is an overriding concern)."
@@ -39,7 +37,7 @@ the audit storage volume is full with the following command:
     If the value of the \"disk_full_action\" option is not \"SYSLOG\",
 \"SINGLE\", or \"HALT\", or the line is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to shut down by default upon audit
 failure (unless availability is an overriding concern).
 
@@ -62,7 +60,7 @@ failure (unless availability is an overriding concern).
   tag cci: ['SV-109785', 'V-100681', 'CCI-000140']
   tag nist: ['AU-5 b']
 
-  describe auditd_conf  do
+  describe auditd_conf do
     its('disk_full_action') { should cmp 'HALT' }
   end
 end

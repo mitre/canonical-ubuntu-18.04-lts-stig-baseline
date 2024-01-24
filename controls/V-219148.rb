@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219148' do
   title "Ubuntu operating systems booted with United Extensible Firmware
 Interface (UEFI) implemented must require authentication upon booting into
@@ -36,7 +34,7 @@ Ubuntu operating systems that use UEFI.
     If the root password entry does not begin with “password_pbkdf2”, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system to require a password for authentication upon booting
 into single-user and maintenance modes.
 
@@ -77,9 +75,8 @@ following command:
     end
   else
     impact 0.0
-    describe "System is booted with a BIOS" do
-      skip "The System is booted with a BIOS, this control is Not Applicable."
+    describe 'System is booted with a BIOS' do
+      skip 'The System is booted with a BIOS, this control is Not Applicable.'
     end
   end
 end
-

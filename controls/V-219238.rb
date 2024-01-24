@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219238' do
   title "The Ubuntu operating system must generate audit records for
 successful/unsuccessful uses of the su command."
@@ -29,7 +27,7 @@ are commented out, this is a finding.
     Note: The '-k' allows for specifying an arbitrary identifier and the string
 after it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to generate audit records when
 successful/unsuccessful attempts to use the \"su\" command occur.
 
@@ -57,17 +55,13 @@ file:
   tag cci: ['V-100703', 'SV-109807', 'CCI-000172']
   tag nist: ['AU-12 c']
 
-
-
-  #describe auditd.file('/etc/sudoers') do
+  # describe auditd.file('/etc/sudoers') do
   #  its('permissions') { should include ['x'] }
-  #end
+  # end
 
   describe auditd.file('/bin/su') do
     its('action.uniq') { should eq ['always'] }
     its('list.uniq') { should eq ['exit'] }
     its('permissions') { should include ['x'] }
   end
-
 end
-

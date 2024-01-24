@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219164' do
   title "The Ubuntu operating system must enforce a delay of at least 4 seconds
 between logon prompts following a failed logon attempt."
@@ -19,7 +17,7 @@ seconds between logon prompts with the following command:
 
     If the line is not present, or is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce a delay of at least 4
 seconds between logon prompts following a failed logon attempt.
 

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219310' do
   title "The Ubuntu operating system must immediately terminate all network
 connections associated with SSH traffic after a period of inactivity."
@@ -39,7 +37,7 @@ automatically terminate after a period of inactivity.
     If \"ClientAliveCountMax\" is not set, or not set to \"1\", or is commented
 out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to automatically terminate inactive
 SSH sessions after a period of inactivity.
 
@@ -66,4 +64,3 @@ replacing \"[Count]\" with a value of 1:
     its('ClientAliveCountMax') { should cmp '1' }
   end
 end
-

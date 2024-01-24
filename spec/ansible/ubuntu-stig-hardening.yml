@@ -1,10 +1,9 @@
----
 - hosts:
-    - localhost
+  - localhost
   roles:
-    - roles/ansible-role-ubuntu-stig-vanilla
-    - roles/ansible-role-ubuntu-stig-hardening
+  - roles/ansible-role-ubuntu-stig-vanilla
+  - roles/ubuntu18_stig
   serial: 50
   become: yes
-  #vars:
-  #  - deployment_task: configure_apps.yml
+  vars:
+    ubtu_18_010114: false

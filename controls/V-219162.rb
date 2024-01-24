@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219162' do
   title "The Ubuntu operating system audit event multiplexor must be configured
 to off-load audit logs onto a different system or storage media from the system
@@ -36,7 +34,7 @@ different system or storage media.
     If there is no evidence that the system is configured to off-load audit
 logs to a different system or storage media, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit event multiplexor to off-load audit records to a
 different system or storage media from the system being audited.
 
@@ -73,26 +71,24 @@ receiving the audit log.
   tag cci: ['SV-109655', 'V-100551', 'CCI-001851']
   tag nist: ['AU-4 (1)']
 
-
   if package('audispd-plugins').installed? && file(input('audisp_cfg')).exist? && file(input('audisp_cfg_remote_plugin_cfg')).exist?
     describe auditd_conf(input('audisp_cfg')) do
       its('remote_server') { should cmp input('audisp_cfg_remote_server') }
     end
-    describe auditd_conf(input('audisp_cfg_remote_plugin_cfg'))  do
+    describe auditd_conf(input('audisp_cfg_remote_plugin_cfg')) do
       its('active') { should cmp 'yes' }
     end
   else
     describe package('audispd-plugins') do
       it { should be_installed }
     end
-    
+
     describe file(input('audisp_cfg')) do
       it { should exist }
     end
 
-  describe file(auditd_cfg_remote_plugin) do
-    it { should exist }
+    describe file(auditd_cfg_remote_plugin) do
+      it { should exist }
+    end
   end
-end
-
 end

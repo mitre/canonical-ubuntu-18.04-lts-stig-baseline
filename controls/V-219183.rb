@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219183' do
   title "The Ubuntu operating system must allow the use of a temporary password
 for system logons with an immediate change to a permanent password."
@@ -21,7 +19,7 @@ next login.
 
     If a policy does not exist, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Create a policy that ensures when a user is created, it is created using a
 method that forces a user to change their password upon their next login.
 
@@ -44,4 +42,3 @@ user to change their password upon their next login.
   tag cci: ['SV-109697', 'V-100593', 'CCI-002041']
   tag nist: ['IA-5 (1) (f)']
 end
-

@@ -8,235 +8,212 @@ summary: "This Security Technical Implementation Guide is published as a tool to
 version: 1.0.0
 
 supports:
-  - platform-name: ubuntu
-    release: 18.04
+- platform-name: ubuntu
+  release: 18.04
 
 inputs:
-  - name: platform_name
-    description: Name of the OS/Platform
-    type: String
-    value: 'ubuntu'
+- name: platform_name
+  description: Name of the OS/Platform
+  type: String
+  value: 'ubuntu'
 
-  - name: platform_release
-    description: Release number of the OS/Platform
-    type: Numeric
-    value: 18.04
+- name: platform_release
+  description: Release number of the OS/Platform
+  type: Numeric
+  value: 18.04
 
-  - name: supported_until
-    description: Support end date for OS/Platform security updates
-    type: String
-    value: '2023-04-30'
+- name: supported_until
+  description: Support end date for OS/Platform security updates
+  type: String
+  value: '2023-04-30'
 
-  - name: log_file_path
-    description: Audit log file path (SHOULD BE REPLACED/REMOVED WHEN auditd.conf_path FUNCTIONALITY BECOMES AVAILABLE IN INSPEC)
-    type: String
-    value: '/var/log/audit/audit.log'
+- name: log_file_path
+  description: Audit log file path (SHOULD BE REPLACED/REMOVED WHEN auditd.conf_path FUNCTIONALITY BECOMES AVAILABLE IN INSPEC)
+  type: String
+  value: '/var/log/audit/audit.log'
 
-  - name: log_file_dir
-    description: Audit log file directory (SHOULD BE REPLACED/REMOVED WHEN auditd.conf_path FUNCTIONALITY BECOMES AVAILABLE IN INSPEC)
-    type: String
-    value: '/var/log/audit/'
+- name: log_file_dir
+  description: Audit log file directory (SHOULD BE REPLACED/REMOVED WHEN auditd.conf_path FUNCTIONALITY BECOMES AVAILABLE IN INSPEC)
+  type: String
+  value: '/var/log/audit/'
 
-  - name: org_name
-    description: Organization Name
-    type: String
-    value: 'MITRE'
+- name: org_name
+  description: Organization Name
+  type: String
+  value: 'MITRE'
 
-  # V-219147
-  - name: grub_main_cfg
-    description: Main grub boot config file
-    type: String
-    value: '/boot/grub/grub.cfg'
+# V-219147
+- name: grub_main_cfg
+  description: Main grub boot config file
+  type: String
+  value: '/boot/grub/grub.cfg'
 
-  - name: grub_superuser
-    description: superusers for grub boot
-    type: String
-    value: 'root'
+- name: grub_superuser
+  description: superusers for grub boot
+  type: String
+  value: 'root'
 
-  # V-219148
-  - name: grub_uefi_main_cfg
-    description: Main grub boot config file
-    type: String
-    value: '/boot/efi/EFI/ubuntu/grub.cfg'
+# V-219148
+- name: grub_uefi_main_cfg
+  description: Main grub boot config file
+  type: String
+  value: '/boot/efi/EFI/ubuntu/grub.cfg'
 
-  # V-219195
-  # V-219197
-  - name: audit_tools
-    description: System audit tools used to view and manipulate log data
-    type: Array
-    value:
-      - /sbin/auditctl
-      - /sbin/aureport
-      - /sbin/ausearch
-      - /sbin/autrace
-      - /sbin/auditd
-      - /sbin/audispd
-      - /sbin/augenrules
+# V-219195
+# V-219197
+- name: audit_tools
+  description: System audit tools used to view and manipulate log data
+  type: Array
+  value:
+  - /sbin/auditctl
+  - /sbin/aureport
+  - /sbin/ausearch
+  - /sbin/autrace
+  - /sbin/auditd
+  - /sbin/audispd
+  - /sbin/augenrules
 
-  # V-219162
-  - name: audisp_cfg
-    description: Auditing Daemon config file
-    type: String
-    value: '/etc/audisp/audisp-remote.conf'
+# V-219162
+- name: audisp_cfg
+  description: Auditing Daemon config file
+  type: String
+  value: '/etc/audisp/audisp-remote.conf'
 
-  - name: audisp_cfg_remote_server
-    description: Auditing Daemon remote_server IP Address
-    type: String
-    value: '10.0.0.2' 
+- name: audisp_cfg_remote_server
+  description: Auditing Daemon remote_server IP Address
+  type: String
+  value: '10.0.0.2'
 
-  - name: audisp_cfg_remote_plugin_cfg
-    description: Auditing Daemon plugin audisp-remote config filea
-    type: String
-    value: '/etc/audisp/plugins.d/au-remote.conf'
+- name: audisp_cfg_remote_plugin_cfg
+  description: Auditing Daemon plugin audisp-remote config filea
+  type: String
+  value: '/etc/audisp/plugins.d/au-remote.conf'
 
 
 
-  # V-219164
-  - name: min_fail_delay
-    description: The minimum milliseconds after failed logon attempt
-    type: String
-    value: '4000000'
+# V-219164
+- name: min_fail_delay
+  description: The minimum milliseconds after failed logon attempt
+  type: String
+  value: '4000000'
 
-  # V-219167
-  - name: banner_message_text_gui
-    description: Banner message text for graphical user interface logins.
-    type: String
-    value: "'You are accessing a U.S. Government (USG) Information System (IS) that is \
-    provided for USG-authorized use only. By using this IS (which includes any \
-    device attached to this IS), you consent to the following conditions: -The USG \
-    routinely intercepts and monitors communications on this IS for purposes \
-    including, but not limited to, penetration testing, COMSEC monitoring, network \
-    operations and defense, personnel misconduct (PM), law enforcement (LE), and \
-    counterintelligence (CI) investigations. -At any time, the USG may inspect and \
-    seize data stored on this IS. -Communications using, or data stored on, this \
-    IS are not private, are subject to routine monitoring, interception, and \
-    search, and may be disclosed or used for any USG-authorized purpose. -This IS \
-    includes security measures (e.g., authentication and access controls) to \
-    protect USG interests--not for your personal benefit or privacy. \
-    -Notwithstanding the above, using this IS does not constitute consent to PM, \
-    LE or CI investigative searching or monitoring of the content of privileged \
-    communications, or work product, related to personal representation or \
-    services by attorneys, psychotherapists, or clergy, and their assistants. Such \
-    communications and work product are private and confidential. See User \
-    Agreement for details.'"
+# V-219167
+- name: banner_message_text_gui
+  description: Banner message text for graphical user interface logins.
+  type: String
+  value: "'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.'"
 
-  # V-219170
-  - name: banner_message_text_cli
-    description: Banner message text for command line interface logins.
-    type: String
-    value: "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. \
-    By using this IS (which includes any device attached to this IS), you consent to the following conditions: \
-    -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. \
-    -At any time, the USG may inspect and seize data stored on this IS. \
-    -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. \
-    -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. \
-    -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+# V-219170
+- name: banner_message_text_cli
+  description: Banner message text for command line interface logins.
+  type: String
+  value: "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
 
-  # V-219180
-  - name: min_reuse_generations
-    description: The minimum number of generations before a password can be reused
-    type: String
-    value: '5' 
-  # V-219303
-  - name: system_activity_timeout
-    description: The length in seconds of inactivity from the user in which the network connections associated with a session in terminated
-    type: String
-    value: '600'   
+# V-219180
+- name: min_reuse_generations
+  description: The minimum number of generations before a password can be reused
+  type: String
+  value: '5'
+# V-219303
+- name: system_activity_timeout
+  description: The length in seconds of inactivity from the user in which the network connections associated with a session in terminated
+  type: String
+  value: '600'
 
-  # V-219311
-  - name: client_alive_interval
-    description: The length in seconds of inactivity for ClientAliveInterval in sshd_config
-    type: String
-    value: '600'   
+# V-219311
+- name: client_alive_interval
+  description: The length in seconds of inactivity for ClientAliveInterval in sshd_config
+  type: String
+  value: '600'
 
-  # V-219150
-  - name: is_default_install_partition
-    description: Assert default partition layout for encryption
-    type: Boolean
-    value: false
-  
-  # V-219324
-  # TODO: May need to reduce to a base set
-  - name: allowed_profiles_enforce_mode
-    description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in enforce mode
-    type: Array
-    value:
-      - /sbin/dhclient
-      - /snap/core/*/usr/lib/snapd/snap-confine
-      - /snap/core/*/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-      - /usr/bin/evince
-      - /usr/bin/evince-previewer
-      - /usr/bin/evince-previewer//sanitized_helper
-      - /usr/bin/evince-thumbnailer
-      - /usr/bin/evince//sanitized_helper
-      - /usr/bin/man
-      - /usr/lib/NetworkManager/nm-dhcp-client.action
-      - /usr/lib/NetworkManager/nm-dhcp-helper
-      - /usr/lib/chromium-browser/chromium-browser//browser_java
-      - /usr/lib/chromium-browser/chromium-browser//browser_openjdk
-      - /usr/lib/chromium-browser/chromium-browser//sanitized_helper
-      - /usr/lib/connman/scripts/dhclient-script
-      - /usr/lib/cups/backend/cups-pdf
-      - /usr/lib/lightdm/lightdm-guest-session
-      - /usr/lib/lightdm/lightdm-guest-session//chromium
-      - /usr/lib/snapd/snap-confine
-      - /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-      - /usr/sbin/cups-browsed
-      - /usr/sbin/cupsd
-      - /usr/sbin/cupsd//third_party
-      - /usr/sbin/ippusbxd
-      - /usr/sbin/tcpdump
-      - docker-default
-      - snap-update-ns.code
-      - snap-update-ns.core
-      - snap-update-ns.kontena-lens
-      - snap.core.hook.configure
-      - webbrowser-app
-      - webbrowser-app//oxide_helper
+# V-219150
+- name: is_default_install_partition
+  description: Assert default partition layout for encryption
+  type: Boolean
+  value: false
 
-  # V-219324
-  # TODO: May need to reduce to a base set
-  - name: allowed_profiles_complain_mode
-    description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in complain mode (at a minimum)
-    type: Array
-    value:
-      - /usr/lib/chromium-browser/chromium-browser
-      - /usr/lib/chromium-browser/chromium-browser//chromium_browser_sandbox
-      - /usr/lib/chromium-browser/chromium-browser//lsb_release
-      - /usr/lib/chromium-browser/chromium-browser//xdgsettings
-      - /usr/lib/dovecot/anvil
-      - /usr/lib/dovecot/auth
-      - /usr/lib/dovecot/config
-      - /usr/lib/dovecot/deliver
-      - /usr/lib/dovecot/dict
-      - /usr/lib/dovecot/dovecot-auth
-      - /usr/lib/dovecot/dovecot-lda
-      - /usr/lib/dovecot/dovecot-lda///usr/sbin/sendmail
-      - /usr/lib/dovecot/imap
-      - /usr/lib/dovecot/imap-login
-      - /usr/lib/dovecot/lmtp
-      - /usr/lib/dovecot/log
-      - /usr/lib/dovecot/managesieve
-      - /usr/lib/dovecot/managesieve-login
-      - /usr/lib/dovecot/pop3
-      - /usr/lib/dovecot/pop3-login
-      - /usr/lib/dovecot/ssl-params
-      - /usr/sbin/avahi-daemon
-      - /usr/sbin/dnsmasq
-      - /usr/sbin/dnsmasq//libvirt_leaseshelper
-      - /usr/sbin/dovecot
-      - /usr/sbin/identd
-      - /usr/sbin/mdnsd
-      - /usr/sbin/nmbd
-      - /usr/sbin/nscd
-      - /usr/sbin/smbd
-      - /usr/sbin/smbldap-useradd
-      - /usr/sbin/smbldap-useradd///etc/init.d/nscd
-      - /usr/{sbin/traceroute,bin/traceroute.db}
-      - /{usr/,}bin/ping
-      - klogd
-      - snap.code.code
-      - snap.code.url-handler
-      - snap.kontena-lens.kontena-lens
-      - syslog-ng
-      - syslogd
+# V-219324
+# TODO: May need to reduce to a base set
+- name: allowed_profiles_enforce_mode
+  description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in enforce mode
+  type: Array
+  value:
+  - /sbin/dhclient
+  - /snap/core/*/usr/lib/snapd/snap-confine
+  - /snap/core/*/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+  - /usr/bin/evince
+  - /usr/bin/evince-previewer
+  - /usr/bin/evince-previewer//sanitized_helper
+  - /usr/bin/evince-thumbnailer
+  - /usr/bin/evince//sanitized_helper
+  - /usr/bin/man
+  - /usr/lib/NetworkManager/nm-dhcp-client.action
+  - /usr/lib/NetworkManager/nm-dhcp-helper
+  - /usr/lib/chromium-browser/chromium-browser//browser_java
+  - /usr/lib/chromium-browser/chromium-browser//browser_openjdk
+  - /usr/lib/chromium-browser/chromium-browser//sanitized_helper
+  - /usr/lib/connman/scripts/dhclient-script
+  - /usr/lib/cups/backend/cups-pdf
+  - /usr/lib/lightdm/lightdm-guest-session
+  - /usr/lib/lightdm/lightdm-guest-session//chromium
+  - /usr/lib/snapd/snap-confine
+  - /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+  - /usr/sbin/cups-browsed
+  - /usr/sbin/cupsd
+  - /usr/sbin/cupsd//third_party
+  - /usr/sbin/ippusbxd
+  - /usr/sbin/tcpdump
+  - docker-default
+  - snap-update-ns.code
+  - snap-update-ns.core
+  - snap-update-ns.kontena-lens
+  - snap.core.hook.configure
+  - webbrowser-app
+  - webbrowser-app//oxide_helper
+
+# V-219324
+# TODO: May need to reduce to a base set
+- name: allowed_profiles_complain_mode
+  description: List of AppArmor profiles (PIDs substituted with *) that are allowed to be in complain mode (at a minimum)
+  type: Array
+  value:
+  - /usr/lib/chromium-browser/chromium-browser
+  - /usr/lib/chromium-browser/chromium-browser//chromium_browser_sandbox
+  - /usr/lib/chromium-browser/chromium-browser//lsb_release
+  - /usr/lib/chromium-browser/chromium-browser//xdgsettings
+  - /usr/lib/dovecot/anvil
+  - /usr/lib/dovecot/auth
+  - /usr/lib/dovecot/config
+  - /usr/lib/dovecot/deliver
+  - /usr/lib/dovecot/dict
+  - /usr/lib/dovecot/dovecot-auth
+  - /usr/lib/dovecot/dovecot-lda
+  - /usr/lib/dovecot/dovecot-lda///usr/sbin/sendmail
+  - /usr/lib/dovecot/imap
+  - /usr/lib/dovecot/imap-login
+  - /usr/lib/dovecot/lmtp
+  - /usr/lib/dovecot/log
+  - /usr/lib/dovecot/managesieve
+  - /usr/lib/dovecot/managesieve-login
+  - /usr/lib/dovecot/pop3
+  - /usr/lib/dovecot/pop3-login
+  - /usr/lib/dovecot/ssl-params
+  - /usr/sbin/avahi-daemon
+  - /usr/sbin/dnsmasq
+  - /usr/sbin/dnsmasq//libvirt_leaseshelper
+  - /usr/sbin/dovecot
+  - /usr/sbin/identd
+  - /usr/sbin/mdnsd
+  - /usr/sbin/nmbd
+  - /usr/sbin/nscd
+  - /usr/sbin/smbd
+  - /usr/sbin/smbldap-useradd
+  - /usr/sbin/smbldap-useradd///etc/init.d/nscd
+  - /usr/{sbin/traceroute,bin/traceroute.db}
+  - /{usr/,}bin/ping
+  - klogd
+  - snap.code.code
+  - snap.code.url-handler
+  - snap.kontena-lens.kontena-lens
+  - syslog-ng
+  - syslogd

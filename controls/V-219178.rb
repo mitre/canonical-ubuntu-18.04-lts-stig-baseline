@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219178' do
   title "The Ubuntu operating system must enforce 24 hours/1 day as the minimum
 password lifetime. Passwords for new users must have a 24 hours/1 day minimum
@@ -21,7 +19,7 @@ password lifetime for new user accounts by running the following command:
     If the \"PASS_MIN_DAYS\" parameter value is less than 1, or commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce a 24 hours/1 day minimum
 password lifetime.
 
@@ -43,4 +41,3 @@ password lifetime.
     its('PASS_MIN_DAYS') { should cmp >= 1 }
   end
 end
-

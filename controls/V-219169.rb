@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219169' do
   title "The Ubuntu operating system must be configured so that only users who
 need access to security functions are part of the sudo group."
@@ -39,7 +37,7 @@ security functions.
     If the sudo group contains users not needing access to security functions,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the sudo group with only members requiring access to security
 functions.
 
@@ -57,4 +55,3 @@ functions.
   tag cci: ['V-100565', 'SV-109669', 'CCI-001084']
   tag nist: ['SC-3']
 end
-

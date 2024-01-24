@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219309' do
   title "The Ubuntu operating system must use strong authenticators in
 establishing nonlocal maintenance and diagnostic sessions."
@@ -27,7 +25,7 @@ maintenance.
 
     If \"UsePAM\" is not set to \"yes\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to use strong authentication when
 establishing nonlocal maintenance and diagnostic sessions.
 
@@ -45,4 +43,3 @@ establishing nonlocal maintenance and diagnostic sessions.
   tag cci: ['SV-109945', 'V-100841', 'CCI-000877']
   tag nist: ['MA-4 c']
 end
-

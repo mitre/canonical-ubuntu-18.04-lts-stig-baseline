@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219207' do
   title "The Ubuntu operating system must have directories that contain system
 commands owned by root."
@@ -33,7 +31,7 @@ initiating changes, including upgrades and modifications.
 
     If any system commands directories are returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands directories to be protected from unauthorized
 access. Run the following command:
 
@@ -50,4 +48,3 @@ access. Run the following command:
   tag cci: ['V-100641', 'SV-109745', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

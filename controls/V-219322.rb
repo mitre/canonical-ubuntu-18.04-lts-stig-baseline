@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219322' do
   title "Pam_Apparmor must be configured to allow system administrators to pass
 information to any other Ubuntu operating system administrator or user, change
@@ -50,7 +48,7 @@ command:
 configurations will be based on the actual system setup and organization. See
 the \"Pam_Apparmor\" documentation for more information on configuring profiles.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to allow system administrators to
 pass information to any other Ubuntu operating system administrator or user.
 
@@ -76,7 +74,7 @@ the \"Pam_Apparmor\" documentation for more information on configuring profiles.
   tag severity: 'low'
   tag gtitle: 'SRG-OS-000312-GPOS-00122'
   tag satisfies: ['SRG-OS-000312-GPOS-00122', 'SRG-OS-000312-GPOS-00123',
-'SRG-OS-000312-GPOS-00124', 'SRG-OS-000324-GPOS-0012']
+                  'SRG-OS-000312-GPOS-00124', 'SRG-OS-000324-GPOS-0012']
   tag gid: 'V-219322'
   tag rid: 'SV-219322r508662_rule'
   tag stig_id: 'UBTU-18-010437'
@@ -84,4 +82,3 @@ the \"Pam_Apparmor\" documentation for more information on configuring profiles.
   tag cci: ['V-100867', 'SV-109971', 'CCI-002235', 'CCI-002165']
   tag nist: ['AC-6 (10)', 'AC-3 (4)']
 end
-

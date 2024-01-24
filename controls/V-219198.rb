@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219198' do
   title "The Ubuntu operating system library files must have mode 0755 or less
 permissive."
@@ -30,7 +28,7 @@ permissive with the following command:
     If any files are found to be group-writable or world-writable, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the library files to be protected from unauthorized access. Run
 the following command:
 
@@ -46,4 +44,3 @@ the following command:
   tag cci: ['V-100623', 'SV-109727', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

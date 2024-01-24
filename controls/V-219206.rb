@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219206' do
   title 'The Ubuntu operating system must have system commands owned by root.'
   desc  "If the Ubuntu operating system were to allow any user to make changes
@@ -33,7 +31,7 @@ by root:
 
     If any system commands are returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands - and their respective parent directories -
 to be protected from unauthorized access. Run the following command:
 
@@ -50,4 +48,3 @@ to be protected from unauthorized access. Run the following command:
   tag cci: ['SV-109743', 'V-100639', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

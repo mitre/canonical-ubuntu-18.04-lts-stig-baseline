@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219297' do
   title "The Ubuntu operating system must generate records for
 successful/unsuccessful uses of delete_module syscall."
@@ -30,7 +28,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to generate an audit event for any
 use of the delete_module system call.
 
@@ -58,7 +56,7 @@ required.
   tag fix_id: 'F-21021r305220_fix'
   tag cci: ['V-100817', 'SV-109921', 'CCI-000172']
   tag nist: ['AU-12 c']
-  
+
   describe auditd.syscall('delete_module').where { arch == 'b32' } do
     its('action.uniq') { should eq ['always'] }
     its('list.uniq') { should eq ['exit'] }
@@ -68,6 +66,5 @@ required.
       its('action.uniq') { should eq ['always'] }
       its('list.uniq') { should eq ['exit'] }
     end
-  end   
+  end
 end
-

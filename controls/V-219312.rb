@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219312' do
   title "The Ubuntu operating system must configure the SSH daemon to only use
 Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic
@@ -41,7 +39,7 @@ Message Authentication Codes (MACs) that employ FIPS 140-2 approved ciphers.
     If any ciphers other than \"hmac-sha2-256\" or \"hmac-sha2-512\" are listed
 or the returned line is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to allow the SSH daemon to only use
 Message Authentication Codes (MACs) that employ FIPS 140-2 approved ciphers.
 
@@ -59,7 +57,7 @@ Message Authentication Codes (MACs) that employ FIPS 140-2 approved ciphers.
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000250-GPOS-00093'
   tag satisfies: ['SRG-OS-000250-GPOS-00093', 'SRG-OS-000393-GPOS-00173',
-'SRG-OS-000394-GPOS-00174']
+                  'SRG-OS-000394-GPOS-00174']
   tag gid: 'V-219312'
   tag rid: 'SV-219312r508662_rule'
   tag stig_id: 'UBTU-18-010417'
@@ -67,21 +65,20 @@ Message Authentication Codes (MACs) that employ FIPS 140-2 approved ciphers.
   tag cci: ['V-100847', 'SV-109951', 'CCI-001453', 'CCI-002890', 'CCI-003123']
   tag nist: ['AC-17 (2)', 'MA-4 (6)', 'MA-4 (6)']
 
-  @macs = inspec.sshd_config.params("macs")
+  @macs = inspec.sshd_config.params('macs')
   if @macs.nil?
     # fail fast
     describe 'The `sshd_config` setting for `MACs`' do
-    subject { @macs }
+      subject { @macs }
       it 'should be explicitly set and not commented out' do
         expect(subject).not_to be_nil
       end
     end
   else
-    @macs.first.split(",").each do |mac|
+    @macs.first.split(',').each do |mac|
       describe mac do
         it { should be_in ['hmac-sha2-256', 'hmac-sha2-512'] }
       end
     end
   end
 end
-

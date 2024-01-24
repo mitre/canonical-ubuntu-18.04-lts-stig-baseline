@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219185' do
   title "The Ubuntu operating system must require users to re-authenticate for
 privilege escalation and changing roles."
@@ -25,7 +23,7 @@ re-authenticate.
     If any occurrences of \"NOPASSWD\" or \"!authenticate\" return from the
 command, this is a finding.
   "
-  desc  'fix', "Remove any occurrence of \"NOPASSWD\" or \"!authenticate\"
+  desc 'fix', "Remove any occurrence of \"NOPASSWD\" or \"!authenticate\"
 found in \"/etc/sudoers\" file or files in the /etc/sudoers.d directory."
   impact 0.5
   tag severity: 'medium'
@@ -38,4 +36,3 @@ found in \"/etc/sudoers\" file or files in the /etc/sudoers.d directory."
   tag cci: ['SV-109701', 'V-100597', 'CCI-002038']
   tag nist: ['IA-11']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219155' do
   title "Advance package Tool (APT) must be configured to prevent the
 installation of patches, service packs, device drivers, or Ubuntu operating
@@ -39,7 +37,7 @@ to \"false\" with the following command:
     If any of the files returned from the command with \"AllowUnauthenticated\"
 set to \"true\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure Advance package Tool (APT) to prevent the installation of
 patches, service packs, device drivers, or Ubuntu operating system components
 without verification they have been digitally signed using a certificate that
@@ -76,7 +74,7 @@ entirely from each file. Below is an example of setting the
     apt_allowunauth.each do |line|
       describe "#{line} contains AllowUnauthenticated" do
         subject { line }
-        it { should_not match /.*true.*/ }
+        it { should_not match(/.*true.*/) }
       end
     end
   end

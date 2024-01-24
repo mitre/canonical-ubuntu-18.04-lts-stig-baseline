@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219342' do
   title "The Ubuntu operating system must implement address space layout
 randomization to protect its memory from unauthorized code execution."
@@ -68,11 +66,10 @@ files:
     its('value') { should cmp 2 }
   end
 
-  unless (command('egrep -R ^kernel.randomize_va_space=[^2] /etc/sysctl.conf /etc/sysctl.d').stdout).empty?
+  unless command('egrep -R ^kernel.randomize_va_space=[^2] /etc/sysctl.conf /etc/sysctl.d').stdout.empty?
     describe 'kernel.randomize_va_space is not set to 2' do
       subject { false }
       it { should eq true }
     end
   end
 end
-

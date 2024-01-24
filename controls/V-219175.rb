@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219175' do
   title "The Ubuntu operating system must require the change of at least 8
 characters when passwords are changed."
@@ -31,7 +29,7 @@ characters when passwords are changed.
     If the \"difok\" parameter is less than \"8\", or is commented out, this is
 a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to require the change of at least 8
 characters when passwords are changed.
 
@@ -50,4 +48,3 @@ characters when passwords are changed.
   tag cci: ['SV-109681', 'V-100577', 'CCI-000195']
   tag nist: ['IA-5 (1) (b)']
 end
-

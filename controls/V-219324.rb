@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219324' do
   title "The Apparmor module must be configured to employ a deny-all,
 permit-by-exception policy to allow the execution of authorized software
@@ -46,7 +44,7 @@ and home directory access control with the following command:
     If the defined profiles do not match the organization's list of authorized
 software, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to employ a deny-all,
 permit-by-exception policy to allow the execution of authorized software
 programs.
@@ -94,7 +92,7 @@ documentation for more information on configuring profiles.
   apparmor_profiles_enforce_mode = command('apparmor_status | awk \'/[0-9]* profiles are in enforce mode./{f=1;next} /[0-9]* profiles are in complain mode./{f=0} f\'').stdout.split("\n")
   apparmor_profiles_complain_mode = command('apparmor_status | awk \'/[0-9]* profiles are in complain mode./{f=1;next} /[0-9]* processes have profiles defined./{f=0} f\'').stdout.split("\n")
 
-  combined_profiles = input('allowed_profiles_enforce_mode') + input('allowed_profiles_complain_mode')  
+  combined_profiles = input('allowed_profiles_enforce_mode') + input('allowed_profiles_complain_mode')
 
   # NOTE: Instead of enforcing a one to one match, the following allows the target to have a more
   # slimmed down profile list as long as the target's profile list still remains a subset of the
@@ -108,17 +106,17 @@ documentation for more information on configuring profiles.
   # - perform "reverse" searches: input profiles must be in the "regex" target profile lists
   # - do not do a count comparison since the input profiles may contain the PID regex
 
-  # All profiles in enforce mode should be in allowed_profiles_enforce_mode or 
+  # All profiles in enforce mode should be in allowed_profiles_enforce_mode or
   # allowed_profiles_complain_mode.
   apparmor_profiles_enforce_mode.each do |profile_enforce_mode|
-    describe profile_enforce_mode.strip.gsub(/\/\d+\//,"/*/") do
+    describe profile_enforce_mode.strip.gsub(%r{/\d+/}, '/*/') do
       it { should be_in combined_profiles }
     end
   end
 
   # All profiles in complain mode should be in allowed_profiles_complain_mode
-  apparmor_profiles_complain_mode.each do |profile_complain_mode|
-    describe  do
+  apparmor_profiles_complain_mode.each do |_profile_complain_mode|
+    describe do
       it { should be_in input('allowed_profiles_complain_mode') }
     end
   end

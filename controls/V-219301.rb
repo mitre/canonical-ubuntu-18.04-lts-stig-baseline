@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219301' do
   title "The Ubuntu operating system must limit the number of concurrent
 sessions to ten for all accounts and/or account types."
@@ -28,7 +26,7 @@ command:
     If the \"maxlogins\" item is missing or the value is not set to 10 or less,
 it is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to limit the number of concurrent
 sessions to ten for all accounts and/or account types.
 
@@ -46,4 +44,3 @@ sessions to ten for all accounts and/or account types.
   tag cci: ['V-100825', 'SV-109929', 'CCI-000054']
   tag nist: ['AC-10']
 end
-

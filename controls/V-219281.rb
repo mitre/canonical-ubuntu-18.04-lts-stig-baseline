@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219281' do
   title "The Ubuntu operating system must prevent all software from executing
 at higher privilege levels than users executing the software and the audit
@@ -40,7 +38,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to audit the execution of all
 privileged functions.
 
@@ -72,4 +70,3 @@ required.
   tag cci: ['V-100785', 'SV-109889', 'CCI-002233', 'CCI-002234']
   tag nist: ['AC-6 (8)', 'AC-6 (9)']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219170' do
   title "The Ubuntu operating system must display the Standard Mandatory DoD
 Notice and Consent Banner before granting any publically accessible connection
@@ -95,7 +93,7 @@ Agreement for details.”
     If the banner text does not match the Standard Mandatory DoD Notice and
 Consent Banner exactly, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to display the Standard Mandatory DoD
 Notice and Consent Banner before granting access to the system via SSH logon.
 
@@ -149,18 +147,17 @@ Agreement for details.\"
   tag stig_id: 'UBTU-18-010038'
   tag fix_id: 'F-20894r304839_fix'
   tag cci: ['V-100567', 'SV-109671', 'CCI-001384', 'CCI-001385', 'CCI-001386',
-'CCI-001387', 'CCI-001388', 'CCI-000048']
+            'CCI-001387', 'CCI-001388', 'CCI-000048']
   tag nist: ['AC-8 c 1', 'AC-8 c 2', 'AC-8 c 2', 'AC-8 c 2', 'AC-8 c 3', "AC-8
 a"]
 
   describe sshd_config do
-    its('Banner') {should eq '/etc/issue'}
+    its('Banner') { should eq '/etc/issue' }
   end
 
   describe '/etc/issue must be set to banner_message_text_cli' do
-    banner_text = file('/etc/issue').content.gsub(%r{[\r\n\s]}, '')
+    banner_text = file('/etc/issue').content.gsub(/[\r\n\s]/, '')
     subject { banner_text }
-    it { should cmp input('banner_message_text_cli').gsub(%r{[\r\n\s]}, '') }
-    end
+    it { should cmp input('banner_message_text_cli').gsub(/[\r\n\s]/, '') }
+  end
 end
-

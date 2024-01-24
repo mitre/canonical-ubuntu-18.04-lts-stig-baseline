@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219203' do
   title "The Ubuntu operating system library directories must be group-owned by
 root."
@@ -28,7 +26,7 @@ the following command:
 
     If any system wide shared library directory is returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system library directories to be protected from unauthorized
 access. Run the following command:
 
@@ -45,4 +43,3 @@ access. Run the following command:
   tag cci: ['SV-109737', 'V-100633', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219192' do
   title "The Ubuntu operating system must configure the /var/log/syslog file to
 be group-owned by adm."
@@ -28,7 +26,7 @@ following command:
 
     If the /var/log/syslog file is not group-owned by adm, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to have adm group-own the
 /var/log/syslog file by running the following command:
 
@@ -44,4 +42,3 @@ following command:
   tag cci: ['V-100611', 'SV-109715', 'CCI-001314']
   tag nist: ['SI-11 b']
 end
-

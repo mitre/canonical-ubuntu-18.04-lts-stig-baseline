@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219193' do
   title "The Ubuntu operating system must configure /var/log/syslog file to be
 owned by syslog."
@@ -28,7 +26,7 @@ command:
 
     If the /var/log/syslog file is not owned by syslog, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to have syslog own the
 /var/log/syslog file by running the following command:
 
@@ -44,4 +42,3 @@ command:
   tag cci: ['V-100613', 'SV-109717', 'CCI-001314']
   tag nist: ['SI-11 b']
 end
-

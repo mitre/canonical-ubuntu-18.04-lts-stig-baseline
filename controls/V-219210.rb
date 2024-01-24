@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219210' do
   title "The Ubuntu operating system must enforce password complexity by
 requiring that at least one special character be used."
@@ -26,7 +24,7 @@ include: ~ ! @ # $ % ^ *.
     If the \"ocredit\" parameter is greater than \"-1\", or is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce password complexity by
 requiring that at least one special character be used.
 
@@ -45,4 +43,3 @@ file to include the \"ocredit=-1\" parameter:
   tag cci: ['V-100647', 'SV-109751', 'CCI-001619']
   tag nist: ['IA-5 (1) (a)']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219204' do
   title "The Ubuntu operating system must have system commands set to a mode of
 0755 or less permissive."
@@ -36,7 +34,7 @@ the following command:
     If any files are found to be group-writable or world-writable, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system commands to be protected from unauthorized access. Run
 the following command:
 
@@ -53,4 +51,3 @@ the following command:
   tag cci: ['SV-109739', 'V-100635', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

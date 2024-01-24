@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219334' do
   title "The Ubuntu operating system must be configured to prohibit or restrict
 the use of functions, ports, protocols, and/or services, as defined in the PPSM
@@ -78,4 +76,3 @@ to the protocol or service allowed.
   tag cci: ['V-100891', 'SV-109995', 'CCI-000382']
   tag nist: ['CM-7 b']
 end
-

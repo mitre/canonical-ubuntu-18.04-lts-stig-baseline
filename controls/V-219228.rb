@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219228' do
   title "The Ubuntu operating system must be configured so that audit log files
 cannot be read or write-accessible by unauthorized users."
@@ -34,7 +32,7 @@ audit log files have a mode of \"0600\" or less by using the following command:
     If the audit log files have a mode more permissive than \"0600\", this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit log files to have a mode of \"0600\" or less permissive.
 
     First determine where the audit logs are stored with the following command:

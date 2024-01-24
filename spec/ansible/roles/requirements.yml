@@ -1,0 +1,11 @@
+roles:
+- name: ubuntu18_stig
+  src: https://github.com/ansible-lockdown/UBUNTU18-STIG
+
+collections:
+- name: community.general
+  source: https://galaxy.ansible.com
+- name: community.crypto
+  source: https://galaxy.ansible.com
+- name: ansible.posix
+  source: https://galaxy.ansible.com

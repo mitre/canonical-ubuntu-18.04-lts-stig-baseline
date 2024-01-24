@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219231' do
   title "The Ubuntu operating system must be configured so that the audit log
 directory is not write-accessible by unauthorized users."
@@ -35,7 +33,7 @@ directory has a mode of \"0750\" or less by using the following command:
     If the audit log directory has a mode more permissive than \"0750\", this
 is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit log directory to have a mode of \"0750\" or less
 permissive.
 
@@ -60,4 +58,3 @@ following command:
   tag cci: ['V-100689', 'SV-109793', 'CCI-000164']
   tag nist: ['AU-9']
 end
-

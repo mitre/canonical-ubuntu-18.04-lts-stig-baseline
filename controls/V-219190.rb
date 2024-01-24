@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219190' do
   title "The Ubuntu operating system must configure the /var/log directory to
 be owned by root."
@@ -28,7 +26,7 @@ command:
 
     If the /var/log directory is not owned by root, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to have root own the /var/log
 directory by running the following command:
 
@@ -44,4 +42,3 @@ directory by running the following command:
   tag cci: ['V-100607', 'SV-109711', 'CCI-001314']
   tag nist: ['SI-11 b']
 end
-

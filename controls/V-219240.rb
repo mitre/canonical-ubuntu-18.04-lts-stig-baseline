@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219240' do
   title "The Ubuntu operating system must generate audit records for
 successful/unsuccessful uses of the mount command."
@@ -29,7 +27,7 @@ are commented out, this is a finding.
     Note: The '-k' allows for specifying an arbitrary identifier and the string
 after it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate an audit event for any
 successful/unsuccessful use of the \"mount\" command.
 
@@ -65,14 +63,17 @@ auid!=4294967295 -k privileged-mount
     impact 0.0
   end
 
-  describe auditd.file(audit_file) do
-    its('permissions') { should include ['x'] }
-    its('action.uniq') { should eq ['always'] }
-    its('list.uniq') { should eq ['exit'] }
-  end if file(audit_file).exist?
+  if file(audit_file).exist?
+    describe auditd.file(audit_file) do
+      its('permissions') { should include ['x'] }
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+    end
+  end
 
-  describe "The #{audit_file} file does not exist" do
-    skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
-  end if !file(audit_file).exist?
+  unless file(audit_file).exist?
+    describe "The #{audit_file} file does not exist" do
+      skip "The #{audit_file} file does not exist, this requirement is Not Applicable."
+    end
+  end
 end
-

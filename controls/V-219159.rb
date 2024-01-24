@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219159' do
   title "The Ubuntu operating system must deploy Endpoint Security for Linux
 Threat Prevention (ENSLTP)."
@@ -30,7 +28,7 @@ scanning using other tools, as specified in the requirement.
 
     If the daemon is not running, then this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to use ENSLTP.
 
     Install the isectp package,
@@ -47,4 +45,3 @@ scanning using other tools, as specified in the requirement.
   tag cci: ['SV-109649', 'V-100545', 'CCI-001233']
   tag nist: ['SI-2 (2)']
 end
-

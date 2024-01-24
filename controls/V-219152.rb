@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219152' do
   title "The Ubuntu operating system must immediately notify the SA and ISSO
 (at a minimum) when allocated audit record storage volume reaches 75% of the
@@ -54,7 +52,7 @@ system administrator(s) and/or ISSO, this is a finding.
     Note: If the email address of the system administrator is on a remote
 system a mail package must be available.
   "
-  desc  'fix', "
+  desc 'fix', "
     Edit /etc/audit/auditd.conf and set the space_left_action parameter to
 \"exec\" or \"email\".
 
@@ -82,10 +80,10 @@ least, 25% of the repository maximum audit record storage capacity.
   describe auditd_conf do
     its('space_left_action') { should eq 'email' }
   end
-  if((f = file(audit_log_dir = command("dirname #{auditd_conf.log_file}").stdout.strip)).directory?)
+  if (f = file(audit_log_dir = command("dirname #{auditd_conf.log_file}").stdout.strip)).directory?
     # Fetch partition sizes in 1K blocks for consistency
     partition_info = command("df -B 1K #{audit_log_dir}").stdout.split("\n")
-    partition_sz_arr = partition_info.last.gsub(/\s+/m, ' ').strip.split(" ")
+    partition_sz_arr = partition_info.last.gsub(/\s+/m, ' ').strip.split(' ')
 
     # Get partition size
     partition_sz = partition_sz_arr[1]
@@ -98,8 +96,7 @@ least, 25% of the repository maximum audit record storage capacity.
     end
   else
     describe f.directory? do
-     it { should be true }
+      it { should be true }
     end
   end
 end
-

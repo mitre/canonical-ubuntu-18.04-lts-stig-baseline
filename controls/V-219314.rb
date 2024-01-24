@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219314' do
   title "The Ubuntu operating system must not allow unattended or automatic
 login via ssh."
@@ -21,7 +19,7 @@ following command:
 set to \"no\", are missing completely, or they are commented out, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to allow the SSH daemon to not allow
 unattended or automatic login to the system.
 
@@ -48,4 +46,3 @@ unattended or automatic login to the system.
     its('PermitEmptyPasswords') { should eq 'no' }
   end
 end
-

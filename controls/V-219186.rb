@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219186' do
   title "The Ubuntu Operating system must be configured so that when passwords
 are changed or new passwords are established, pwquality must be used."
@@ -45,7 +43,7 @@ finding.
     If \"enforce_for_root\" is missing from the configuration line, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the operating system to use \"pwquality\" to enforce password
 complexity rules.
 
@@ -75,4 +73,3 @@ line to have the required value):
   tag cci: ['V-100599', 'SV-109703', 'CCI-000366']
   tag nist: ['CM-6 b']
 end
-

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219177' do
   title "The Ubuntu operating system must not have the telnet package
 installed."
@@ -18,7 +16,7 @@ system by running the following command:
 
     If the package is installed, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Remove the telnet package from the Ubuntu operating system by running the
 following command:
 
@@ -34,4 +32,3 @@ following command:
   tag cci: ['V-100581', 'SV-109685', 'CCI-000197']
   tag nist: ['IA-5 (1) (c)']
 end
-

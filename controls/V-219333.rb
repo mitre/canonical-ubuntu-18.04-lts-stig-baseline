@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219333' do
   title "The Ubuntu operating system must record time stamps for audit records
 that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time
@@ -22,7 +20,7 @@ Greenwich Mean Time (GMT). To verify run the following command.
 
     If \"Timezone\" is not set to UTC or GMT, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     To configure the system time zone to use Coordinated Universal Time (UTC)
 or Greenwich Mean Time (GMT), run the following command replacing [ZONE] with
 UTC or GMT.
@@ -39,4 +37,3 @@ UTC or GMT.
   tag cci: ['V-100889', 'SV-109993', 'CCI-001890']
   tag nist: ['AU-8 b']
 end
-

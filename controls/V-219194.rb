@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219194' do
   title "The Ubuntu operating system must configure /var/log/syslog file with
 mode 0640 or less permissive."
@@ -28,7 +26,7 @@ with mode 0640 or less permissive.
 
     If a value of \"640\" or less permissive is not returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to have permissions of 0640 o for the
 /var/log/syslog file by running the following command:
 
@@ -44,4 +42,3 @@ with mode 0640 or less permissive.
   tag cci: ['SV-109719', 'V-100615', 'CCI-001314']
   tag nist: ['SI-11 b']
 end
-

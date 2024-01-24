@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219161' do
   title "The Ubuntu operating system must have an application firewall
 installed in order to control remote access methods."
@@ -35,7 +33,7 @@ command:
 another application firewall is installed. If no application firewall is
 installed this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Install the Uncomplicated Firewall by using the following command:
 
     # sudo apt-get install ufw
@@ -52,6 +50,5 @@ installed this is a finding.
 
   describe package('ufw') do
     it { should be_installed }
-  end  
+  end
 end
-

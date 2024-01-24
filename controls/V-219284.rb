@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219284' do
   title "The Ubuntu operating system must generate audit records when
 successful/unsuccessful attempts to use fsetxattr system call."
@@ -34,7 +32,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate audit records for
 successful/unsuccessful attempts to use fsetxattr system call.
 
@@ -76,4 +74,3 @@ required.
     its('list.uniq') { should eq ['exit'] }
   end
 end
-

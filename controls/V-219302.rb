@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219302' do
   title "The Ubuntu operating system must retain a users session lock until
 that user reestablishes access using established identification and
@@ -32,7 +30,7 @@ interface session has the lock enabled with the following command:
 
     If \"lock-enabled\" is not set to \"true\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system so that it allows a user to lock the
 current graphical user interface session.
 
@@ -56,13 +54,12 @@ session locks with the following command:
 
   if !package('gdm3').installed?
     impact 0.0
-    describe "The GNOME Display Manager (GDM3) Package is not installed on the system" do
-      skip "This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed."
+    describe 'The GNOME Display Manager (GDM3) Package is not installed on the system' do
+      skip 'This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed.'
     end
   else
-    describe command("gsettings writable org.gnome.desktop.screensaver lock-enabled") do
-    its('stdout.strip') { should cmp 'true' }
+    describe command('gsettings writable org.gnome.desktop.screensaver lock-enabled') do
+      its('stdout.strip') { should cmp 'true' }
     end
   end
 end
-

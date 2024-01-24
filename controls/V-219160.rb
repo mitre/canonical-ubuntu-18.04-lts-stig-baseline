@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219160' do
   title "The Ubuntu operating system must be configured to preserve log records
 from failure events."
@@ -41,7 +39,7 @@ with the following command:
 
     If the command above returns \"inactive\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the log service to collect failure events.
 
     Install the log service (if the log service is not already installed) with
@@ -67,4 +65,3 @@ the following command:
   tag cci: ['SV-109651', 'V-100547', 'CCI-001665']
   tag nist: ['SC-24']
 end
-

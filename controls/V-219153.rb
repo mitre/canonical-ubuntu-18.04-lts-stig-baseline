@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219153' do
   title "The Ubuntu operating system audit event multiplexor must be configured
 to off-load audit logs onto a different system in real time, if the system is
@@ -41,7 +39,7 @@ different system:
     If the remote_server parameter is not set or is set with a local address,
 or is set with invalid address, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit event multiplexor to off-load audit records to a
 different system or storage media from the system being audited.
 
@@ -81,8 +79,4 @@ receiving the audit log.
   describe package('audispd-plugins') do
     it { should be_installed }
   end
-
-
-
 end
-

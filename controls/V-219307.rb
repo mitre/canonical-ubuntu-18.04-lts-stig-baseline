@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219307' do
   title "The Ubuntu operating system must implement DoD-approved encryption to
 protect the confidentiality of remote access sessions."
@@ -32,7 +30,7 @@ command:
     If no lines are returned, or the returned ciphers list contains any cipher
 not starting with \"aes\", this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to allow the SSH daemon to only
 implement DoD-approved encryption.
 
@@ -59,12 +57,9 @@ document.
 
   @ciphers_array = inspec.sshd_config.params['ciphers']
 
-  unless @ciphers_array.nil?
-    @ciphers_array = @ciphers_array.first.split(",")
-  end
+  @ciphers_array = @ciphers_array.first.split(',') unless @ciphers_array.nil?
 
   describe @ciphers_array do
     it { should be_in ['aes128-ctr', 'aes192-ctr', 'aes256-ctr'] }
   end
 end
-

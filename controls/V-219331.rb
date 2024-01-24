@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219331' do
   title "The Ubuntu operating system must, for networked systems, compare
 internal information system clocks at least every 24 hours with a server which
@@ -46,7 +44,7 @@ time source by running the following command:
     If the parameter \"server\" is not set, is not set to an authoritative DoD
 time source, or is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     If the system is not networked this requirement is Not Applicable.
 
     To configure the system clock to compare the system clock at least every 24
@@ -72,4 +70,3 @@ command:
   tag cci: ['SV-109989', 'V-100885', 'CCI-001891']
   tag nist: ['AU-8 (1) (a)']
 end
-

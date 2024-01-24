@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219298' do
   title "The Ubuntu operating system must generate audit records when
 successful/unsuccessful attempts to use modprobe command."
@@ -26,7 +24,7 @@ is a finding.
     Note: The '-k' allows for specifying an arbitrary identifier and the string
 after it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to audit the execution of the module
 management program \"modprobe\".
 
@@ -53,4 +51,3 @@ file.
   tag cci: ['SV-109923', 'V-100819', 'CCI-000172']
   tag nist: ['AU-12 c']
 end
-

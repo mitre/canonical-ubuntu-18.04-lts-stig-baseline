@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219174' do
   title "The Ubuntu operating system must enforce password complexity by
 requiring that at least one numeric character be used."
@@ -27,7 +25,7 @@ requiring that at least one numeric character be used.
     If the \"dcredit\" parameter is greater than \"-1\", or is commented out,
 this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to enforce password complexity by
 requiring that at least one numeric character be used.
 
@@ -46,4 +44,3 @@ requiring that at least one numeric character be used.
   tag cci: ['SV-109679', 'V-100575', 'CCI-000194']
   tag nist: ['IA-5 (1) (a)']
 end
-

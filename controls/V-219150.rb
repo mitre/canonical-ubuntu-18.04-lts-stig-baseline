@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219150' do
   title "Ubuntu operating systems handling data requiring data at rest
 protections must employ cryptographic mechanisms to prevent unauthorized
@@ -51,7 +49,7 @@ command:
 any partitions other than the boot partition or pseudo file systems (such as
 /proc or /sys) are not listed, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     To encrypt an entire partition, dedicate a partition for encryption in the
 partition layout.
 
@@ -62,7 +60,7 @@ difficult because the existing partitions must be resized and changed.
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000185-GPOS-00079'
   tag satisfies: ['SRG-OS-000185-GPOS-00079', 'SRG-OS-000404-GPOS-00183',
-'SRG-OS-000405-GPOS-00184']
+                  'SRG-OS-000405-GPOS-00184']
   tag gid: 'V-219150'
   tag rid: 'SV-219150r508662_rule'
   tag stig_id: 'UBTU-18-010003'
@@ -73,14 +71,14 @@ difficult because the existing partitions must be resized and changed.
   review_conditions = "all partitions other than the boot partition or pseudo file systems (such as
   /proc or /sys) have a corresponding entry in /etc/crypttab"
 
-  unless input('is_manual_nondefault_install_partition')
+  if input('is_manual_nondefault_install_partition')
+    describe "Please review the partition layout to ensure #{review_conditions}" do
+      skip "Please review the partition layout to ensure #{review_conditions}"
+    end
+  else
     describe command('sudo lsblk | grep -A3 `cat /etc/crypttab |cut -d" "  -f1` |grep root | awk \'{print $NF}\'') do
       its('exit_status') { should eq 0 }
       its('stdout.strip') { should eq '/' }
-    end
-  else
-    describe "Please review the partition layout to ensure #{review_conditions}" do
-      skip "Please review the partition layout to ensure #{review_conditions}"
     end
   end
 end

@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219173' do
   title "The Ubuntu operating system must enforce password complexity by
 requiring that at least one lower-case character be used."
@@ -43,4 +41,3 @@ this is a finding.
   tag cci: ['SV-109677', 'V-100573', 'CCI-000193']
   tag nist: ['IA-5 (1) (a)']
 end
-

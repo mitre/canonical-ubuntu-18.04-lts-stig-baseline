@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219311' do
   title "The Ubuntu operating system must automatically terminate all network
 connections associated with SSH traffic at the end of the session or after 10
@@ -53,7 +51,7 @@ inactivity.
     If \"ClientAliveInterval\" does not exist, is not set to a value of \"600\"
 or less in \"/etc/ssh/sshd_config\", or is commented out, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to automatically terminate all
 network connections associated with SSH traffic at the end of a session or
 after a 10 minute period of inactivity.
@@ -79,9 +77,8 @@ replacing \"[Interval]\" with a value of \"600\" or less:
   tag nist: ['SC-10', 'AC-12']
 
   describe sshd_config do
-    its("ClientAliveInterval.to_i"){should cmp >= 1}
-    its("ClientAliveInterval.to_i"){should cmp <= input('client_alive_interval')}
-    its("ClientAliveInterval"){should_not eq nil}
-  end 
+    its('ClientAliveInterval.to_i') { should cmp >= 1 }
+    its('ClientAliveInterval.to_i') { should cmp <= input('client_alive_interval') }
+    its('ClientAliveInterval') { should_not eq nil }
+  end
 end
-

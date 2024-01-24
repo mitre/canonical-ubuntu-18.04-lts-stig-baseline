@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219202' do
   title 'The Ubuntu operating system library files must be group-owned by root.'
   desc  "If the Ubuntu operating system were to allow any user to make changes
@@ -27,7 +25,7 @@ following command:
 
     If any system wide shared library file is returned, this is a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the system library files to be protected from unauthorized
 access. Run the following command:
 
@@ -44,4 +42,3 @@ access. Run the following command:
   tag cci: ['SV-109735', 'V-100631', 'CCI-001499']
   tag nist: ['CM-5 (6)']
 end
-

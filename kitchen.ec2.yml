@@ -10,7 +10,7 @@ driver:
     http_tokens: required
     http_put_response_hop_limit: 1
     instance_metadata_tags: enabled
-  instance_type: t2.micro
+  instance_type: t2.medium
   associate_public_ip: true
   interface: public
   skip_cost_warning: true
@@ -22,8 +22,8 @@ provisioner:
   hosts: all
   require_chef_for_busser: false
   require_ruby_for_busser: false
-  ansible_binary_path: /usr/bin
-  # require_pip3: true
+  ansible_binary_path: /usr/local/bin
+  require_pip3: true
   ansible_verbose: true
   roles_path: spec/ansible/roles
   galaxy_ignore_certs: true
@@ -34,7 +34,7 @@ provisioner:
 suites:
 - name: vanilla
   provisioner:
-    playbook: spec/ansible/roles/ubuntu-stig-vanilla.yml
+    playbook: spec/ansible/ubuntu-stig-vanilla.yml
   driver:
     tags:
       Name: Vanilla-<%= ENV['USER'] %>
@@ -42,7 +42,7 @@ suites:
 
 - name: hardened
   provisioner:
-    playbook: spec/ansible/roles/ubuntu-stig-hardened.yml
+    playbook: spec/ansible/ubuntu-stig-hardening.yml
   driver:
     tags:
       Name: Hardened-<%= ENV['USER'] %>
@@ -54,19 +54,17 @@ lifecycle:
       # echo "+++ Refreshing DNF package cache +++"
       # sudo dnf -y clean all
       echo ""
-      echo "+++ Updating DNF Packages +++"
-      sudo apt-get -y upgrade
+      echo "+++ Updating APT Packages +++"
+      sudo apt -y upgrade
       echo ""
       # echo "+++ Installing needed packages for workflow and utility +++\n\n"
-      # sudo dnf -y install --nogpgcheck bc bind-utils redhat-lsb-core vim git wget gcc openssl-devel libffi-devel bzip2-devel
-      sudo apt-get -y install build-dep python3-lxml
+      sudo apt -y install python3 python3-pip libxml2 libxml2-dev libxslt-dev python-dev
       echo ""
-      echo "+++ Installing Python 3.9 and Ansible +++\n\n"
-      export PATH=/usr/local/bin:$PATH
-      # sudo dnf -y install python3.9
-      # sudo dnf -y install python3-pip
-      # sudo update-alternatives --set python3 /usr/bin/python3.9
-      sudo python3 -m pip install ansible jmespath passlib lxml xmltodict
+      echo "+++ Installing Python 3.6 and Ansible +++\n\n"
+      #export PATH=/usr/local/bin:$PATH
+      # sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+      # pip3 install --user --upgrade pip
+      # sudo python3 -m pip install ansible jmespath passlib lxml xmltodict --y
 
       echo ""
       echo "+++ Updating the ec2-user to keep sudo working after hardening phase +++\n\n"
@@ -74,6 +72,18 @@ lifecycle:
       echo ""
       echo "+++ updating ec2-user sudo config for hardening phase +++\n\n"
       sudo chmod 600 /etc/sudoers && sudo sed -i'' "/ec2-user/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
+      sudo apt-get install -y wget apt-transport-https software-properties-common
+      # # Download the Microsoft repository keys
+      wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+      # # Register the Microsoft repository keys
+      sudo dpkg -i packages-microsoft-prod.deb
+      # # Delete the Microsoft repository keys file
+      rm packages-microsoft-prod.deb
+      # # Update the list of packages after we added packages.microsoft.com
+      sudo apt-get update
+      # ###################################
+      # # Install PowerShell
+      sudo apt-get install -y powershell
 
 transport:
   name: ssh

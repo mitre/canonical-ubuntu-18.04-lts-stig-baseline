@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219262' do
   title "The Ubuntu operating system must generate audit records for
 successful/unsuccessful uses of the open_by_handle_at system call."
@@ -40,7 +38,7 @@ commands are required.
     The '-k' allows for specifying an arbitrary identifier and the string after
 it does not need to match the example output above.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the audit system to generate an audit event for any unsuccessful
 use of the \"open_by_handle_at\" system call.
 
@@ -75,7 +73,7 @@ required.
   tag fix_id: 'F-20986r305115_fix'
   tag cci: ['SV-109853', 'V-100749', 'CCI-000172']
   tag nist: ['AU-12 c']
-  
+
   describe auditd.syscall('open_by_handle_at').where { arch == 'b32' } do
     its('action.uniq') { should eq ['always'] }
     its('list.uniq') { should eq ['exit'] }
@@ -88,14 +86,14 @@ required.
   end
   if os.arch.match?(/64/)
     describe auditd.syscall('open_by_handle_at').where { arch == 'b64' } do
-        its('action.uniq') { should eq ['always'] }
-        its('list.uniq') { should eq ['exit'] }
-        its('exit.uniq') { should include '-EPERM' }
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+      its('exit.uniq') { should include '-EPERM' }
     end
     describe auditd.syscall('open_by_handle_at').where { arch == 'b64' } do
-        its('action.uniq') { should eq ['always'] }
-        its('list.uniq') { should eq ['exit'] }
-        its('exit.uniq') { should include '-EACCES' }
+      its('action.uniq') { should eq ['always'] }
+      its('list.uniq') { should eq ['exit'] }
+      its('exit.uniq') { should include '-EACCES' }
     end
   end
 end

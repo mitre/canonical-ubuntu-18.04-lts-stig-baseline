@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219167' do
   title "The Ubuntu operating system must display the Standard Mandatory DoD
 Notice and Consent Banner before granting local access to the system via a
@@ -58,7 +56,7 @@ Agreement for details.\"
 match the Standard Mandatory DoD Notice and Consent Banner exactly, this is a
 finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Edit the /etc/gdm3/greeter.dconf-defaults file.
 
     Uncomment (remove the leading '#' characters) the following 3 configuration
@@ -119,20 +117,20 @@ line and the newline characters have been replaced with \
   tag cci: ['V-100561', 'SV-109665', 'CCI-000050']
   tag nist: ['AC-8 b']
 
-  unless package('gdm3').installed?
-    impact 0.0
-    describe "The GNOME Display Manager (GDM3) Package is not installed on the system" do
-      skip "This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed."
-    end
-  else
+  if package('gdm3').installed?
     describe 'banner-message-enable must be set to true and not commented' do
-        subject { command('grep banner-message-enable /etc/gdm3/greeter.dconf-defaults') }
-        its('stdout') { should match /^banner-message-enable.*=.*true/ }
+      subject { command('grep banner-message-enable /etc/gdm3/greeter.dconf-defaults') }
+      its('stdout') { should match(/^banner-message-enable.*=.*true/) }
     end
     describe 'banner-message-text must be set to banner_message_text_gui' do
-        banner_text = command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2').stdout.strip
-        subject { banner_text.gsub(%r{[\r\n\s]}, '') }
-        it { should cmp input('banner_message_text_gui').gsub(%r{[\r\n\s]}, '') }
+      banner_text = command('grep banner-message-text /etc/gdm3/greeter.dconf-defaults | cut -d "=" -f2').stdout.strip
+      subject { banner_text.gsub(/[\r\n\s]/, '') }
+      it { should cmp input('banner_message_text_gui').gsub(/[\r\n\s]/, '') }
+    end
+  else
+    impact 0.0
+    describe 'The GNOME Display Manager (GDM3) Package is not installed on the system' do
+      skip 'This control is Not Appliciable without the GNOME Display Manager (GDM3) Package installed.'
     end
   end
 end

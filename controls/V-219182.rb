@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 control 'V-219182' do
   title "The Ubuntu operating system must employ a FIPS 140-2 approved
 cryptographic hashing algorithms for all created and stored passwords."
@@ -31,7 +29,7 @@ a finding.
     If the output does not contain \"sha512\", or it is commented out, this is
 a finding.
   "
-  desc  'fix', "
+  desc 'fix', "
     Configure the Ubuntu operating system to encrypt all stored passwords with
 a strong cryptographic hash.
 
@@ -58,11 +56,10 @@ file to include the sha512 option for pam_unix.so:
 
   describe command('grep password /etc/pam.d/common-password | grep pam_unix') do
     its('exit_status') { should eq 0 }
-    its('stdout.strip') { should match /^\s*password\s+\[\s*success=1\s+default=ignore\s*\].*\s+sha512($|\s+.*$)/ }
+    its('stdout.strip') { should match(/^\s*password\s+\[\s*success=1\s+default=ignore\s*\].*\s+sha512($|\s+.*$)/) }
   end
 
   describe login_defs do
-    its('ENCRYPT_METHOD') { should cmp "SHA512" }
+    its('ENCRYPT_METHOD') { should cmp 'SHA512' }
   end
 end
-
