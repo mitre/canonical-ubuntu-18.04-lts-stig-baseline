@@ -14,7 +14,7 @@ jobs:
       CHEF_LICENSE: accept-silent
       CHEF_LICENSE_KEY: ${{ secrets.SAF_CHEF_LICENSE_KEY }}
       KITCHEN_LOCAL_YAML: kitchen.ec2.yml
-      PLATFORM: "ubuntu-1804"
+      PLATFORM: "ubuntu-18.04"
       LC_ALL: "en_US.UTF-8"
     strategy:
       matrix:
@@ -68,32 +68,27 @@ jobs:
         run: bundle exec inspec vendor . --overwrite
 
       - name: Run kitchen test
-        if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         continue-on-error: true
-        run: bundle exec kitchen test --destroy=always ${{ matrix.suite }}-${{ env.PLATFORM }}
+        run: bundle exec kitchen test --destroy=always ${{ matrix.suite }}-ubuntu-1804
 
       - name: Save our ${{ matrix.suite }} results summary
         continue-on-error: true
-        if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         uses: mitre/saf_action@v1.5.0
         with:
           command_string: "view summary -j -i spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}.json -o spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}-data.json"
 
       - name: Save Test Result JSON
-        if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.workflow }}-${{ env.COMMIT_SHORT_SHA }}-results
           path: spec/results/
 
       - name: Upload ${{ matrix.suite }} to Heimdall
-        if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         continue-on-error: true
         run: |
           curl -# -s -F data=@spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}.json -F "filename=${{ env.COMMIT_SHORT_SHA }}-${{ env.PLATFORM }}_${{ matrix.suite }}" -F "public=true" -F "evaluationTags=${{ env.COMMIT_SHORT_SHA }},${{ github.repository }},${{ github.workflow }}" -H "Authorization: Api-Key ${{ secrets.HEIMDALL_UPLOAD_GROUP_KEY }}" "${{ vars.SAF_HEIMDALL_URL }}/evaluations"
 
       - name: Display our ${{ matrix.suite }} results summary
-        if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         uses: mitre/saf_action@v1.5.0
         with:
           command_string: "view summary -i spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}.json"
