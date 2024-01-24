@@ -51,43 +51,29 @@ suites:
 lifecycle:
   pre_converge:
   - remote: |
-      # echo "+++ Refreshing DNF package cache +++"
-      # sudo dnf -y clean all
-      echo ""
       echo "+++ Updating APT Packages +++"
+      sudo apt-get update
+      echo ""
+      echo "Download the Microsoft repository keys"
+      wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+      echo "Register the Microsoft repository keys"
+      sudo dpkg -i packages-microsoft-prod.deb
+      echo "Delete the Microsoft repository keys file"
+      rm packages-microsoft-prod.deb
+      echo "Refresh Package Lists"
+      sudo apt-get update
       sudo apt -y upgrade
-      echo ""
-      # echo "+++ Installing needed packages for workflow and utility +++\n\n"
-      sudo apt -y install python3 python3-pip libxml2 libxml2-dev libxslt-dev python-dev
-      echo ""
-      echo "+++ Installing Python 3.6 and Ansible +++\n\n"
-      #export PATH=/usr/local/bin:$PATH
+      echo "+++ Installing needed packages for test-kitchen workflow and other utilities +++\n\n"
+      sudo apt -y install python3 python3-pip libxml2 libxml2-dev libxslt-dev python-dev wget apt-transport-https software-properties-common powershell
       # sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
-      # pip3 install --user --upgrade pip
-      # sudo python3 -m pip install ansible jmespath passlib lxml xmltodict --y
+      sudo -H python3 -m pip install --user --upgrade pip
       echo ""
-      echo "+++ Updating the ec2-user to keep sudo working after hardening phase +++\n\n"
-      sudo chage -d $(( $( date +%s ) / 86400 )) ec2-user
+      echo "+++ Updating the ubuntu to keep sudo working after hardening phase +++\n\n"
+      sudo chage -d $(( $( date +%s ) / 86400 )) ubuntu
       echo ""
-      echo "+++ updating ec2-user sudo config for hardening phase +++\n\n"
-      sudo chmod 600 /etc/sudoers && sudo sed -i'' "/ec2-user/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
       echo "+++ updating ubuntu sudo config for hardening phase +++\n\n"
       sudo chmod 600 /etc/sudoers && sudo sed -i'' "/ubuntu/d" /etc/sudoers && sudo chmod 400 /etc/sudoers
-      sudo apt-get install -y wget apt-transport-https software-properties-common
-  post_converge:
-  - remote: |
-      # # Download the Microsoft repository keys
-      wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
-      # # Register the Microsoft repository keys
-      sudo dpkg -i packages-microsoft-prod.deb
-      # # Delete the Microsoft repository keys file
-      rm packages-microsoft-prod.deb
-      # # Update the list of packages after we added packages.microsoft.com
-      sudo apt-get update
-      # ###################################
-      # # Install PowerShell
-      sudo apt-get install -y powershell
-      ### ADD Evaluate STIG HERE ###
+      # echo "Add Evaluate STIG to the Workflow Post Converge"
 
 transport:
   name: ssh
