@@ -80,9 +80,9 @@ jobs:
       - name: Save Test Result JSON
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.workflow }}-${{ env.COMMIT_SHORT_SHA }}-results
+          name: ${{ github.workflow }}-${{ env.COMMIT_SHORT_SHA }}-${{ matrix.suite }}-results
           path: spec/results/
-
+          overwrite: true
       - name: Upload ${{ matrix.suite }} to Heimdall
         continue-on-error: true
         run: |
